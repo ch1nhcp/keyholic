@@ -3,7 +3,7 @@
   <header>
     <!-- mobile menu -->
     <div class="mobile-menu bg-second">
-      <a href="#" class="mb-logo">KEYHOLIC</a>
+      <a href="/" class="mb-logo">KEYHOLIC</a>
       <span class="mb-menu-toggle" id="mb-menu-toggle">
         <i class="bx bx-menu"></i>
       </span>
@@ -31,17 +31,20 @@
       <!-- mid header -->
       <div class="bg-main">
         <div class="mid-header container">
-          <a href="#" class="logo">KEYHOLIC</a>
+          <a href="/" class="logo">KEYHOLIC</a>
           <div class="search">
             <input type="text" placeholder="Search" />
             <i class="bx bx-search-alt"></i>
           </div>
           <ul class="user-menu">
             <li>
-              <a href="#"><i class="bx bx-cart"></i></a>
+              <router-link to="/"><i class="bx bx-cart"></i></router-link>
+              <!-- <a href="#"><i class="bx bx-cart"></i></a> -->
             </li>
             <li>
-              <a href="#"><i class="bx bx-user-circle"></i></a>
+              <router-link to="/signin"
+                ><i class="bx bx-user-circle"></i
+              ></router-link>
             </li>
           </ul>
         </div>
@@ -51,7 +54,7 @@
       <div class="bg-second">
         <div class="bottom-header container">
           <ul class="main-menu">
-            <li><a href="#">home</a></li>
+            <li><a href="/">home</a></li>
             <!-- mega menu -->
             <li class="mega-dropdown">
               <a href="./products.html"

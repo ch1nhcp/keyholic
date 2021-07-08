@@ -1,18 +1,16 @@
 <template>
   <Menu />
-  <SignInAdmin/>
+  <router-view />
   <Footer />
 </template>
 
 <script>
 import Menu from "./components/Menu.vue";
 import Footer from "./components/Footer.vue";
-import SignInAdmin from "./pages/SignInAdmin.vue";
 export default {
   name: "App",
   components: {
     Menu,
-    SignInAdmin,
     Footer,
   },
 };
