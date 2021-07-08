@@ -61,45 +61,40 @@
                 <div class="row">
                   <div class="col-3 col-md-12">
                     <div class="box">
-                      <h3>Categories</h3>
+                      <h3>Bàn phím cao cấp</h3>
                       <ul>
-                        <li><a href="#">Wireless</a></li>
-                        <li><a href="#">Inear headphone</a></li>
-                        <li><a href="#">Overear headphone</a></li>
-                        <li><a href="#">sport headphone</a></li>
+                        <li><a href="#">Bàn phím Leopold</a></li>
+                        <li><a href="#">Bàn phím Filco</a></li>
+                        <li><a href="#">Bàn phím Razer</a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-3 col-md-12">
                     <div class="box">
-                      <h3>Categories</h3>
+                      <h3>Bàn phím phổ thông</h3>
                       <ul>
-                        <li><a href="#">Wireless</a></li>
-                        <li><a href="#">Inear headphone</a></li>
-                        <li><a href="#">Overear headphone</a></li>
-                        <li><a href="#">sport headphone</a></li>
+                        <li><a href="#">Bàn phím Corsair</a></li>
+                        <li><a href="#">Bàn phím Logitech</a></li>
+                        <li><a href="#">Bàn phím Keychrone</a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-3 col-md-12">
                     <div class="box">
-                      <h3>Categories</h3>
+                      <h3>Bàn phím giá rẻ</h3>
                       <ul>
-                        <li><a href="#">Wireless</a></li>
-                        <li><a href="#">Inear headphone</a></li>
-                        <li><a href="#">Overear headphone</a></li>
-                        <li><a href="#">sport headphone</a></li>
+                        <li><a href="#">Bàn phím Akko</a></li>
+                        <li><a href="#">Bàn phím E-Dra</a></li>
+                        <li><a href="#">Bàn phím Dareu</a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-3 col-md-12">
                     <div class="box">
-                      <h3>Categories</h3>
+                      <h3>Phụ kiện</h3>
                       <ul>
-                        <li><a href="#">Wireless</a></li>
-                        <li><a href="#">Inear headphone</a></li>
-                        <li><a href="#">Overear headphone</a></li>
-                        <li><a href="#">sport headphone</a></li>
+                        <li><a href="#">Keycap</a></li>
+                        <li><a href="#">Kê tay</a></li>
                       </ul>
                     </div>
                   </div>
@@ -107,34 +102,22 @@
                 <div class="row img-row">
                   <div class="col-3">
                     <div class="box">
-                      <img
-                        src="#"
-                        alt=""
-                      />
+                      <img src="#" alt="" />
                     </div>
                   </div>
                   <div class="col-3">
                     <div class="box">
-                      <img
-                        src="#"
-                        alt=""
-                      />
+                      <img src="#" alt="" />
                     </div>
                   </div>
                   <div class="col-3">
                     <div class="box">
-                      <img
-                        src="#"
-                        alt=""
-                      />
+                      <img src="#" alt="" />
                     </div>
                   </div>
                   <div class="col-3">
                     <div class="box">
-                      <img
-                        src="#"
-                        alt=""
-                      />
+                      <img src="#" alt="" />
                     </div>
                   </div>
                 </div>
@@ -157,19 +140,27 @@
 import "../css/app.css";
 import "../css/grid.css";
 export default {
-    mounted(){
-        document.querySelectorAll('.dropdown > a').forEach(e => {
-    e.addEventListener('click', (event) => event.preventDefault())
-})
+  mounted() {
+    document.querySelectorAll(".dropdown > a").forEach((e) => {
+      e.addEventListener("click", (event) => event.preventDefault());
+    });
 
-document.querySelectorAll('.mega-dropdown > a').forEach(e => {
-    e.addEventListener('click', (event) => event.preventDefault())
-})
+    document.querySelectorAll(".mega-dropdown > a").forEach((e) => {
+      e.addEventListener("click", (event) => event.preventDefault());
+    });
 
-document.querySelector('#mb-menu-toggle').addEventListener('click', () => document.querySelector('#header-wrapper').classList.add('active'))
+    document
+      .querySelector("#mb-menu-toggle")
+      .addEventListener("click", () =>
+        document.querySelector("#header-wrapper").classList.add("active")
+      );
 
-document.querySelector('#mb-menu-close').addEventListener('click', () => document.querySelector('#header-wrapper').classList.remove('active'))
-    }
+    document
+      .querySelector("#mb-menu-close")
+      .addEventListener("click", () =>
+        document.querySelector("#header-wrapper").classList.remove("active")
+      );
+  },
 };
 </script>
 
