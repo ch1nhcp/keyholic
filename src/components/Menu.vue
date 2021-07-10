@@ -57,9 +57,9 @@
             <li><a href="/">home</a></li>
             <!-- mega menu -->
             <li class="mega-dropdown">
-              <a href="./products.html"
+              <router-link to="/products"
                 >Shop<i class="bx bxs-chevron-down"></i
-              ></a>
+              ></router-link>
               <div class="mega-content">
                 <div class="row">
                   <div class="col-3 col-md-12">
