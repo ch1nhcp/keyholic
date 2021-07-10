@@ -11,7 +11,7 @@
             </button>
           </div>
           <img
-            src="https://cf.shopee.vn/file/fa1c0b7dca9ba9e128329dcd64d2d919"
+            src="../../assets/7.png"
             alt=""
           />
         </div>
@@ -25,7 +25,7 @@
             </button>
           </div>
           <img
-            src="https://cf.shopee.vn/file/8b62bd39d3be8b0e4d63434dbff083a5"
+            src="../../assets/6.png"
             alt=""
           />
         </div>
@@ -39,7 +39,7 @@
             </button>
           </div>
           <img
-            src="https://cf.shopee.vn/file/dad568ce20397b96c50fd26385bd17eb"
+            src="../../assets/8.png"
             alt=""
           />
         </div>
