@@ -1,10 +1,10 @@
 <template>
   <Slider />
   <Categories />
-  <ProductList title="LATEST PRODUCT"/>
+  <ProductList title="LATEST PRODUCT" />
   <SpecialProduct />
-  <ProductList title="BEST SELLING"/>
-  <ProductList title="LATEST PRODUCT"/>
+  <ProductList title="BEST SELLING" />
+  <ProductList title="LATEST PRODUCT" />
   <Blogs />
   <BrandCarousel />
 </template>
@@ -20,7 +20,7 @@ export default {
   components: {
     Slider,
     Categories,
-    ProductList : ProductList,
+    ProductList: ProductList,
     SpecialProduct,
     Blogs,
     BrandCarousel,

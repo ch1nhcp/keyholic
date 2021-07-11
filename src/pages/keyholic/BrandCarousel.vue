@@ -1,9 +1,9 @@
 <template>
   <carousel :items-to-show="8" class="brands">
     <slide v-for="brand in brands" :key="brand.id">
-      <router-link to="/products">
+      <!-- <router-link to="/products"> -->
         <img :src="brand.img" :alt="brand.name" />
-      </router-link>
+      <!-- </router-link> -->
     </slide>
   </carousel>
 </template>

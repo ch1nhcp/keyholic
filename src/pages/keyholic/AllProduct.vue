@@ -133,11 +133,13 @@
                     </div>
                     <div class="product-card-info">
                       <div class="product-btn">
-                        <a
-                          href="./product-detail.html"
+                        <router-link
+                          to="/productdetail"
                           class="btn-flat btn-hover btn-shop-now"
-                          >shop now</a
                         >
+                          shop now
+                        </router-link>
+
                         <button class="btn-flat btn-hover btn-cart-add">
                           <i class="bx bxs-cart-add"></i>
                         </button>

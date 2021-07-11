@@ -16,5 +16,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+/* @import "../src/CSSBase/bootstrap.min.css"; */
+/* @import "../src/CSSBase/font-icons.css";
+@import "../src/CSSBase/style.css"; */
 </style>

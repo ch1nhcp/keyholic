@@ -18,7 +18,8 @@
               </p>
               <div class="top-down trans-delay-0-6">
                 <button class="btn-flat btn-hover">
-                  <span>shop now</span>
+                  <!-- <span>shop now</span> -->
+                  <router-link to="/productdetail">shop now</router-link>
                 </button>
               </div>
             </div>
@@ -42,7 +43,8 @@
               </p>
               <div class="top-down trans-delay-0-6">
                 <button class="btn-flat btn-hover">
-                  <span>shop now</span>
+                  <!-- <span>shop now</span> -->
+                  <router-link to="/productdetail">shop now</router-link>
                 </button>
               </div>
             </div>
@@ -69,7 +71,8 @@
               </p>
               <div class="top-down trans-delay-0-6">
                 <button class="btn-flat btn-hover">
-                  <span>shop now</span>
+                  <!-- <span>shop now</span> -->
+                  <router-link to="/productdetail">shop now</router-link>
                 </button>
               </div>
             </div>

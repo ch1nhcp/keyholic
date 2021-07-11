@@ -16,7 +16,7 @@
             <div class="product-card-info">
               <div class="product-btn">
                 <button class="btn-flat btn-hover btn-shop-now">
-                  shop now
+                  <router-link to="/productdetail"> shop now </router-link>
                 </button>
                 <button class="btn-flat btn-hover btn-cart-add">
                   <i class="bx bxs-cart-add"></i>

@@ -38,7 +38,7 @@
           </div>
           <ul class="user-menu">
             <li>
-              <router-link to="/"><i class="bx bx-cart"></i></router-link>
+              <router-link to="/cart"><i class="bx bx-cart"></i></router-link>
               <!-- <a href="#"><i class="bx bx-cart"></i></a> -->
             </li>
             <li>
