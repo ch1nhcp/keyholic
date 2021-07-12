@@ -284,6 +284,12 @@ export default {};
 </script>
 
 <style scoped>
+.col-md-12{
+  width: 100%;
+}
+.shop_table.cart.table{
+  width: 100%;
+}
 .clearfix:before,
 .clearfix:after {
   display: table;
@@ -820,7 +826,19 @@ select {
 select::-ms-expand {
   display: none;
 }
-
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    width: 100%;
+    justify-content: flex-end;
+}
+.col-md-5.col-sm-12{
+  width: 50%;
+}
+.col-md-7{
+  width: 50%;
+}
 .row-12 input[type="text"],
 .row-12 input[type="email"] {
   margin-bottom: 12px;
