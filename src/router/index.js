@@ -9,8 +9,9 @@ import Cart from "../pages/keyholic/Cart.vue";
 import ProductDetail from "../pages/keyholic/ProductDetail.vue";
 import Checkout from "../pages/keyholic/Checkout.vue";
 
+
 const routes = [
-  { path: "/", component: Body },
+  { path: "/", component: Body ,name: 'main' },
   { path: "/signin", component: SignIn },
   { path: "/signup", component: SignUp },
 
@@ -20,6 +21,7 @@ const routes = [
   { path: "/productdetail", component: ProductDetail },
   { path: "/checkout", component: Checkout },
 ];
+
 const router = createRouter({
   history: createWebHistory(),
   scrollBehavior() {

@@ -1,7 +1,8 @@
 <template>
-  <div class="form-wrapper">
+  <h1  v-if="is==true">Hello {{users.Name}}</h1>
+  <span>{{users.Email}}</span>
+  <div class="form-wrapper" v-if="is==false" >
     {{users}}
-    <span style="color:red">{{ success }}</span>
     <h1>Sign In</h1>
     <form @submit.prevent="onSubmit">
       <div class="form-item">
@@ -52,12 +53,16 @@ export default {
       var data = {};
       data.Email = this.email;
       data.Password = this.password;
-     var a = this.$store.dispatch("user/login", data);
-     console.log(a.data)
+      await this.$store.dispatch("user/login", data);
+      if(this.is==true){
+      this.$router.push({path: '/'});
+       console.log(this.is)
+      }
     },
   },
   computed: {
-    ...mapState("user",["users"]),
+    ...mapState("user",["users","is"]),
+   
   },
   //  async created() {
   //   var data = {};
@@ -65,7 +70,6 @@ export default {
   //   data.Password = "aaa";
   //   var respond = await PostData("/api/login",data)
   //   console.log(respond.Name)
-
   // },
 };
 </script>

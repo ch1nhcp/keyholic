@@ -4,7 +4,6 @@
   <ProductList title="LATEST PRODUCT" />
   <SpecialProduct />
   <ProductList title="BEST SELLING" />
-  <ProductList title="LATEST PRODUCT" />
   <Blogs />
   <BrandCarousel />
 </template>

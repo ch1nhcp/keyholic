@@ -31,7 +31,7 @@
       <!-- mid header -->
       <div class="bg-main">
         <div class="mid-header container">
-           <router-link class="logo" to="/" >KEYHOLIC</router-link>
+          <router-link class="logo" to="/">KEYHOLIC</router-link>
           <div class="search">
             <input type="text" placeholder="Search" />
             <i class="bx bx-search-alt"></i>
@@ -41,19 +41,18 @@
               <router-link to="/cart"><i class="bx bx-cart"></i></router-link>
               <!-- <a href="#"><i class="bx bx-cart"></i></a> -->
             </li>
-            <li v-if="check==''">
-              <router-link  to="/signin"
+            <li v-if="is != true">
+              <router-link to="/signin"
                 ><i class="bx bx-user-circle"></i
               ></router-link>
             </li>
-            <li v-if="check!=''">
-              <router-link  to="/signin"
+            <li v-if="is == true">
+              <router-link to="/signin"
                 ><i class="bx bx-user-circle"></i
               ></router-link>
-              <router-link  to="/signin"
-                ><i class="bx bx-log-in"></i
+              <router-link to="/"
+                ><i @click="logout" class="bx bx-log-in"></i
               ></router-link>
-              
             </li>
           </ul>
         </div>
@@ -149,10 +148,22 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import "../css/app.css";
 import "../css/grid.css";
 
 export default {
+  methods: {
+    logout() {
+      this.$cookie.removeCookie("token", {
+        path: "/",
+        domain: "",
+      });
+      this.$router.push({path: '/'});
+      this.$store.dispatch("user/logout", "");
+      console.log(this.is)
+    },
+  },
   mounted() {
     document.querySelectorAll(".dropdown > a").forEach((e) => {
       e.addEventListener("click", (event) => event.preventDefault());
@@ -174,13 +185,18 @@ export default {
         document.querySelector("#header-wrapper").classList.remove("active")
       );
   },
-   computed:{
-    check :function(){
-      return 1
-    },
-  }
+  computed: {
+    ...mapState("user", ["users", "is"]),
+  },
+  created() {
+    var data = {};
+    let token = this.$cookie.getCookie("token");
+    data.Value = token;
+    this.$store.dispatch("user/checkuser", data);
+
+    //  this.$store.dispatch("user/login", data);
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -5,7 +5,7 @@
       <div class="row">
         <div class="ecommerce col-xs-12">
           <form name="checkout" class="checkout ecommerce-checkout row">
-            <div class="col-md-8" id="customer_details">
+            <div class="col-md-8" style="width: 60%;" id="customer_details">
               <div>
                 <h2 class="heading uppercase bottom-line full-grey mb-30">
                   billing address
@@ -398,6 +398,12 @@ export default {};
 </script>
 
 <style scoped>
+.checkout .col-md-8{
+  width: 60 !important;
+}
+.col-md-4{
+  width: 40%;
+}
 .clearfix:after {
   clear: both;
 }
