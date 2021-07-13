@@ -1,12 +1,15 @@
 <template>
   <div class="form-wrapper">
+    <span style="color:red">{{alert}}</span>
+       <span style="color:green">{{success}}</span>
     <h1>Sign Up</h1>
-    <form>
+    <form @submit.prevent="onregister">
       <div class="form-item">
         <label for="username"></label>
         <input
           type="username"
           name="username"
+          v-model="username"
           required="required"
           placeholder="Username"
         />
@@ -16,6 +19,7 @@
         <input
           type="email"
           name="email"
+          v-model="email"
           required="required"
           placeholder="Email Address"
         />
@@ -25,6 +29,7 @@
         <input
           type="password"
           name="password"
+          v-model="password"
           required="required"
           placeholder="Password"
         />
@@ -33,6 +38,7 @@
         <label for="confirm password"></label>
         <input
           type="password"
+          v-model="passwordconfirm"
           name="passwordconfirm"
           required="required"
           placeholder="Confirm password"
@@ -44,14 +50,64 @@
     </form>
     <div class="form-footer">
       <p>
-        <router-link to="/signin">Already have an account?</router-link></p>
+        <router-link to="/signin">Already have an account?</router-link>
+      </p>
       <!-- <p><a href="#">Forgot password?</a></p> -->
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+  import { mapState } from "vuex";
+
+export default {
+  name: "signup",
+  data() {
+    return {
+      username:"",
+      email:"",
+      password:"",
+      passwordconfirm:"",
+      alert:"",
+      success:"",
+    };
+  },
+   computed: {
+    ...mapState("user",["regiser","is"]),
+   
+  },
+  methods: {
+    async onregister() {
+        var data = {};
+      var username = this.username;
+      var email = this.email;
+      var password = this.password;
+      var passwordconfirm = this.passwordconfirm;
+      if (
+        username == "" ||
+        email == "" ||
+        password == "" ||
+        passwordconfirm == "" ||
+        password != passwordconfirm
+      ) {
+        alert("value not emty");
+        return;
+      }
+      data.Name = this.username;
+      data.Email = this.email;
+      data.Password = this.password;
+      await this.$store.dispatch("user/signup", data);
+      console.log(this.regiser)
+      if(this.regiser==true){
+        this.success = "Register success"
+        this.alert = ""
+        return 
+      }
+     this.success = ""
+        this.alert = "user exist"
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -123,7 +179,7 @@ form {
 }
 
 .button-panel .button {
-  background: #35BDFF;
+  background: #35bdff;
   border: none;
   color: #fff;
   cursor: pointer;

@@ -20,48 +20,48 @@ export default {
         {
           id: 1,
           name: "Leopold",
-          img: require("../../assets/Brands/partner_logo_dark_1.png"),
+          img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
         },
         {
           id: 2,
           name: "Leopold",
-          img: require("../../assets/Brands/partner_logo_dark_2.png"),
+           img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
         },
         {
           id: 3,
           name: "Leopold",
-          img: require("../../assets/Brands/partner_logo_dark_3.png"),
+  img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
         },
         {
           id: 4,
           name: "Leopold",
-          img: require("../../assets/Brands/partner_logo_dark_4.png"),
+         img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
         },
         {
           id: 5,
           name: "Leopold",
-          img: require("../../assets/Brands/partner_logo_dark_5.png"),
+         img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
         },
 
         {
           id: 7,
           name: "Leopold",
-          img: require("@/assets/Brands/partner_logo_dark_1.png"),
+           img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
         },
         {
           id: 8,
           name: "Leopold",
-          img: require("../../assets/Brands/partner_logo_dark_2.png"),
+    img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
         },
         {
           id: 9,
           name: "Leopold",
-          img: require("../../assets/Brands/partner_logo_dark_3.png"),
+  img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
         },
         {
           id: 10,
           name: "Leopold",
-          img: require("../../assets/Brands/partner_logo_dark_4.png"),
+  img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
         },
       ],
     };

@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="img top-down">
-            <img src="../../assets/4.jpg" alt="" />
+            <img src="../../../assets/4.jpg" alt="" />
           </div>
         </div>
         <!-- end slide item -->
@@ -78,7 +78,7 @@
             </div>
           </div>
           <div class="img left-right">
-            <img src="../../assets/3.jpg" alt="" />
+            <img src="../../../assets/3.jpg" alt="" />
           </div>
         </div>
         <!-- end slide item -->
@@ -97,8 +97,8 @@
 </template>
 
 <script>
-import "../../css/app.css";
-import "../../css/grid.css";
+import "../../../css/app.css";
+import "../../../css/grid.css";
 export default {
   mounted() {
     let slide_index = 0;

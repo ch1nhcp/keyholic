@@ -15,7 +15,7 @@
         <div class="col-5 col-md-12">
           <div class="product-img" id="product-img">
             <img
-              src="../../assets/4.jpg"
+              src="../../../assets/4.jpg"
               alt=""
             />
           </div>
@@ -23,19 +23,19 @@
             <div class="product-img-list">
               <div class="product-img-item">
                 <img
-                  src="../../assets/3.jpg"
+                  src="../../../assets/3.jpg"
                   alt=""
                 />
               </div>
               <div class="product-img-item">
                 <img
-                  src="../../assets/4.jpg"
+                  src="../../../assets/4.jpg"
                   alt=""
                 />
               </div>
               <div class="product-img-item">
                 <img
-                  src="../../assets/2.jpg"
+                  src="../../../assets/2.jpg"
                   alt=""
                 />
               </div>
@@ -142,8 +142,8 @@
           <div class="col-4 col-md-6 col-sm-12">
             <div class="product-card">
               <div class="product-card-img">
-                <img src="../../assets/3.jpg" alt="" />
-                <img src="../../assets/4.jpg" alt="" />
+                <img src="../../../assets/3.jpg" alt="" />
+                <img src="../../../assets/4.jpg" alt="" />
               </div>
               <div class="product-card-info">
                 <div class="product-btn">
@@ -172,8 +172,8 @@
 </template>
 
 <script>
-import "../../css/app.css";
-import "../../css/grid.css";
+import "../../../css/app.css";
+import "../../../css/grid.css";
 export default {
   mounted() {
     // Hàm bấm vào ảnh để chuyển ảnh phụ sang khung ảnh chính

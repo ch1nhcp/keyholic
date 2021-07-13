@@ -10,8 +10,8 @@
         <div class="col-3 col-md-6 col-sm-12">
           <div class="product-card">
             <div class="product-card-img">
-              <img src="../../assets/4.jpg" alt="" />
-              <img src="../../assets/2.jpg" alt="" />
+              <img src="../../../assets/4.jpg" alt="" />
+              <img src="../../../assets/2.jpg" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -35,8 +35,8 @@
         <div class="col-3 col-md-6 col-sm-12">
           <div class="product-card">
             <div class="product-card-img">
-              <img src="../../assets/4.jpg" alt="" />
-              <img src="../../assets/2.jpg" alt="" />
+              <img src="../../../assets/4.jpg" alt="" />
+              <img src="../../../assets/2.jpg" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -60,8 +60,8 @@
         <div class="col-3 col-md-6 col-sm-12">
           <div class="product-card">
             <div class="product-card-img">
-              <img src="../../assets/4.jpg" alt="" />
-              <img src="../../assets/2.jpg" alt="" />
+              <img src="../../../assets/4.jpg" alt="" />
+              <img src="../../../assets/2.jpg" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -85,8 +85,8 @@
         <div class="col-3 col-md-6 col-sm-12">
           <div class="product-card">
             <div class="product-card-img">
-              <img src="../../assets/4.jpg" alt="" />
-              <img src="../../assets/2.jpg" alt="" />
+              <img src="../../../assets/4.jpg" alt="" />
+              <img src="../../../assets/2.jpg" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -110,8 +110,8 @@
         <div class="col-3 col-md-6 col-sm-12">
           <div class="product-card">
             <div class="product-card-img">
-              <img src="../../assets/4.jpg" alt="" />
-              <img src="../../assets/2.jpg" alt="" />
+              <img src="../../../assets/4.jpg" alt="" />
+              <img src="../../../assets/2.jpg" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -135,8 +135,8 @@
         <div class="col-3 col-md-6 col-sm-12">
           <div class="product-card">
             <div class="product-card-img">
-              <img src="../../assets/4.jpg" alt="" />
-              <img src="../../assets/2.jpg" alt="" />
+              <img src="../../../assets/4.jpg" alt="" />
+              <img src="../../../assets/2.jpg" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -160,8 +160,8 @@
         <div class="col-3 col-md-6 col-sm-12">
           <div class="product-card">
             <div class="product-card-img">
-              <img src="../../assets/4.jpg" alt="" />
-              <img src="../../assets/2.jpg" alt="" />
+              <img src="../../../assets/4.jpg" alt="" />
+              <img src="../../../assets/2.jpg" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -185,8 +185,8 @@
         <div class="col-3 col-md-6 col-sm-12">
           <div class="product-card">
             <div class="product-card-img">
-              <img src="../../assets/4.jpg" alt="" />
-              <img src="../../assets/2.jpg" alt="" />
+              <img src="../../../assets/4.jpg" alt="" />
+              <img src="../../../assets/2.jpg" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">

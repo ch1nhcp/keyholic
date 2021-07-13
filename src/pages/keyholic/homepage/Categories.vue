@@ -11,7 +11,7 @@
             </button>
           </div>
           <img
-            src="../../assets/7.png"
+            src="../../../assets/7.png"
             alt=""
           />
         </div>
@@ -25,7 +25,7 @@
             </button>
           </div>
           <img
-            src="../../assets/6.png"
+            src="../../../assets/6.png"
             alt=""
           />
         </div>
@@ -39,7 +39,7 @@
             </button>
           </div>
           <img
-            src="../../assets/8.png"
+            src="../../../assets/8.png"
             alt=""
           />
         </div>

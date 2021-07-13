@@ -5,7 +5,8 @@ import {PostData} from "../../service/service"
 //state ~ data
 const state =()=> ({
     users:"",
-    is:false
+    is:false,
+    regiser:false
 });
 
 //actions ~ methods
@@ -36,6 +37,14 @@ const actions ={
             console.log(e);
         }
     },
+    async signup({commit}, data) {
+        try {
+        var respond = await PostData("/api/register",data)
+            commit("register", respond);
+        } catch (e) {
+            console.log(e);
+        }
+    },
 };
 
 //mutations ~ 
@@ -48,7 +57,12 @@ const mutations ={
             state.users = respond
             state.is = false
         }
-    }
+    },
+    register(state, respond) {
+        if(respond!=""){
+            state.regiser=true
+        }
+    },
 };
 //getter ~ computed 
 export default {

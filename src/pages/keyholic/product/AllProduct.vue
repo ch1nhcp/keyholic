@@ -128,8 +128,8 @@
                 <div class="col-4 col-md-6 col-sm-12">
                   <div class="product-card">
                     <div class="product-card-img">
-                      <img src="../../assets/4.jpg" alt="" />
-                      <img src="../../assets/2.jpg" alt="" />
+                      <img src="../../../assets/4.jpg" alt="" />
+                      <img src="../../../assets/2.jpg" alt="" />
                     </div>
                     <div class="product-card-info">
                       <div class="product-btn">
@@ -161,8 +161,8 @@
                 <div class="col-4 col-md-6 col-sm-12">
                   <div class="product-card">
                     <div class="product-card-img">
-                      <img src="../../assets/4.jpg" alt="../../assets/2" />
-                      <img src="../../assets/2.jpg" alt="" />
+                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
+                      <img src="../../../assets/2.jpg" alt="" />
                     </div>
                     <div class="product-card-info">
                       <div class="product-btn">
@@ -191,8 +191,8 @@
                 <div class="col-4 col-md-6 col-sm-12">
                   <div class="product-card">
                     <div class="product-card-img">
-                      <img src="../../assets/4.jpg" alt="../../assets/2" />
-                      <img src="../../assets/2.jpg" alt="" />
+                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
+                      <img src="../../../assets/2.jpg" alt="" />
                     </div>
                     <div class="product-card-info">
                       <div class="product-btn">
@@ -221,8 +221,8 @@
                 <div class="col-4 col-md-6 col-sm-12">
                   <div class="product-card">
                     <div class="product-card-img">
-                      <img src="../../assets/4.jpg" alt="../../assets/2" />
-                      <img src="../../assets/2.jpg" alt="" />
+                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
+                      <img src="../../../assets/2.jpg" alt="" />
                     </div>
                     <div class="product-card-info">
                       <div class="product-btn">
@@ -251,8 +251,8 @@
                 <div class="col-4 col-md-6 col-sm-12">
                   <div class="product-card">
                     <div class="product-card-img">
-                      <img src="../../assets/4.jpg" alt="../../assets/2" />
-                      <img src="../../assets/2.jpg" alt="" />
+                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
+                      <img src="../../../assets/2.jpg" alt="" />
                     </div>
                     <div class="product-card-info">
                       <div class="product-btn">
@@ -281,8 +281,8 @@
                 <div class="col-4 col-md-6 col-sm-12">
                   <div class="product-card">
                     <div class="product-card-img">
-                      <img src="../../assets/4.jpg" alt="../../assets/2" />
-                      <img src="../../assets/2.jpg" alt="" />
+                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
+                      <img src="../../../assets/2.jpg" alt="" />
                     </div>
                     <div class="product-card-info">
                       <!-- chuyển hướng sang product detail -->
@@ -334,8 +334,8 @@
 </template>
 
 <script>
-import "../../css/app.css";
-import "../../css/grid.css";
+import "../../../css/app.css";
+import "../../../css/grid.css";
 export default {
   mounted() {
     let filter_col = document.querySelector("#filter-col");
