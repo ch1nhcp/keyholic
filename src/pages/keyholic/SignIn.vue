@@ -1,12 +1,15 @@
 <template>
   <div class="form-wrapper">
+    {{users}}
+    <span style="color:red">{{ success }}</span>
     <h1>Sign In</h1>
-    <form>
+    <form @submit.prevent="onSubmit">
       <div class="form-item">
         <label for="email"></label>
         <input
           type="email"
           name="email"
+          v-model="email"
           required="required"
           placeholder="Email Address"
         />
@@ -16,6 +19,7 @@
         <input
           type="password"
           name="password"
+          v-model="password"
           required="required"
           placeholder="Password"
         />
@@ -25,14 +29,45 @@
       </div>
     </form>
     <div class="form-footer">
-      <p><a href="#">Create an account</a></p>
+      <p><router-link to="/signup">Create an account</router-link></p>
       <!-- <p><a href="#">Forgot password?</a></p> -->
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  name: "signin",
+  data() {
+    return {
+      email: "",
+      password: "",
+      success: "",
+    };
+  },
+  methods: {
+    async onSubmit() {
+      //  this.$store.commit("updateUser", "aaa")
+      var data = {};
+      data.Email = this.email;
+      data.Password = this.password;
+     var a = this.$store.dispatch("user/login", data);
+     console.log(a.data)
+    },
+  },
+  computed: {
+    ...mapState("user",["users"]),
+  },
+  //  async created() {
+  //   var data = {};
+  //   data.Email = "aaa@gmail.com";
+  //   data.Password = "aaa";
+  //   var respond = await PostData("/api/login",data)
+  //   console.log(respond.Name)
+
+  // },
+};
 </script>
 
 <style scoped>
@@ -104,7 +139,7 @@ form {
 }
 
 .button-panel .button {
-  background: #35BDFF;
+  background: #35bdff;
   border: none;
   color: #fff;
   cursor: pointer;

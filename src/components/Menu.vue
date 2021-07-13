@@ -31,7 +31,7 @@
       <!-- mid header -->
       <div class="bg-main">
         <div class="mid-header container">
-          <a href="/" class="logo">KEYHOLIC</a>
+           <router-link class="logo" to="/" >KEYHOLIC</router-link>
           <div class="search">
             <input type="text" placeholder="Search" />
             <i class="bx bx-search-alt"></i>
@@ -41,10 +41,19 @@
               <router-link to="/cart"><i class="bx bx-cart"></i></router-link>
               <!-- <a href="#"><i class="bx bx-cart"></i></a> -->
             </li>
-            <li>
-              <router-link to="/signin"
+            <li v-if="check==''">
+              <router-link  to="/signin"
                 ><i class="bx bx-user-circle"></i
               ></router-link>
+            </li>
+            <li v-if="check!=''">
+              <router-link  to="/signin"
+                ><i class="bx bx-user-circle"></i
+              ></router-link>
+              <router-link  to="/signin"
+                ><i class="bx bx-log-in"></i
+              ></router-link>
+              
             </li>
           </ul>
         </div>
@@ -54,7 +63,7 @@
       <div class="bg-second">
         <div class="bottom-header container">
           <ul class="main-menu">
-            <li><a href="/">home</a></li>
+            <li><router-link to="/">Home</router-link></li>
             <!-- mega menu -->
             <li class="mega-dropdown">
               <router-link to="/products"
@@ -142,6 +151,7 @@
 <script>
 import "../css/app.css";
 import "../css/grid.css";
+
 export default {
   mounted() {
     document.querySelectorAll(".dropdown > a").forEach((e) => {
@@ -164,6 +174,11 @@ export default {
         document.querySelector("#header-wrapper").classList.remove("active")
       );
   },
+   computed:{
+    check :function(){
+      return 1
+    },
+  }
 };
 </script>
 

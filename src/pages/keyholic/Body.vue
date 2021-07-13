@@ -17,6 +17,7 @@ import SpecialProduct from "./SpecialProduct.vue";
 import Blogs from "./Blogs.vue";
 import BrandCarousel from "./BrandCarousel.vue";
 export default {
+  name:"body",
   components: {
     Slider,
     Categories,

@@ -5,6 +5,9 @@
 </template>
 
 <script>
+// import Vue from 'vue'
+// import Vuex from 'vuex'
+// Vue.use(Vuex)
 import Menu from "./components/Menu.vue";
 import Footer from "./components/Footer.vue";
 export default {
@@ -13,6 +16,7 @@ export default {
     Menu,
     Footer,
   },
+  
 };
 </script>
 

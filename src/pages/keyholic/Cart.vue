@@ -278,16 +278,19 @@
   </div>
   <!-- end content wrapper -->
 </template>
-
 <script>
-export default {};
+// import {PostData} from "../../service/service"
+
+export default {
+ 
+};
 </script>
 
 <style scoped>
-.col-md-12{
+.col-md-12 {
   width: 100%;
 }
-.shop_table.cart.table{
+.shop_table.cart.table {
   width: 100%;
 }
 .clearfix:before,
@@ -827,16 +830,16 @@ select::-ms-expand {
   display: none;
 }
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -15px;
-    width: 100%;
-    justify-content: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+  width: 100%;
+  justify-content: flex-end;
 }
-.col-md-5.col-sm-12{
+.col-md-5.col-sm-12 {
   width: 50%;
 }
-.col-md-7{
+.col-md-7 {
   width: 50%;
 }
 .row-12 input[type="text"],

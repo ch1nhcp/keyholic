@@ -43,7 +43,8 @@
       </div>
     </form>
     <div class="form-footer">
-      <p><a href="#">Already have an account?</a></p>
+      <p>
+        <router-link to="/signin">Already have an account?</router-link></p>
       <!-- <p><a href="#">Forgot password?</a></p> -->
     </div>
   </div>
