@@ -4,7 +4,7 @@
     <!-- {{product}} -->
     <div class="container">
       <div class="section-header">
-        <h2>{{ title }}</h2>
+        <h2>Latest product</h2>
       </div>
       <div class="row" id="latest-products">
         <!-- Product  -->
@@ -218,22 +218,17 @@
 </template>
 
 <script>
-
-import {GetData} from "../../../service/service"
+import { GetData } from "../../../service/service";
 export default {
-  name: "ProductList",
-  props: {
-    title: String,
-  },
   data() {
     return {
-      product:[]
+      product: [],
     };
   },
-   async created() {
-     var respond =  GetData("/productlatest")
-     this.product = await respond
-     console.log(  this.product)
+  async created() {
+    var respond = GetData("/productlatest");
+    this.product = await respond;
+    console.log(this.product);
     // this.$store.dispatch("user/checkuser");
 
     //  this.$store.dispatch("user/login", data);

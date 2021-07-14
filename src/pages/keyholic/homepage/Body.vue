@@ -1,9 +1,9 @@
 <template>
   <Slider />
   <Categories />
-  <ProductList title="LATEST PRODUCT" />
+  <LatestList />
   <SpecialProduct />
-  <ProductList title="BEST SELLING" />
+  <BestSellingList />
   <Blogs />
   <BrandCarousel />
 </template>
@@ -11,17 +11,19 @@
 <script>
 import Slider from "./Slider.vue";
 import Categories from "./Categories.vue";
-import ProductList from "./ProductList.vue";
+import LatestList from "./LatestList.vue";
 import SpecialProduct from "./SpecialProduct.vue";
 import Blogs from "./Blogs.vue";
+import BestSellingList from "./BestSellingList.vue";
 import BrandCarousel from "./BrandCarousel.vue";
 export default {
-  name:"body",
+  name: "body",
   components: {
     Slider,
     Categories,
-    ProductList: ProductList,
+    LatestList,
     SpecialProduct,
+    BestSellingList,
     Blogs,
     BrandCarousel,
   },
