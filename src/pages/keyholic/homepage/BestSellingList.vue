@@ -8,36 +8,15 @@
       </div>
       <div class="row" id="latest-products">
         <!-- Product  -->
-        <div class="col-3 col-md-6 col-sm-12">
+        <div
+          v-for="product in products"
+          :key="product.Id"
+          class="col-3 col-md-6 col-sm-12"
+        >
           <div class="product-card">
             <div class="product-card-img">
-              <img src="../../../assets/4.jpg" alt="" />
-              <img src="../../../assets/2.jpg" alt="" />
-            </div>
-            <div class="product-card-info">
-              <div class="product-btn">
-                <button class="btn-flat btn-hover btn-shop-now">
-                  <router-link to="/productdetail"> shop now </router-link>
-                </button>
-                <button class="btn-flat btn-hover btn-cart-add">
-                  <i class="bx bxs-cart-add"></i>
-                </button>
-              </div>
-              <div class="product-card-name">Leopold C280</div>
-              <div class="product-card-price">
-                <span><del>$300</del></span>
-                <span class="curr-price">$200</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Product -->
-        <!-- Product  -->
-        <div class="col-3 col-md-6 col-sm-12">
-          <div class="product-card">
-            <div class="product-card-img">
-              <img src="../../../assets/4.jpg" alt="" />
-              <img src="../../../assets/2.jpg" alt="" />
+              <img :src="product.Products.Image" alt="" />
+              <img :src="product.Image[0]" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -48,165 +27,18 @@
                   <i class="bx bxs-cart-add"></i>
                 </button>
               </div>
-              <div class="product-card-name">Leopold C280</div>
+              <div class="product-card-name">{{ product.Products.Name }}</div>
               <div class="product-card-price">
-                <span><del>$300</del></span>
-                <span class="curr-price">$200</span>
+                <span
+                  ><del>${{ product.Products.Price }}</del></span
+                >
+                <span class="curr-price"
+                  >${{ product.Products.SalePrice }}</span
+                >
               </div>
             </div>
           </div>
         </div>
-        <!-- End Product -->
-        <!-- Product  -->
-        <div class="col-3 col-md-6 col-sm-12">
-          <div class="product-card">
-            <div class="product-card-img">
-              <img src="../../../assets/4.jpg" alt="" />
-              <img src="../../../assets/2.jpg" alt="" />
-            </div>
-            <div class="product-card-info">
-              <div class="product-btn">
-                <button class="btn-flat btn-hover btn-shop-now">
-                  shop now
-                </button>
-                <button class="btn-flat btn-hover btn-cart-add">
-                  <i class="bx bxs-cart-add"></i>
-                </button>
-              </div>
-              <div class="product-card-name">Leopold C280</div>
-              <div class="product-card-price">
-                <span><del>$300</del></span>
-                <span class="curr-price">$200</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Product -->
-        <!-- Product  -->
-        <div class="col-3 col-md-6 col-sm-12">
-          <div class="product-card">
-            <div class="product-card-img">
-              <img src="../../../assets/4.jpg" alt="" />
-              <img src="../../../assets/2.jpg" alt="" />
-            </div>
-            <div class="product-card-info">
-              <div class="product-btn">
-                <button class="btn-flat btn-hover btn-shop-now">
-                  shop now
-                </button>
-                <button class="btn-flat btn-hover btn-cart-add">
-                  <i class="bx bxs-cart-add"></i>
-                </button>
-              </div>
-              <div class="product-card-name">Leopold C280</div>
-              <div class="product-card-price">
-                <span><del>$300</del></span>
-                <span class="curr-price">$200</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Product -->
-        <!-- Product  -->
-        <div class="col-3 col-md-6 col-sm-12">
-          <div class="product-card">
-            <div class="product-card-img">
-              <img src="../../../assets/4.jpg" alt="" />
-              <img src="../../../assets/2.jpg" alt="" />
-            </div>
-            <div class="product-card-info">
-              <div class="product-btn">
-                <button class="btn-flat btn-hover btn-shop-now">
-                  shop now
-                </button>
-                <button class="btn-flat btn-hover btn-cart-add">
-                  <i class="bx bxs-cart-add"></i>
-                </button>
-              </div>
-              <div class="product-card-name">Leopold C280</div>
-              <div class="product-card-price">
-                <span><del>$300</del></span>
-                <span class="curr-price">$200</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Product -->
-        <!-- Product  -->
-        <div class="col-3 col-md-6 col-sm-12">
-          <div class="product-card">
-            <div class="product-card-img">
-              <img src="../../../assets/4.jpg" alt="" />
-              <img src="../../../assets/2.jpg" alt="" />
-            </div>
-            <div class="product-card-info">
-              <div class="product-btn">
-                <button class="btn-flat btn-hover btn-shop-now">
-                  shop now
-                </button>
-                <button class="btn-flat btn-hover btn-cart-add">
-                  <i class="bx bxs-cart-add"></i>
-                </button>
-              </div>
-              <div class="product-card-name">Leopold C280</div>
-              <div class="product-card-price">
-                <span><del>$300</del></span>
-                <span class="curr-price">$200</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Product -->
-        <!-- Product  -->
-        <div class="col-3 col-md-6 col-sm-12">
-          <div class="product-card">
-            <div class="product-card-img">
-              <img src="../../../assets/4.jpg" alt="" />
-              <img src="../../../assets/2.jpg" alt="" />
-            </div>
-            <div class="product-card-info">
-              <div class="product-btn">
-                <button class="btn-flat btn-hover btn-shop-now">
-                  shop now
-                </button>
-                <button class="btn-flat btn-hover btn-cart-add">
-                  <i class="bx bxs-cart-add"></i>
-                </button>
-              </div>
-              <div class="product-card-name">Leopold C280</div>
-              <div class="product-card-price">
-                <span><del>$300</del></span>
-                <span class="curr-price">$200</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Product -->
-        <!-- Product  -->
-        <div class="col-3 col-md-6 col-sm-12">
-          <div class="product-card">
-            <div class="product-card-img">
-              <img src="../../../assets/4.jpg" alt="" />
-              <img src="../../../assets/2.jpg" alt="" />
-            </div>
-            <div class="product-card-info">
-              <div class="product-btn">
-                <button class="btn-flat btn-hover btn-shop-now">
-                  shop now
-                </button>
-                <button class="btn-flat btn-hover btn-cart-add">
-                  <i class="bx bxs-cart-add"></i>
-                </button>
-              </div>
-              <div class="product-card-name">Leopold C280</div>
-              <div class="product-card-price">
-                <span><del>$300</del></span>
-                <span class="curr-price">$200</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Product -->
       </div>
 
       <div class="section-footer">
@@ -222,15 +54,13 @@ import { GetData } from "../../../service/service";
 export default {
   data() {
     return {
-      product: [],
+      products: [],
     };
   },
   async created() {
-    var respond = GetData("/productlatest");
-    this.product = await respond;
-    console.log(this.product);
-    // this.$store.dispatch("user/checkuser");
-    //  this.$store.dispatch("user/login", data);
+    var respond = GetData("/producthot");
+    this.products = await respond;
+    console.log(this.products);
   },
 };
 </script>

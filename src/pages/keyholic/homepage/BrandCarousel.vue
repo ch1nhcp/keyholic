@@ -1,8 +1,11 @@
 <template>
   <carousel :items-to-show="8" class="brands">
+    <!-- {{ brands[0] }} -->
+
     <slide v-for="brand in brands" :key="brand.id">
       <!-- <router-link to="/products"> -->
-        <img :src="brand.img" :alt="brand.name" />
+      <!-- <h1>{{ brand.id }}</h1> -->
+      <img :src="brand.Image"/>
       <!-- </router-link> -->
     </slide>
   </carousel>
@@ -11,64 +14,22 @@
 <script>
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
-// import img1 from "@/assets/Brands/partner_logo_dark_1.png"
+import { GetData } from "../../../service/service";
 
 export default {
   data() {
     return {
-      brands: [
-        {
-          id: 1,
-          name: "Leopold",
-          img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
-        },
-        {
-          id: 2,
-          name: "Leopold",
-           img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
-        },
-        {
-          id: 3,
-          name: "Leopold",
-  img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
-        },
-        {
-          id: 4,
-          name: "Leopold",
-         img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
-        },
-        {
-          id: 5,
-          name: "Leopold",
-         img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
-        },
-
-        {
-          id: 7,
-          name: "Leopold",
-           img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
-        },
-        {
-          id: 8,
-          name: "Leopold",
-    img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
-        },
-        {
-          id: 9,
-          name: "Leopold",
-  img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
-        },
-        {
-          id: 10,
-          name: "Leopold",
-  img: "https://hanoicomputercdn.com/media/product/51887_tong_the_ban_phim_co_akko_3087_world_tour_tokyo_blue_switch.jpg",
-        },
-      ],
+      brands: "",
     };
   },
   components: {
     Carousel,
     Slide,
+  },
+  async created() {
+    var respond = GetData("/api/brand");
+    this.brands = await respond;
+    console.log(this.brands);
   },
 };
 </script>
