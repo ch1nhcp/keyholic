@@ -28,6 +28,16 @@
               </ul>
             </div>
 
+            <!-- Category -->
+            <div class="box">
+              <span class="filter-header"> Sort By: </span>
+              <select @change="SortBy">
+                <option value="default">Default</option>
+                <option value="asc">Giá: tăng dần</option>
+                <option value="desc">Giá: giảm dần</option>
+              </select>
+            </div>
+
             <!-- Brand -->
             <div class="box">
               <span class="filter-header"> Brands </span>
@@ -79,7 +89,7 @@
                 </li>
                 <li>
                   <div class="group-checkbox">
-                    <input type="checkbox" id="remember5" />
+                    <input type="checkbox" id="remember6" />
                     <label for="remember5">
                       Filco
                       <i class="bx bx-check"></i>
@@ -88,7 +98,7 @@
                 </li>
                 <li>
                   <div class="group-checkbox">
-                    <input type="checkbox" id="remember5" />
+                    <input type="checkbox" id="remember7" />
                     <label for="remember5">
                       Filco
                       <i class="bx bx-check"></i>
@@ -97,7 +107,7 @@
                 </li>
                 <li>
                   <div class="group-checkbox">
-                    <input type="checkbox" id="remember5" />
+                    <input type="checkbox" id="remember8" />
                     <label for="remember5">
                       Filco
                       <i class="bx bx-check"></i>
@@ -106,7 +116,7 @@
                 </li>
                 <li>
                   <div class="group-checkbox">
-                    <input type="checkbox" id="remember5" />
+                    <input type="checkbox" id="remember9" />
                     <label for="remember5">
                       Filco
                       <i class="bx bx-check"></i>
@@ -171,10 +181,10 @@
                   @click="paginate(item)"
                   v-for="(item, index) in lastpage"
                   :key="index"
-                  
-
                 >
-                  <a :class="[page==index+1?'active':'']" href="#">{{ item }}</a>
+                  <a :class="[page == index + 1 ? 'active' : '']" href="#">{{
+                    item
+                  }}</a>
                 </li>
                 <!-- <li><a href="#">2</a></li>
                 <li><a href="#">3</a></li>
@@ -210,24 +220,26 @@ export default {
   methods: {
     async paginate(index) {
       // console.log(index);
-  
-    let respond = GetData("/product?page=" + index );
+
+      let respond = GetData("/product?page=" + index);
       this.data = await respond;
       this.products = await this.data.Product;
       this.page = await this.data.Page;
       this.lastpage = await this.data.Lastpage;
       this.total = await this.data.Total;
-       this.$router.push({path: '/products',query:{page:index}});
-
-    
+      this.$router.push({ path: "/products", query: { page: index } });
 
       // alert(c)
       // this.$store.dispatch("products/getProductById", to.params.id);
     },
+
+    SortBy(event) {
+      let value = event.target.value;
+      console.log(value);
+    },
   },
 
   mounted() {
-    
     let filter_col = document.querySelector("#filter-col");
 
     document
@@ -239,18 +251,18 @@ export default {
       .addEventListener("click", () => filter_col.classList.toggle("active"));
   },
   async created() {
-     var url_string = window.location.href;
-      var url = new URL(url_string);
-      var c = url.searchParams.get("page");
-      if(c == null){
-        c=1
-      }
-  let respond = GetData("/product?page=" + c );
-      this.data = await respond;
-      this.products = await this.data.Product;
-      this.page = await this.data.Page;
-      this.lastpage = await this.data.Lastpage;
-      this.total = await this.data.Total;
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var c = url.searchParams.get("page");
+    if (c == null) {
+      c = 1;
+    }
+    let respond = GetData("/product?page=" + c);
+    this.data = await respond;
+    this.products = await this.data.Product;
+    this.page = await this.data.Page;
+    this.lastpage = await this.data.Lastpage;
+    this.total = await this.data.Total;
 
     // var responddata = GetData("/product");
     // this.data = await responddata;
@@ -259,9 +271,7 @@ export default {
     // this.lastpage = await this.data.Lastpage;
     // this.total = await this.data.Total;
   },
- async watch(){
-   
-  },
+  async watch() {},
 };
 </script>
 
