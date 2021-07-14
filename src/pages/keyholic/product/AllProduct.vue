@@ -125,7 +125,11 @@
             <div class="box">
               <div class="row" id="products">
                 <!-- Product -->
-                <div class="col-4 col-md-6 col-sm-12">
+                <div
+                  v-for="product in products"
+                  :key="product.Id"
+                  class="col-4 col-md-6 col-sm-12"
+                >
                   <div class="product-card">
                     <div class="product-card-img">
                       <img src="../../../assets/4.jpg" alt="" />
@@ -156,158 +160,6 @@
                   </div>
                 </div>
                 <!-- End Product -->
-
-                <!-- Product -->
-                <div class="col-4 col-md-6 col-sm-12">
-                  <div class="product-card">
-                    <div class="product-card-img">
-                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
-                      <img src="../../../assets/2.jpg" alt="" />
-                    </div>
-                    <div class="product-card-info">
-                      <div class="product-btn">
-                        <a
-                          href="./product-detail.html"
-                          class="btn-flat btn-hover btn-shop-now"
-                          >shop now</a
-                        >
-                        <button class="btn-flat btn-hover btn-cart-add">
-                          <i class="bx bxs-cart-add"></i>
-                        </button>
-                        <!-- <button class="btn-flat btn-hover btn-cart-add">
-                            <i class="bx bxs-heart"></i>
-                          </button> -->
-                      </div>
-                      <div class="product-card-name">Mechanical Keyboard</div>
-                      <div class="product-card-price">
-                        <span><del>$400</del></span>
-                        <span class="curr-price">$300</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Product -->
-                <!-- Product -->
-                <div class="col-4 col-md-6 col-sm-12">
-                  <div class="product-card">
-                    <div class="product-card-img">
-                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
-                      <img src="../../../assets/2.jpg" alt="" />
-                    </div>
-                    <div class="product-card-info">
-                      <div class="product-btn">
-                        <a
-                          href="./product-detail.html"
-                          class="btn-flat btn-hover btn-shop-now"
-                          >shop now</a
-                        >
-                        <button class="btn-flat btn-hover btn-cart-add">
-                          <i class="bx bxs-cart-add"></i>
-                        </button>
-                        <!-- <button class="btn-flat btn-hover btn-cart-add">
-                            <i class="bx bxs-heart"></i>
-                          </button> -->
-                      </div>
-                      <div class="product-card-name">Mechanical Keyboard</div>
-                      <div class="product-card-price">
-                        <span><del>$400</del></span>
-                        <span class="curr-price">$300</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Product -->
-                <!-- Product -->
-                <div class="col-4 col-md-6 col-sm-12">
-                  <div class="product-card">
-                    <div class="product-card-img">
-                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
-                      <img src="../../../assets/2.jpg" alt="" />
-                    </div>
-                    <div class="product-card-info">
-                      <div class="product-btn">
-                        <a
-                          href="./product-detail.html"
-                          class="btn-flat btn-hover btn-shop-now"
-                          >shop now</a
-                        >
-                        <button class="btn-flat btn-hover btn-cart-add">
-                          <i class="bx bxs-cart-add"></i>
-                        </button>
-                        <!-- <button class="btn-flat btn-hover btn-cart-add">
-                            <i class="bx bxs-heart"></i>
-                          </button> -->
-                      </div>
-                      <div class="product-card-name">Mechanical Keyboard</div>
-                      <div class="product-card-price">
-                        <span><del>$400</del></span>
-                        <span class="curr-price">$300</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Product -->
-                <!-- Product -->
-                <div class="col-4 col-md-6 col-sm-12">
-                  <div class="product-card">
-                    <div class="product-card-img">
-                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
-                      <img src="../../../assets/2.jpg" alt="" />
-                    </div>
-                    <div class="product-card-info">
-                      <div class="product-btn">
-                        <a
-                          href="./product-detail.html"
-                          class="btn-flat btn-hover btn-shop-now"
-                          >shop now</a
-                        >
-                        <button class="btn-flat btn-hover btn-cart-add">
-                          <i class="bx bxs-cart-add"></i>
-                        </button>
-                        <!-- <button class="btn-flat btn-hover btn-cart-add">
-                            <i class="bx bxs-heart"></i>
-                          </button> -->
-                      </div>
-                      <div class="product-card-name">Mechanical Keyboard</div>
-                      <div class="product-card-price">
-                        <span><del>$400</del></span>
-                        <span class="curr-price">$300</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Product -->
-                <!-- Product -->
-                <div class="col-4 col-md-6 col-sm-12">
-                  <div class="product-card">
-                    <div class="product-card-img">
-                      <img src="../../../assets/4.jpg" alt="../../../assets/2" />
-                      <img src="../../../assets/2.jpg" alt="" />
-                    </div>
-                    <div class="product-card-info">
-                      <!-- chuyển hướng sang product detail -->
-                      <div class="product-btn">
-                        <a
-                          href="./product-detail.html"
-                          class="btn-flat btn-hover btn-shop-now"
-                          >shop now</a
-                        >
-                        <button class="btn-flat btn-hover btn-cart-add">
-                          <i class="bx bxs-cart-add"></i>
-                        </button>
-                        <!-- <button class="btn-flat btn-hover btn-cart-add">
-                            <i class="bx bxs-heart"></i>
-                          </button> -->
-                      </div>
-                      <div class="product-card-name">Mechanical Keyboard</div>
-                      <div class="product-card-price">
-                        <span><del>$400</del></span>
-                        <span class="curr-price">$300</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Product -->
               </div>
             </div>
             <div class="box">
@@ -315,11 +167,19 @@
                 <li>
                   <a href="#"><i class="bx bxs-chevron-left"></i></a>
                 </li>
-                <li><a href="#" class="active">1</a></li>
-                <li><a href="#">2</a></li>
+                <li
+                  @click="paginate(item)"
+                  v-for="(item, index) in lastpage"
+                  :key="index"
+                  
+
+                >
+                  <a :class="[page==index+1?'active':'']" href="#">{{ item }}</a>
+                </li>
+                <!-- <li><a href="#">2</a></li>
                 <li><a href="#">3</a></li>
                 <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                <li><a href="#">5</a></li> -->
                 <li>
                   <a href="#"><i class="bx bxs-chevron-right"></i></a>
                 </li>
@@ -336,8 +196,38 @@
 <script>
 import "../../../css/app.css";
 import "../../../css/grid.css";
+import { GetData } from "../../../service/service";
 export default {
+  data() {
+    return {
+      data: [],
+      products: [],
+      lastpage: 0,
+      page: 0,
+      total: 0,
+    };
+  },
+  methods: {
+    async paginate(index) {
+      // console.log(index);
+  
+    let respond = GetData("/product?page=" + index );
+      this.data = await respond;
+      this.products = await this.data.Product;
+      this.page = await this.data.Page;
+      this.lastpage = await this.data.Lastpage;
+      this.total = await this.data.Total;
+       this.$router.push({path: '/products',query:{page:index}});
+
+    
+
+      // alert(c)
+      // this.$store.dispatch("products/getProductById", to.params.id);
+    },
+  },
+
   mounted() {
+    
     let filter_col = document.querySelector("#filter-col");
 
     document
@@ -347,6 +237,30 @@ export default {
     document
       .querySelector("#filter-close")
       .addEventListener("click", () => filter_col.classList.toggle("active"));
+  },
+  async created() {
+     var url_string = window.location.href;
+      var url = new URL(url_string);
+      var c = url.searchParams.get("page");
+      if(c == null){
+        c=1
+      }
+  let respond = GetData("/product?page=" + c );
+      this.data = await respond;
+      this.products = await this.data.Product;
+      this.page = await this.data.Page;
+      this.lastpage = await this.data.Lastpage;
+      this.total = await this.data.Total;
+
+    // var responddata = GetData("/product");
+    // this.data = await responddata;
+    // this.products = await this.data.Product;
+    // this.page = await this.data.Page;
+    // this.lastpage = await this.data.Lastpage;
+    // this.total = await this.data.Total;
+  },
+ async watch(){
+   
   },
 };
 </script>
