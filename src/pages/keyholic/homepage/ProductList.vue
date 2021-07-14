@@ -1,6 +1,7 @@
 <template>
   <!-- product list -->
   <div class="section">
+    <!-- {{product}} -->
     <div class="container">
       <div class="section-header">
         <h2>{{ title }}</h2>
@@ -217,10 +218,25 @@
 </template>
 
 <script>
+
+import {GetData} from "../../../service/service"
 export default {
   name: "ProductList",
   props: {
     title: String,
+  },
+  data() {
+    return {
+      product:[]
+    };
+  },
+   async created() {
+     var respond =  GetData("/productlatest")
+     this.product = await respond
+     console.log(  this.product)
+    // this.$store.dispatch("user/checkuser");
+
+    //  this.$store.dispatch("user/login", data);
   },
 };
 </script>

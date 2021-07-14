@@ -188,7 +188,7 @@ export default {
   computed: {
     ...mapState("user", ["users", "is"]),
   },
-  created() {
+   created() {
     var data = {};
     let token = this.$cookie.getCookie("token");
     data.Value = token;
