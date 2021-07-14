@@ -235,7 +235,6 @@ export default {
      this.product = await respond
      console.log(  this.product)
     // this.$store.dispatch("user/checkuser");
-
     //  this.$store.dispatch("user/login", data);
   },
 };
