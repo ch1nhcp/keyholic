@@ -1,5 +1,4 @@
 <template>
-  <!-- product-detail content -->
   <div class="bg-main">
     <div class="container">
       <div class="box">
@@ -11,18 +10,19 @@
           <a href="#">Mechanical Keyboard</a>
         </div>
       </div>
-      <div class="row product-row">
+      <div  class="row product-row">
         <div class="col-5 col-md-12">
           <div class="product-img" id="product-img">
-            <img
-              alt=""
-            />
+             <img
+                  :src="product.Image"
+                  alt=""
+                />
           </div>
           <div class="box">
             <div class="product-img-list">
-              <div v-for="(image,index) in product.Image " :key="index" class="product-img-item">
+              <div class="product-img-item">
                 <img
-                  :src="image"
+                  :src="product.Image"
                   alt=""
                 />
               </div>
@@ -30,9 +30,9 @@
             </div>
           </div>
         </div>
-        <div  v-if="product" class="col-7 col-md-12">
+        <div  class="col-7 col-md-12">
           <div class="product-info">
-            <h1 v-if="product.Products.Name" >{{product.Products.Name}}</h1>
+            <h1  >{{product.Name}}</h1>
             <div class="product-info-detail">
               <span class="product-info-detail-title">Brand:</span>
               <a href="#">Leopold</a>
@@ -48,7 +48,7 @@
               </span>
             </div>
             <p class="product-description">
-              {{product.Products.ShortDescription}}
+              {{product.ShortDescription}}
                
             </p>
             <div class="product-info-price">$2345</div>
@@ -67,7 +67,7 @@
           </div>
         </div>
       </div>
-      <div class="box">
+      <div  class="box">
         <div class="box-header">description</div>
         <div class="product-detail-description">
           <button
@@ -78,7 +78,7 @@
           </button>
           <div class="product-detail-description-content">
             <p>
-              {{product.Products.Description}}
+              {{product.Description}}
             </p>
           </div>
         </div>
@@ -127,7 +127,8 @@ import { GetData } from "../../../service/service";
 export default {
   data() {
     return {
-     product:[]
+     product:[],
+
      
     };
   },
@@ -135,9 +136,9 @@ export default {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var param = url.searchParams.get("name");
-  let data = await GetData("/product/" + param);
-  this.product = await data
-  console.log(this.product.Image)
+  let res = await GetData("/product/" + param);
+  this.product = await res.Products
+  console.log(this.product)
   },
   mounted() {
     // Hàm bấm vào ảnh để chuyển ảnh phụ sang khung ảnh chính
