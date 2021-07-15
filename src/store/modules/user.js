@@ -5,16 +5,27 @@ import {PostData} from "../../service/service"
 //state ~ data
 const state =()=> ({
     users:"",
+    usersadmin:"",
     is:false,
-    regiser:false
+    regiser:false,
+    admin:false
 });
 
 //actions ~ methods
 const actions ={
+    async loginadmin( {commit},data) {
+        try {
+        var respond = await PostData("/api/loginadmin",data)
+        console.log(respond)
+            commit("updateUserAdmin", respond);
+        } catch (e) {
+            console.log(e);
+        }
+    },
     async login( {commit},data) {
         try {
         var respond = await PostData("/api/login",data)
-        // console.log(respond)
+        console.log(respond)
             commit("updateUser", respond);
         } catch (e) {
             console.log(e);
@@ -46,7 +57,6 @@ const actions ={
         }
     },
 };
-
 //mutations ~ 
 const mutations ={
     updateUser(state, respond) {
@@ -56,6 +66,17 @@ const mutations ={
         }else{
             state.users = respond
             state.is = false
+        }
+    },
+    updateUserAdmin(state, respond) {
+        if(respond.Id>0){
+            if(respond.Permission==1){
+                state.usersadmin = respond
+                state.admin = true
+            }
+        }else{
+            state.usersadmin = respond
+            state.admin = false
         }
     },
     register(state, respond) {

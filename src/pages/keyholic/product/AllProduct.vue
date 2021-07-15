@@ -9,7 +9,10 @@
           <a href="./products.html">all products</a>
         </div>
       </div>
-<div class="count"><span>{{page*2>total?total:page*2}}/{{total}} items</span></div>
+      <h1 style="display:none">{{ search }}</h1>
+      <div class="count">
+        <span>{{ page * 2 > total ? total : page * 2 }}/{{ total }} items</span>
+      </div>
 
       <div class="box">
         <div class="row">
@@ -43,17 +46,21 @@
             <div class="box">
               <span class="filter-header"> Brands </span>
               <ul class="filter-list">
-                <li  v-for="brand in brands"
-                  :key="brand.Id">
+                <li v-for="brand in brands" :key="brand.Id">
                   <div class="group-checkbox">
-                    <input :value="brand.Name" type="checkbox" :id="brand.Id" v-model="checkBrands" @change="GetBrand" />
+                    <input
+                      :value="brand.Name"
+                      type="checkbox"
+                      :id="brand.Id"
+                      v-model="checkBrands"
+                      @change="GetBrand"
+                    />
                     <label :for="brand.Id">
-                     {{brand.Name}}
+                      {{ brand.Name }}
                       <i class="bx bx-check"></i>
                     </label>
                   </div>
                 </li>
-                
               </ul>
             </div>
           </div>
@@ -79,7 +86,7 @@
                     <div class="product-card-info">
                       <div class="product-btn">
                         <router-link
-                          to="/productdetail"
+                          :to="'/productdetail?name='+product.Name"
                           class="btn-flat btn-hover btn-shop-now"
                         >
                           shop now
@@ -88,9 +95,7 @@
                         <button class="btn-flat btn-hover btn-cart-add">
                           <i class="bx bxs-cart-add"></i>
                         </button>
-                        <!-- <button class="btn-flat btn-hover btn-cart-add">
-                            <i class="bx bxs-heart"></i>
-                          </button> -->
+                       
                       </div>
                       <div class="product-card-name">{{ product.Name }}</div>
                       <div class="product-card-price">
@@ -119,10 +124,7 @@
                     item
                   }}</a>
                 </li>
-                <!-- <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li> -->
+             
                 <li>
                   <a href="#"><i class="bx bxs-chevron-right"></i></a>
                 </li>
@@ -140,6 +142,7 @@
 import "../../../css/app.css";
 import "../../../css/grid.css";
 import { GetData } from "../../../service/service";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -148,21 +151,51 @@ export default {
       lastpage: 0,
       page: 0,
       total: 0,
-      brands:[],
-      checkBrands:[]
+      brands: [],
+      checkBrands: [],
     };
   },
   methods: {
-   async GetBrand(){
-        console.log(this.checkBrands)
-         let respond = GetData("/brand/"+this.checkBrands);
-          this.data = await respond;
+//     async FindSearch(name) {
+//       let respond = GetData("/search?name=" + name);
+//       this.data = await respond;
+//       this.products = await this.data.Product;
+//       this.total = await this.data.Total;
+//       this.lastpage = 1;
+//       if(name.length>0){
+//  this.$router.push({
+//         path: "/products",
+//         query: { search: name },
+//       });
+//       }
+     
+//     },
+    async GetBrand() {
+      if (this.checkBrands == "") {
+        let respond = GetData("/product");
+        this.data = await respond;
+        this.products = await this.data.Product;
+        this.page = await this.data.Page;
+        this.lastpage = await this.data.Lastpage;
+        this.total = await this.data.Total;
+        this.$router.push({
+          path: "/products",
+          query: { page: 1 },
+        });
+        return;
+      }
+      let respond = GetData("/brand/" + this.checkBrands);
+      this.data = await respond;
       this.products = await this.data.Product;
       this.page = await this.data.Page;
       this.lastpage = await this.data.Lastpage;
       this.total = await this.data.Total;
-        // this.$router.push({ path: "/products", query: { page: 1,sort:1 } });
-      },
+      let stringbrand = this.checkBrands.toString();
+      this.$router.push({
+        path: "/products",
+        query: { page: 1, brand: stringbrand },
+      });
+    },
     async FindByCategory(id) {
       var respond;
       if (id == 1) {
@@ -172,6 +205,7 @@ export default {
           query: { category: "keyboard" },
         });
         respond = data;
+        this.checkBrands=[]
       }
       if (id == 2) {
         let data = GetData("/category/keycap");
@@ -197,7 +231,21 @@ export default {
       var url_string = window.location.href;
       var url = new URL(url_string);
       var params = url.searchParams.get("category");
-       var sort = url.searchParams.get("sort");
+      var sort = url.searchParams.get("sort");
+      var param_brand = url.searchParams.get("brand");
+      if (param_brand != null) {
+        let respond = GetData("/brand/" + this.checkBrands + "?page=" + index);
+        this.data = await respond;
+        this.products = await this.data.Product;
+        this.page = await this.data.Page;
+        this.lastpage = await this.data.Lastpage;
+        this.total = await this.data.Total;
+        this.$router.push({
+          path: "/products",
+          query: { page: index, brand: this.checkBrands },
+        });
+        return;
+      }
       if (params == null || params == "") {
         let respond = GetData("/product?page=" + index);
         this.data = await respond;
@@ -205,7 +253,10 @@ export default {
         this.page = await this.data.Page;
         this.lastpage = await this.data.Lastpage;
         this.total = await this.data.Total;
-        this.$router.push({ path: "/products", query: { page: index,sort:sort } });
+        this.$router.push({
+          path: "/products",
+          query: { page: index, sort: sort },
+        });
       } else {
         let respond = GetData("/category/" + params + "?page=" + index);
         this.data = await respond;
@@ -215,10 +266,10 @@ export default {
         this.total = await this.data.Total;
         this.$router.push({
           path: "/products",
-          query: { category: params, page: index ,sort:sort},
+          query: { category: params, page: index, sort: sort },
         });
       }
-if (sort == "asc") {
+      if (sort == "asc") {
         this.products.sort((b, c) => {
           return b.Price - c.Price;
         });
@@ -228,7 +279,6 @@ if (sort == "asc") {
           return c.Price - b.Price;
         });
       }
-     
     },
     SortBy(event) {
       let value = event.target.value;
@@ -254,24 +304,21 @@ if (sort == "asc") {
       let brand = url.searchParams.get("brand");
       this.$router.push({
         path: "/products",
-        query: {category: param,brand:brand, page: c,  sort: value },
+        query: { category: param, brand: brand, page: c, sort: value },
       });
     },
   },
-  computed:{
-     
+  computed: {
+    ...mapState("product", ["search"]),
   },
 
   async mounted() {
-      let respond = GetData("/api/brand");
-        this.brands = await respond;
-        console.log(this.brands)
+    let respond = GetData("/api/brand");
+    this.brands = await respond;
     let filter_col = document.querySelector("#filter-col");
-
     document
       .querySelector("#filter-toggle")
       .addEventListener("click", () => filter_col.classList.toggle("active"));
-
     document
       .querySelector("#filter-close")
       .addEventListener("click", () => filter_col.classList.toggle("active"));
@@ -297,28 +344,39 @@ if (sort == "asc") {
     this.page = await this.data.Page;
     this.lastpage = await this.data.Lastpage;
     this.total = await this.data.Total;
-     let sort = url.searchParams.get("sort");
-       if (sort == "asc") {
-        this.products.sort((b, c) => {
-          return b.Price - c.Price;
-        });
-      }
-      if (sort == "desc") {
-        this.products.sort((b, c) => {
-          return c.Price - b.Price;
-        });
-      }
+    let sort = url.searchParams.get("sort");
+    if (sort == "asc") {
+      this.products.sort((b, c) => {
+        return b.Price - c.Price;
+      });
+    }
+    if (sort == "desc") {
+      this.products.sort((b, c) => {
+        return c.Price - b.Price;
+      });
+    }
   },
 };
 </script>
 
 <style scoped>
+.filter-list > li {
+  cursor: pointer;
+}
+
+.box > select {
+  border: 2px solid;
+  background-color: white;
+  width: 150px;
+  font-family: "Poppins", sans-serif;
+  padding: 5px;
+}
 @media only screen and (max-width: 1280px) {
   .filter-col.active {
     left: 0;
   }
 }
-.count{
+.count {
   margin-right: 50px;
   display: block;
   text-align: center;

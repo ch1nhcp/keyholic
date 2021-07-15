@@ -1,12 +1,20 @@
 <template>
-  <div class="form-wrapper">
-    <h1>Sign In for Admin</h1>
-    <form>
+<div  v-if="admin==true">
+  <h1 >Hello {{users.Name}}</h1>
+  <span>{{users.Email}}</span>
+</div>
+
+  <!-- -->
+  <div class="form-wrapper"  v-if="admin==false" >
+    <!-- {{users}} -->
+    <h1>Sign In admin</h1>
+    <form @submit.prevent="onSubmit">
       <div class="form-item">
         <label for="email"></label>
         <input
           type="email"
           name="email"
+          v-model="email"
           required="required"
           placeholder="Email Address"
         />
@@ -16,6 +24,7 @@
         <input
           type="password"
           name="password"
+          v-model="password"
           required="required"
           placeholder="Password"
         />
@@ -25,13 +34,50 @@
       </div>
     </form>
     <div class="form-footer">
-      
+      <p><router-link to="/signup">Create an account</router-link></p>
+      <!-- <p><a href="#">Forgot password?</a></p> -->
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  name: "signin",
+  data() {
+    return {
+      email: "",
+      password: "",
+      success: "",
+    };
+  },
+  methods: {
+    async onSubmit() {
+      //  this.$store.commit("updateUser", "aaa")
+      var data = {};
+      data.Email = this.email;
+      data.Password = this.password;
+      await this.$store.dispatch("user/loginadmin", data);
+      if(this.admin==true){
+      this.$router.push({path: '/'});
+      }else{
+        alert("wrong user or password")
+      }
+      
+    },
+  },
+  computed: {
+    ...mapState("user",["users","is","admin"]),
+   
+  },
+  //  async created() {
+  //   var data = {};
+  //   data.Email = "aaa@gmail.com";
+  //   data.Password = "aaa";
+  //   var respond = await PostData("/api/login",data)
+  //   console.log(respond.Name)
+  // },
+};
 </script>
 
 <style scoped>

@@ -15,36 +15,24 @@
         <div class="col-5 col-md-12">
           <div class="product-img" id="product-img">
             <img
-              src="../../../assets/4.jpg"
               alt=""
             />
           </div>
           <div class="box">
             <div class="product-img-list">
-              <div class="product-img-item">
+              <div v-for="(image,index) in product.Image " :key="index" class="product-img-item">
                 <img
-                  src="../../../assets/3.jpg"
+                  :src="image"
                   alt=""
                 />
               </div>
-              <div class="product-img-item">
-                <img
-                  src="../../../assets/4.jpg"
-                  alt=""
-                />
-              </div>
-              <div class="product-img-item">
-                <img
-                  src="../../../assets/2.jpg"
-                  alt=""
-                />
-              </div>
+              
             </div>
           </div>
         </div>
-        <div class="col-7 col-md-12">
+        <div  v-if="product" class="col-7 col-md-12">
           <div class="product-info">
-            <h1>Mechanical Keyboard</h1>
+            <h1 v-if="product.Products.Name" >{{product.Products.Name}}</h1>
             <div class="product-info-detail">
               <span class="product-info-detail-title">Brand:</span>
               <a href="#">Leopold</a>
@@ -60,10 +48,8 @@
               </span>
             </div>
             <p class="product-description">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo
-              libero alias officiis dolore doloremque eveniet culpa dignissimos,
-              itaque, cum animi excepturi sed veritatis asperiores soluta, nisi
-              atque quae illum. Ipsum.
+              {{product.Products.ShortDescription}}
+               
             </p>
             <div class="product-info-price">$2345</div>
             <div class="product-quantity-wrapper">
@@ -92,44 +78,7 @@
           </button>
           <div class="product-detail-description-content">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-              laudantium obcaecati odit dolorem, doloremque accusamus esse neque
-              ipsa dignissimos saepe quisquam tempore perferendis deserunt
-              sapiente! Recusandae illum totam earum ratione. Lorem ipsum dolor
-              sit, amet consectetur adipisicing elit. Aliquam incidunt maxime
-              rerum reprehenderit voluptas asperiores ipsam quas consequuntur
-              maiores, at odit obcaecati vero sunt! Reiciendis aperiam
-              perferendis consequuntur odio quas. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Ut quaerat eum veniam doloremque
-              nihil repudiandae odio ratione culpa libero tempora. Expedita, quo
-              molestias. Minus illo quis dignissimos aliquid sapiente error!
-            </p>
-            <!-- <img
-              src="./images/JBL_Quantum_400_Product Image_Hero 02.png"
-              alt=""
-            /> -->
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-              accusantium officia, quae fuga in exercitationem aliquam labore ex
-              doloribus repellendus beatae facilis ipsam. Veritatis vero
-              obcaecati iste atque aspernatur ducimus. Lorem ipsum dolor sit,
-              amet consectetur adipisicing elit. Repellat quam praesentium id
-              sit amet magnam ad, dolorum, cumque iste optio itaque expedita
-              eius similique, ab adipisci dicta. Quod, quibusdam quas. Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Odit, in
-              corrupti ipsam sint error possimus commodi incidunt suscipit sit
-              voluptatum quibusdam enim eligendi animi deserunt recusandae earum
-              natus voluptas blanditiis?
-            </p>
-            <!-- <img
-              src="./images/kisspng-beats-electronics-headphones-apple-beats-studio-red-headphones.png"
-              alt=""
-            /> -->
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi
-              ullam quam fugit veniam ipsum recusandae incidunt, ex ratione,
-              magnam labore ad tenetur officia! In, totam. Molestias sapiente
-              deserunt animi porro?
+              {{product.Products.Description}}
             </p>
           </div>
         </div>
@@ -174,7 +123,22 @@
 <script>
 import "../../../css/app.css";
 import "../../../css/grid.css";
+import { GetData } from "../../../service/service";
 export default {
+  data() {
+    return {
+     product:[]
+     
+    };
+  },
+  async created() {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var param = url.searchParams.get("name");
+  let data = await GetData("/product/" + param);
+  this.product = await data
+  console.log(this.product.Image)
+  },
   mounted() {
     // Hàm bấm vào ảnh để chuyển ảnh phụ sang khung ảnh chính
     document.querySelectorAll(".product-img-item").forEach((e) => {
