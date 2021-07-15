@@ -16,7 +16,8 @@
           <div class="product-card">
             <div class="product-card-img">
               <img :src="product.Products.Image" alt="" />
-              <img :src="product.Image[0]" alt="" />
+              
+              <img v-if="product.Image != null" :src="product.Image[0]" alt="" />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -60,6 +61,7 @@ export default {
   async created() {
     var respond = GetData("/productlatest");
     this.products = await respond;
+      console.log(this.products);
   },
 };
 </script>

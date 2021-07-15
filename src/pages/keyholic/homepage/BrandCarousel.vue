@@ -29,7 +29,6 @@ export default {
   async created() {
     var respond = GetData("/api/brand");
     this.brands = await respond;
-    console.log(this.brands);
   },
 };
 </script>

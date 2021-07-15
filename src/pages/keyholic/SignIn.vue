@@ -2,7 +2,7 @@
   <h1  v-if="is==true">Hello {{users.Name}}</h1>
   <span>{{users.Email}}</span>
   <div class="form-wrapper" v-if="is==false" >
-    {{users}}
+    <!-- {{users}} -->
     <h1>Sign In</h1>
     <form @submit.prevent="onSubmit">
       <div class="form-item">
@@ -56,8 +56,10 @@ export default {
       await this.$store.dispatch("user/login", data);
       if(this.is==true){
       this.$router.push({path: '/'});
-       console.log(this.is)
+      }else{
+        alert("wrong user or password")
       }
+      
     },
   },
   computed: {

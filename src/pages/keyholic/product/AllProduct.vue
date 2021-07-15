@@ -9,6 +9,8 @@
           <a href="./products.html">all products</a>
         </div>
       </div>
+<div class="count"><span>{{page*2>total?total:page*2}}/{{total}} items</span></div>
+
       <div class="box">
         <div class="row">
           <div class="col-3 filter-col" id="filter-col">
@@ -17,14 +19,13 @@
                 close
               </button>
             </div>
-
             <!-- Category -->
             <div class="box">
               <span class="filter-header"> Categories </span>
               <ul class="filter-list">
-                <li><a href="#">Keyboard</a></li>
-                <li><a href="#">Keycap</a></li>
-                <li><a href="#">Palm rest</a></li>
+                <li><a @click="FindByCategory(1)">Keyboard</a></li>
+                <li><a @click="FindByCategory(2)">Keycap</a></li>
+                <li><a @click="FindByCategory(3)">Palm rest</a></li>
               </ul>
             </div>
 
@@ -42,87 +43,17 @@
             <div class="box">
               <span class="filter-header"> Brands </span>
               <ul class="filter-list">
-                <li>
+                <li  v-for="brand in brands"
+                  :key="brand.Id">
                   <div class="group-checkbox">
-                    <input type="checkbox" id="remember1" checked="checked" />
-                    <label for="remember1">
-                      Leopold
+                    <input :value="brand.Name" type="checkbox" :id="brand.Id" v-model="checkBrands" @change="GetBrand" />
+                    <label :for="brand.Id">
+                     {{brand.Name}}
                       <i class="bx bx-check"></i>
                     </label>
                   </div>
                 </li>
-                <li>
-                  <div class="group-checkbox">
-                    <input type="checkbox" id="remember2" />
-                    <label for="remember2">
-                      Keychrone
-                      <i class="bx bx-check"></i>
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="group-checkbox">
-                    <input type="checkbox" id="remember3" />
-                    <label for="remember3">
-                      Logitech
-                      <i class="bx bx-check"></i>
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="group-checkbox">
-                    <input type="checkbox" id="remember4" />
-                    <label for="remember4">
-                      Corsair
-                      <i class="bx bx-check"></i>
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="group-checkbox">
-                    <input type="checkbox" id="remember5" />
-                    <label for="remember5">
-                      Filco
-                      <i class="bx bx-check"></i>
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="group-checkbox">
-                    <input type="checkbox" id="remember6" />
-                    <label for="remember5">
-                      Filco
-                      <i class="bx bx-check"></i>
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="group-checkbox">
-                    <input type="checkbox" id="remember7" />
-                    <label for="remember5">
-                      Filco
-                      <i class="bx bx-check"></i>
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="group-checkbox">
-                    <input type="checkbox" id="remember8" />
-                    <label for="remember5">
-                      Filco
-                      <i class="bx bx-check"></i>
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="group-checkbox">
-                    <input type="checkbox" id="remember9" />
-                    <label for="remember5">
-                      Filco
-                      <i class="bx bx-check"></i>
-                    </label>
-                  </div>
-                </li>
+                
               </ul>
             </div>
           </div>
@@ -161,10 +92,12 @@
                             <i class="bx bxs-heart"></i>
                           </button> -->
                       </div>
-                      <div class="product-card-name">Mechanical Keyboard</div>
+                      <div class="product-card-name">{{ product.Name }}</div>
                       <div class="product-card-price">
-                        <span><del>$400</del></span>
-                        <span class="curr-price">$300</span>
+                        <span
+                          ><del>${{ product.Price }}</del></span
+                        >
+                        <span class="curr-price">${{ product.SalePrice }}</span>
                       </div>
                     </div>
                   </div>
@@ -215,31 +148,124 @@ export default {
       lastpage: 0,
       page: 0,
       total: 0,
+      brands:[],
+      checkBrands:[]
     };
   },
   methods: {
-    async paginate(index) {
-      // console.log(index);
-
-      let respond = GetData("/product?page=" + index);
+   async GetBrand(){
+        console.log(this.checkBrands)
+         let respond = GetData("/brand/"+this.checkBrands);
+          this.data = await respond;
+      this.products = await this.data.Product;
+      this.page = await this.data.Page;
+      this.lastpage = await this.data.Lastpage;
+      this.total = await this.data.Total;
+        // this.$router.push({ path: "/products", query: { page: 1,sort:1 } });
+      },
+    async FindByCategory(id) {
+      var respond;
+      if (id == 1) {
+        let data = GetData("/category/keyboard");
+        this.$router.push({
+          path: "/products",
+          query: { category: "keyboard" },
+        });
+        respond = data;
+      }
+      if (id == 2) {
+        let data = GetData("/category/keycap");
+        this.$router.push({ path: "/products", query: { category: "keycap" } });
+        respond = data;
+      }
+      if (id == 3) {
+        let data = GetData("/category/palmrest");
+        this.$router.push({
+          path: "/products",
+          query: { category: "palmrest" },
+        });
+        respond = data;
+      }
       this.data = await respond;
       this.products = await this.data.Product;
       this.page = await this.data.Page;
       this.lastpage = await this.data.Lastpage;
       this.total = await this.data.Total;
-      this.$router.push({ path: "/products", query: { page: index } });
-
-      // alert(c)
-      // this.$store.dispatch("products/getProductById", to.params.id);
     },
 
+    async paginate(index) {
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var params = url.searchParams.get("category");
+       var sort = url.searchParams.get("sort");
+      if (params == null || params == "") {
+        let respond = GetData("/product?page=" + index);
+        this.data = await respond;
+        this.products = await this.data.Product;
+        this.page = await this.data.Page;
+        this.lastpage = await this.data.Lastpage;
+        this.total = await this.data.Total;
+        this.$router.push({ path: "/products", query: { page: index,sort:sort } });
+      } else {
+        let respond = GetData("/category/" + params + "?page=" + index);
+        this.data = await respond;
+        this.products = await this.data.Product;
+        this.page = await this.data.Page;
+        this.lastpage = await this.data.Lastpage;
+        this.total = await this.data.Total;
+        this.$router.push({
+          path: "/products",
+          query: { category: params, page: index ,sort:sort},
+        });
+      }
+if (sort == "asc") {
+        this.products.sort((b, c) => {
+          return b.Price - c.Price;
+        });
+      }
+      if (sort == "desc") {
+        this.products.sort((b, c) => {
+          return c.Price - b.Price;
+        });
+      }
+     
+    },
     SortBy(event) {
       let value = event.target.value;
-      console.log(value);
+      if (value == "default") {
+        this.products.sort((b, c) => {
+          return b.Id - c.Id;
+        });
+      }
+      if (value == "asc") {
+        this.products.sort((b, c) => {
+          return b.Price - c.Price;
+        });
+      }
+      if (value == "desc") {
+        this.products.sort((b, c) => {
+          return c.Price - b.Price;
+        });
+      }
+      let url_string = window.location.href;
+      let url = new URL(url_string);
+      let c = url.searchParams.get("page");
+      let param = url.searchParams.get("category");
+      let brand = url.searchParams.get("brand");
+      this.$router.push({
+        path: "/products",
+        query: {category: param,brand:brand, page: c,  sort: value },
+      });
     },
   },
+  computed:{
+     
+  },
 
-  mounted() {
+  async mounted() {
+      let respond = GetData("/api/brand");
+        this.brands = await respond;
+        console.log(this.brands)
     let filter_col = document.querySelector("#filter-col");
 
     document
@@ -251,27 +277,38 @@ export default {
       .addEventListener("click", () => filter_col.classList.toggle("active"));
   },
   async created() {
+    let datarespond;
     var url_string = window.location.href;
     var url = new URL(url_string);
-    var c = url.searchParams.get("page");
-    if (c == null) {
+    var param = url.searchParams.get("category");
+    let c = url.searchParams.get("page");
+    if (c == null || c == "") {
       c = 1;
     }
-    let respond = GetData("/product?page=" + c);
-    this.data = await respond;
+    if (param == null || param == "") {
+      let data = GetData("/product?page=" + c);
+      datarespond = data;
+    } else {
+      let data = GetData("/category/" + param + "?page=" + c);
+      datarespond = data;
+    }
+    this.data = await datarespond;
     this.products = await this.data.Product;
     this.page = await this.data.Page;
     this.lastpage = await this.data.Lastpage;
     this.total = await this.data.Total;
-
-    // var responddata = GetData("/product");
-    // this.data = await responddata;
-    // this.products = await this.data.Product;
-    // this.page = await this.data.Page;
-    // this.lastpage = await this.data.Lastpage;
-    // this.total = await this.data.Total;
+     let sort = url.searchParams.get("sort");
+       if (sort == "asc") {
+        this.products.sort((b, c) => {
+          return b.Price - c.Price;
+        });
+      }
+      if (sort == "desc") {
+        this.products.sort((b, c) => {
+          return c.Price - b.Price;
+        });
+      }
   },
-  async watch() {},
 };
 </script>
 
@@ -280,6 +317,13 @@ export default {
   .filter-col.active {
     left: 0;
   }
+}
+.count{
+  margin-right: 50px;
+  display: block;
+  text-align: center;
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media only screen and (max-width: 1280px) {

@@ -60,7 +60,7 @@ export default {
   async created() {
     var respond = GetData("/producthot");
     this.products = await respond;
-    console.log(this.products);
+  
   },
 };
 </script>
