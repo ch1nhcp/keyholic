@@ -20,11 +20,14 @@
             </div>
             <div class="product-card-info">
               <div class="product-btn">
-                <button class="btn-flat btn-hover btn-shop-now">
+                <router-link
+                  :to="'/productdetail?name=' + product.Products.Name"
+                  class="btn-flat btn-hover btn-shop-now"
+                >
                   shop now
-                </button>
+                </router-link>
                 <button class="btn-flat btn-hover btn-cart-add">
-                  <i class="bx bxs-cart-add"></i>
+                  <i  @click="AddToCart(product.Products)" class="bx bxs-cart-add"></i>
                 </button>
               </div>
               <div class="product-card-name">{{ product.Products.Name }}</div>
@@ -56,6 +59,12 @@ export default {
     return {
       products: [],
     };
+  },
+  methods: {
+    AddToCart(product) {
+      alert("add sucess");
+      this.$store.dispatch("product/AddToCart", product);
+    },
   },
   async created() {
     var respond = GetData("/producthot");

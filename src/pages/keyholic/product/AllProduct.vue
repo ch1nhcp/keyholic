@@ -80,8 +80,7 @@
                 >
                   <div class="product-card">
                     <div class="product-card-img">
-                      <img src="../../../assets/4.jpg" alt="" />
-                      <img src="../../../assets/2.jpg" alt="" />
+                      <img :src="product.Image" alt="" />
                     </div>
                     <div class="product-card-info">
                       <div class="product-btn">
@@ -93,7 +92,7 @@
                         </router-link>
 
                         <button class="btn-flat btn-hover btn-cart-add">
-                          <i class="bx bxs-cart-add"></i>
+                          <i @click="AddToCart(product)" class="bx bxs-cart-add"></i>
                         </button>
                        
                       </div>
@@ -307,21 +306,19 @@ export default {
         query: { category: param, brand: brand, page: c, sort: value },
       });
     },
+    AddToCart(product){
+      alert("add sucess")
+         this.$store.dispatch("product/AddToCart", product);
+    }
   },
   computed: {
-    ...mapState("product", ["search"]),
+    ...mapState("product", ["search","cart"]),
   },
 
   async mounted() {
     let respond = GetData("/api/brand");
     this.brands = await respond;
-    let filter_col = document.querySelector("#filter-col");
-    document
-      .querySelector("#filter-toggle")
-      .addEventListener("click", () => filter_col.classList.toggle("active"));
-    document
-      .querySelector("#filter-close")
-      .addEventListener("click", () => filter_col.classList.toggle("active"));
+    
   },
   async created() {
     let datarespond;
@@ -329,8 +326,19 @@ export default {
     var url = new URL(url_string);
     var param = url.searchParams.get("category");
     let c = url.searchParams.get("page");
+    let brand= url.searchParams.get("brand")
     if (c == null || c == "") {
       c = 1;
+    }
+    if(brand!=null && brand !=""){
+       let respond = GetData("/brand/" + brand);
+      this.data = await respond;
+      this.products = await this.data.Product;
+      this.page = await this.data.Page;
+      this.lastpage = await this.data.Lastpage;
+      this.total = await this.data.Total;
+      this.checkBrands= brand
+      return
     }
     if (param == null || param == "") {
       let data = GetData("/product?page=" + c);
@@ -363,7 +371,9 @@ export default {
 .filter-list > li {
   cursor: pointer;
 }
-
+.product-card:hover .product-card-img img:nth-child(1) {
+    display: block;
+}
 .box > select {
   border: 2px solid;
   background-color: white;

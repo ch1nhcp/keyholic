@@ -38,7 +38,7 @@
           </div>
           <ul class="user-menu">
             <li>
-              <router-link to="/cart"><i class="bx bx-cart"></i></router-link>
+              <router-link to="/cart"><span style="font-size:20px;color:red;">{{countCart}}</span><i class="bx bx-cart"></i></router-link>
               <!-- <a href="#"><i class="bx bx-cart"></i></a> -->
             </li>
             <li v-if="is != true">
@@ -192,14 +192,25 @@ export default {
   },
   computed: {
     ...mapState("user", ["users", "is"]),
+      ...mapState("product", ["cart"]),
+    countCart:function(){
+      let result = 0
+      for(let i=0;i<this.cart.length;i++){
+        result += this.cart[i].quantity
+      }
+      return result
+    }
   },
    created() {
+    this.cart = JSON.parse(localStorage.getItem('cart')) || [];
     var data = {};
     let token = this.$cookie.getCookie("token");
     data.Value = token;
     this.$store.dispatch("user/checkuser", data);
 
-    //  this.$store.dispatch("user/login", data);
+  if(JSON.parse(localStorage.getItem('cart'))!=null){
+      this.$store.commit("product/CheckLocal",JSON.parse(localStorage.getItem('cart')))
+    }
   },
 };
 </script>
