@@ -1,6 +1,9 @@
 <template>
   <!-- Checkout -->
-  <section class="section-wrap checkout pb-70">
+  <div style="text-align:center; margin:100px;" v-if="is!=true">
+    <router-link to="/signin"><h2>Please Sign in</h2></router-link>
+  </div>
+  <section  v-if="is==true" class="section-wrap checkout pb-70">
     <div class="container relative">
       <div class="row">
         <div class="ecommerce col-xs-12">
@@ -55,17 +58,7 @@
                   />
                 </p>
 
-                <p class="form-row form-row-wide" id="billing_company_field">
-                  <label for="billing_company">Company</label>
-                  <input
-                    type="text"
-                    class="input-text"
-                    placeholder
-                    value
-                    name="billing_company"
-                    id="billing_company"
-                  />
-                </p>
+              
 
                 <p
                   class="
@@ -87,100 +80,6 @@
                     value
                     name="billing_address_1"
                     id="billing_address_1"
-                  />
-                </p>
-
-                <p
-                  class="form-row form-row-wide address-field"
-                  id="billing_address_2_field"
-                >
-                  <input
-                    type="text"
-                    class="input-text"
-                    placeholder="Apartment, suite, unit etc. (optional)"
-                    value
-                    name="billing_address_2"
-                    id="billing_address_2"
-                  />
-                </p>
-
-                <p
-                  class="form-row form-row-wide address-field validate-required"
-                  id="billing_city_field"
-                  data-o_class="form-row form-row-wide address-field validate-required"
-                >
-                  <label for="billing_city"
-                    >Town / City
-                    <abbr class="required" title="required">*</abbr>
-                  </label>
-                  <input
-                    type="text"
-                    class="input-text"
-                    placeholder="Town / City"
-                    value
-                    name="billing_city"
-                    id="billing_city"
-                  />
-                </p>
-
-                <p
-                  class="form-row form-row-first address-field validate-state"
-                  id="billing_state_field"
-                  data-o_class="form-row form-row-first address-field validate-state"
-                >
-                  <label for="billing_state">County</label>
-                  <input
-                    type="text"
-                    class="input-text"
-                    placeholder
-                    value
-                    name="billing_state"
-                    id="billing_state"
-                  />
-                </p>
-
-                <p
-                  class="
-                    form-row form-row-last
-                    address-field
-                    validate-required validate-postcode
-                    ecommerce-invalid ecommerce-invalid-required-field
-                  "
-                  id="billing_postcode_field"
-                  data-o_class="form-row form-row-last address-field validate-required validate-postcode"
-                >
-                  <label for="billing_postcode"
-                    >Postcode
-                    <abbr class="required" title="required">*</abbr>
-                  </label>
-                  <input
-                    type="text"
-                    class="input-text"
-                    placeholder="Postcode"
-                    value
-                    name="billing_postcode"
-                    id="billing_postcode"
-                  />
-                </p>
-
-                <p
-                  class="
-                    form-row form-row-first
-                    validate-required validate-email
-                  "
-                  id="billing_email_field"
-                >
-                  <label for="billing_email"
-                    >Email Address
-                    <abbr class="required" title="required">*</abbr>
-                  </label>
-                  <input
-                    type="text"
-                    class="input-text"
-                    placeholder
-                    value
-                    name="billing_email"
-                    id="billing_email"
                   />
                 </p>
 
@@ -394,7 +293,16 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  
+
+ computed: {
+    ...mapState("user", ["is","users"]),
+    ...mapState("product", ["cart"]),
+    
+  },
+};
 </script>
 
 <style scoped>

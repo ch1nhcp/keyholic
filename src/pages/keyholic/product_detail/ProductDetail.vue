@@ -10,29 +10,26 @@
           <a href="#">Mechanical Keyboard</a>
         </div>
       </div>
-      <div  class="row product-row">
+      <div class="row product-row">
         <div class="col-5 col-md-12">
           <div class="product-img" id="product-img">
-             <img
-                  :src="product.Image"
-                  alt=""
-                />
+            <img :src="product.Image" alt="" />
           </div>
           <div class="box">
-            <div class="product-img-list">
-              <div class="product-img-item">
-                <img
-                  :src="product.Image"
-                  alt=""
-                />
+            <div v-if="image" class="product-img-list">
+              <div class="product-img-item  ">
+                <img :src="image[0]" alt="" />
               </div>
-              
+               <div v-if="image[1]" class="product-img-item  ">
+                <img :src="image[1]" alt="" />
+              </div>
+             
             </div>
           </div>
         </div>
-        <div  class="col-7 col-md-12">
+        <div class="col-7 col-md-12">
           <div class="product-info">
-            <h1  >{{product.Name}}</h1>
+            <h1>{{ product.Name }}</h1>
             <div class="product-info-detail">
               <span class="product-info-detail-title">Brand:</span>
               <a href="#">Leopold</a>
@@ -48,26 +45,27 @@
               </span>
             </div>
             <p class="product-description">
-              {{product.ShortDescription}}
-               
+              {{ product.ShortDescription }}
             </p>
-            <div class="product-info-price">$2345</div>
+            <div class="product-info-price">${{product.SalePrice}}.00</div>
             <div class="product-quantity-wrapper">
-              <span class="product-quantity-btn">
+              <span @click="minus()" class="product-quantity-btn">
                 <i class="bx bx-minus"></i>
               </span>
-              <span class="product-quantity">1</span>
-              <span class="product-quantity-btn">
-                <i class="bx bx-plus"></i>
+              <span class="product-quantity">{{quantity}}</span>
+              <span @click="plus()" class="product-quantity-btn">
+                <i   class="bx bx-plus"></i>
               </span>
             </div>
             <div>
-              <button class="btn-flat btn-hover">add to cart</button>
+              <button @click="AddToCart(product)" class="btn-flat btn-hover">
+                add to cart
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <div  class="box">
+      <div class="box">
         <div class="box-header">description</div>
         <div class="product-detail-description">
           <button
@@ -78,7 +76,7 @@
           </button>
           <div class="product-detail-description-content">
             <p>
-              {{product.Description}}
+              {{ product.Description }}
             </p>
           </div>
         </div>
@@ -127,27 +125,38 @@ import { GetData } from "../../../service/service";
 export default {
   data() {
     return {
-     product:[],
-
-     
+      product: [],
+      image: [],
+      quantity:1
     };
+  },
+  methods: {
+    AddToCart(product) {
+      alert("success add to cart");
+      let data=[];
+      data.product = product
+        data.quantity = this.quantity
+      this.$store.commit("product/AddToCartBy", data);
+    },
+    plus(){
+      this.quantity++
+    },
+    minus(){
+      if (this.quantity>1)
+      this.quantity--
+    }
   },
   async created() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var param = url.searchParams.get("name");
-  let res = await GetData("/product/" + param);
-  this.product = await res.Products
-  console.log(this.product)
+    let res = await GetData("/product/" + param);
+    this.product = await res.Products;
+    this.image = await res.Image;
   },
+  computed: {},
   mounted() {
-    // Hàm bấm vào ảnh để chuyển ảnh phụ sang khung ảnh chính
-    document.querySelectorAll(".product-img-item").forEach((e) => {
-      e.addEventListener("click", () => {
-        let img = e.querySelector("img").getAttribute("src");
-        document.querySelector("#product-img > img").setAttribute("src", img);
-      });
-    });
+  
 
     // Hàm show/hide phần product detail
     document
@@ -157,12 +166,14 @@ export default {
           ".product-detail-description-content"
         );
         content.classList.toggle("active");
-        document.querySelector("#view-all-description").innerHTML =
-          content.classList.contains("active") ? "view less" : "view all";
+        document.querySelector(
+          "#view-all-description"
+        ).innerHTML = content.classList.contains("active")
+          ? "view less"
+          : "view all";
       });
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
