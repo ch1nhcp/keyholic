@@ -45,9 +45,10 @@
             <li>
               <router-link to="/cart"
                 ><i class="bx bx-cart"></i
-                ><span style="font-size:15px;color:red; font-weight: bold; margin-top: -5px;">{{
-                  countCart
-                }}</span></router-link
+                ><span
+                  style="font-size:15px;color:red; font-weight: bold; margin-top: -5px;"
+                  >{{ countCart }}</span
+                ></router-link
               >
               <!-- <a href="#"><i class="bx bx-cart"></i></a> -->
             </li>
@@ -145,7 +146,7 @@
               </div>
             </li>
             <!-- end mega menu -->
-            <li><a href="#">blog</a></li>
+            <li><router-link to="blog">blog</router-link></li>
             <li><router-link to="contact">contact</router-link></li>
           </ul>
         </div>
