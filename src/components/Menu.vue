@@ -32,7 +32,7 @@
       <div class="bg-main">
         <div class="mid-header container">
           <router-link class="logo" to="/">KEYHOLIC</router-link>
-          <div class="search">
+          <!-- <div class="search">
             <input
               @keyup.enter="search"
               type="text"
@@ -40,10 +40,16 @@
               placeholder="Search"
             />
             <i @click="search" class="bx bx-search-alt"></i>
-          </div>
+          </div> -->
           <ul class="user-menu">
             <li>
-              <router-link to="/cart"><span style="font-size:20px;color:red;">{{countCart}}</span><i class="bx bx-cart"></i></router-link>
+              <router-link to="/cart"
+                ><i class="bx bx-cart"></i
+                ><span
+                  style="font-size:15px;color:red; font-weight: bold; margin-top: -5px;"
+                  >{{ countCart }}</span
+                ></router-link
+              >
               <!-- <a href="#"><i class="bx bx-cart"></i></a> -->
             </li>
             <li v-if="is != true">
@@ -140,8 +146,8 @@
               </div>
             </li>
             <!-- end mega menu -->
-            <li><a href="#">blog</a></li>
-            <li><a href="#">contact</a></li>
+            <li><router-link to="blog">blog</router-link></li>
+            <li><router-link to="contact">contact</router-link></li>
           </ul>
         </div>
       </div>
@@ -196,24 +202,27 @@ export default {
   },
   computed: {
     ...mapState("user", ["users", "is"]),
-      ...mapState("product", ["cart"]),
-    countCart:function(){
-      let result = 0
-      for(let i=0;i<this.cart.length;i++){
-        result += this.cart[i].quantity
+    ...mapState("product", ["cart"]),
+    countCart: function() {
+      let result = 0;
+      for (let i = 0; i < this.cart.length; i++) {
+        result += this.cart[i].quantity;
       }
-      return result
-    }
+      return result;
+    },
   },
-   created() {
-    this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+  created() {
+    this.cart = JSON.parse(localStorage.getItem("cart")) || [];
     var data = {};
     let token = this.$cookie.getCookie("token");
     data.Value = token;
     this.$store.dispatch("user/checkuser", data);
 
-  if(JSON.parse(localStorage.getItem('cart'))!=null){
-      this.$store.commit("product/CheckLocal",JSON.parse(localStorage.getItem('cart')))
+    if (JSON.parse(localStorage.getItem("cart")) != null) {
+      this.$store.commit(
+        "product/CheckLocal",
+        JSON.parse(localStorage.getItem("cart"))
+      );
     }
   },
 };
