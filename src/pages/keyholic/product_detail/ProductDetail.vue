@@ -56,11 +56,13 @@
               <span @click="plus()" class="product-quantity-btn">
                 <i   class="bx bx-plus"></i>
               </span>
+                <span style="font-size:16px;" class="product-quantity">Sản phẩm còn lại: {{this.totalproduct }}</span>
             </div>
             <div>
-              <button @click="AddToCart(product)" class="btn-flat btn-hover">
+              <button  @click="AddToCart(product)" class="btn-flat btn-hover">
                 add to cart
               </button>
+              <span style="color:red;">{{err}}</span>
             </div>
           </div>
         </div>
@@ -127,11 +129,17 @@ export default {
     return {
       product: [],
       image: [],
-      quantity:1
+      quantity:1,
+      totalproduct:0,
+      err:""
     };
   },
   methods: {
     AddToCart(product) {
+     if(this.quantity>this.totalproduct){
+       this.err="sản phẩm đã hết"
+       return
+     }
       alert("success add to cart");
       let data=[];
       data.product = product
@@ -139,7 +147,9 @@ export default {
       this.$store.commit("product/AddToCartBy", data);
     },
     plus(){
+      if( this.quantity < this.totalproduct){
       this.quantity++
+      }
     },
     minus(){
       if (this.quantity>1)
@@ -153,6 +163,7 @@ export default {
     let res = await GetData("/product/" + param);
     this.product = await res.Products;
     this.image = await res.Image;
+    this.totalproduct = await res.Quantity
   },
   computed: {},
   mounted() {

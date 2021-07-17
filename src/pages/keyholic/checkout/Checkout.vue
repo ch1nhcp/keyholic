@@ -1,9 +1,9 @@
 <template>
   <!-- Checkout -->
-  <div style="text-align:center; margin:100px;" v-if="is!=true">
+  <div style="text-align:center; margin:100px;" v-if="is != true">
     <router-link to="/signin"><h2>Please Sign in</h2></router-link>
   </div>
-  <section  v-if="is==true" class="section-wrap checkout pb-70">
+  <section v-if="is == true" class="section-wrap checkout pb-70">
     <div class="container relative">
       <div class="row">
         <div class="ecommerce col-xs-12">
@@ -14,7 +14,7 @@
                   billing address
                 </h2>
 
-                <p
+                <!-- <p
                   class="
                     form-row form-row-first
                     validate-required
@@ -29,12 +29,13 @@
                   <input
                     type="text"
                     class="input-text"
-                    placeholder
+                    placeholder="first name"
+                     v-model="firstname"
                     value
                     name="billing_first_name"
                     id="billing_first_name"
                   />
-                </p>
+                </p> -->
 
                 <p
                   class="
@@ -45,20 +46,19 @@
                   id="billing_last_name_field"
                 >
                   <label for="billing_last_name"
-                    >Last Name
+                    > Name
                     <abbr class="required" title="required">*</abbr>
                   </label>
                   <input
                     type="text"
                     class="input-text"
-                    placeholder
+                    placeholder=" Name"
+                       v-model="name"
                     value
                     name="billing_last_name"
                     id="billing_last_name"
                   />
                 </p>
-
-              
 
                 <p
                   class="
@@ -74,6 +74,7 @@
                     <abbr class="required" title="required">*</abbr>
                   </label>
                   <input
+                    v-model="address"
                     type="text"
                     class="input-text"
                     placeholder="Street address"
@@ -97,7 +98,8 @@
                   <input
                     type="text"
                     class="input-text"
-                    placeholder
+                    placeholder="Phone"
+                    v-model="phone"
                     value
                     name="billing_phone"
                     id="billing_phone"
@@ -115,9 +117,7 @@
                   name="createaccount"
                   value="1"
                 />
-                <label for="createaccount" class="checkbox"
-                  >Create an account?</label
-                >
+             
               </p>
 
               <div class="clear"></div>
@@ -131,11 +131,7 @@
                     name="ship_to_different_address"
                     value="1"
                   />
-                  <label
-                    for="ship-to-different-address-checkbox"
-                    class="checkbox"
-                    >Ship to a different address</label
-                  >
+                
                 </div>
                 <p
                   class="form-row notes ecommerce-validated"
@@ -146,6 +142,7 @@
                     name="order_comments"
                     class="input-text"
                     id="order_comments"
+                    v-model="note"
                     placeholder="Notes about your order, e.g. special notes for delivery."
                     rows="2"
                     cols="6"
@@ -169,23 +166,19 @@
                 <table
                   class="table shop_table ecommerce-checkout-review-order-table"
                 >
-                  <tbody>
-                    <tr>
-                      <th>Business Suit<span class="count"> x 1</span></th>
+                <!-- {{cart}} -->
+                  <tbody >
+                    <tr v-for="(item,index) in cart" :key="index">
+                      <th>{{item.Name}}<span class="count">  x{{item.quantity}}</span></th>
                       <td>
-                        <span class="amount">$599.00</span>
+                        <span class="amount">${{item.SalePrice*item.quantity}}.00</span>
                       </td>
                     </tr>
-                    <tr>
-                      <th>California Dress<span class="count"> x 1</span></th>
-                      <td>
-                        <span class="amount">$1299.00</span>
-                      </td>
-                    </tr>
+                    
                     <tr class="cart-subtotal">
                       <th>Cart Subtotal</th>
                       <td>
-                        <span class="amount">$1799.00</span>
+                        <span class="amount">${{SubTotal}}.00</span>
                       </td>
                     </tr>
                     <tr class="shipping">
@@ -197,7 +190,7 @@
                     <tr class="order-total">
                       <th><strong>Order Total</strong></th>
                       <td>
-                        <strong><span class="amount">$1799.00</span></strong>
+                        <strong><span class="amount">${{SubTotal}}.00</span></strong>
                       </td>
                     </tr>
                   </tbody>
@@ -210,12 +203,12 @@
                   <ul class="payment_methods methods">
                     <li class="payment_method_bacs">
                       <input
+                       v-model="payment"
                         id="payment_method_bacs"
                         type="radio"
                         class="input-radio"
                         name="payment_method"
                         value="bacs"
-                        checked="checked"
                       />
                       <label for="payment_method_bacs"
                         >Direct Bank Transfer</label
@@ -232,6 +225,7 @@
 
                     <li class="payment_method_cheque">
                       <input
+                          v-model="payment"
                         id="payment_method_cheque"
                         type="radio"
                         class="input-radio"
@@ -249,6 +243,7 @@
 
                     <li class="payment_method_paypal">
                       <input
+                          v-model="payment"
                         id="payment_method_paypal"
                         type="radio"
                         class="input-radio"
@@ -256,10 +251,7 @@
                         value="paypal"
                       />
                       <label for="payment_method_paypal">Paypal</label>
-                      <img
-                        src="#"
-                        alt=""
-                      />
+                      <img src="#" alt="" />
                       <div class="payment_box payment_method_paypal">
                         <p>
                           Pay via PayPal; you can pay with your credit card if
@@ -270,7 +262,7 @@
                   </ul>
                   <div class="form-row place-order">
                     <input
-                      type="submit"
+                    @click="submit"
                       name="ecommerce_checkout_place_order"
                       class="btn btn-lg btn-dark"
                       id="place_order"
@@ -295,21 +287,45 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  
-
- computed: {
-    ...mapState("user", ["is","users"]),
+    data() {
+    return {
+      phone:"",
+      name:"",
+      address:"",
+      note:"",
+      payment:""
+    };
+  },
+   methods: {
+     submit(){
+       if( this.phone=="" || this.address==""|| this.name==""){
+         alert("điền đủ thông tin")
+         return
+       }if(this.payment =="" ){
+             alert("chọn phương thức thanh toán ")
+        return
+       }
+     }
+   },
+  computed: {
+    ...mapState("user", ["is", "users"]),
     ...mapState("product", ["cart"]),
-    
+    SubTotal:function(){
+       let total = 0
+       for(let i=0;i<this.cart.length;i++){
+          total += this.cart[i].SalePrice*this.cart[i].quantity
+       }
+       return total
+     }
   },
 };
 </script>
 
 <style scoped>
-.checkout .col-md-8{
+.checkout .col-md-8 {
   width: 60 !important;
 }
-.col-md-4{
+.col-md-4 {
   width: 40%;
 }
 .clearfix:after {

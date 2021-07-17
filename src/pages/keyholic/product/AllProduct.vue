@@ -347,15 +347,16 @@ export default {
     if (c == null || c == "") {
       c = 1;
     }
-    if (brand != null && brand != "") {
-      let respond = GetData("/brand/" + brand);
+    if(brand!=null && brand !=""){
+       let respond = GetData("/brand/" + brand+"?page="+c);
       this.data = await respond;
       this.products = await this.data.Product;
       this.page = await this.data.Page;
       this.lastpage = await this.data.Lastpage;
       this.total = await this.data.Total;
-      this.checkBrands = brand;
-      return;
+      this.checkBrands= brand
+      
+      return
     }
     if (param == null || param == "") {
       let data = GetData("/product?page=" + c);
