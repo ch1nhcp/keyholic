@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Body from "../pages/keyholic/homepage/Body.vue";
 import SignIn from "../pages/keyholic/SignIn.vue";
 import SignUp from "../pages/keyholic/SignUp.vue";
+import Contact from "../pages/keyholic/Contact.vue";
 
 import AllProduct from "../pages/keyholic/product/AllProduct.vue";
 import Cart from "../pages/keyholic/cart/Cart.vue";
@@ -17,6 +18,7 @@ const routes = [
   { path: "/", component: Body ,name: 'main' },
   { path: "/signin", component: SignIn },
   { path: "/signup", component: SignUp },
+  { path: "/contact", component: Contact },
 
   { path: "/products", component: AllProduct },
   { path: "/cart", component: Cart },

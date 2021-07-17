@@ -2,6 +2,15 @@
   <!-- products content -->
   <div class="bg-main">
     <div class="container">
+      <div class="search" style="margin: 0 auto; margin-top: 3rem">
+            <input
+              @keyup.enter="search"
+              type="text"
+              v-model="searchkey"
+              placeholder="Search"
+            />
+            <i @click="search" class="bx bx-search-alt"></i>
+          </div>
       <div class="box">
         <div class="breadcumb">
           <a href="./index.html">home</a>
@@ -22,6 +31,13 @@
                 close
               </button>
             </div>
+
+            <!-- Search bar
+            <div class="box">
+              <span class="filter-header"> Search: </span>
+              <input type="text" placeholder="Bạn muốn tìm gì?" class="search-bar" />
+            </div> -->
+
             <!-- Category -->
             <div class="box">
               <span class="filter-header"> Categories </span>
@@ -32,7 +48,7 @@
               </ul>
             </div>
 
-            <!-- Category -->
+            <!-- Sort -->
             <div class="box">
               <span class="filter-header"> Sort By: </span>
               <select @change="SortBy">
@@ -85,16 +101,18 @@
                     <div class="product-card-info">
                       <div class="product-btn">
                         <router-link
-                          :to="'/productdetail?name='+product.Name"
+                          :to="'/productdetail?name=' + product.Name"
                           class="btn-flat btn-hover btn-shop-now"
                         >
                           shop now
                         </router-link>
 
                         <button class="btn-flat btn-hover btn-cart-add">
-                          <i @click="AddToCart(product)" class="bx bxs-cart-add"></i>
+                          <i
+                            @click="AddToCart(product)"
+                            class="bx bxs-cart-add"
+                          ></i>
                         </button>
-                       
                       </div>
                       <div class="product-card-name">{{ product.Name }}</div>
                       <div class="product-card-price">
@@ -123,7 +141,7 @@
                     item
                   }}</a>
                 </li>
-             
+
                 <li>
                   <a href="#"><i class="bx bxs-chevron-right"></i></a>
                 </li>
@@ -155,20 +173,20 @@ export default {
     };
   },
   methods: {
-//     async FindSearch(name) {
-//       let respond = GetData("/search?name=" + name);
-//       this.data = await respond;
-//       this.products = await this.data.Product;
-//       this.total = await this.data.Total;
-//       this.lastpage = 1;
-//       if(name.length>0){
-//  this.$router.push({
-//         path: "/products",
-//         query: { search: name },
-//       });
-//       }
-     
-//     },
+    //     async FindSearch(name) {
+    //       let respond = GetData("/search?name=" + name);
+    //       this.data = await respond;
+    //       this.products = await this.data.Product;
+    //       this.total = await this.data.Total;
+    //       this.lastpage = 1;
+    //       if(name.length>0){
+    //  this.$router.push({
+    //         path: "/products",
+    //         query: { search: name },
+    //       });
+    //       }
+
+    //     },
     async GetBrand() {
       if (this.checkBrands == "") {
         let respond = GetData("/product");
@@ -204,7 +222,7 @@ export default {
           query: { category: "keyboard" },
         });
         respond = data;
-        this.checkBrands=[]
+        this.checkBrands = [];
       }
       if (id == 2) {
         let data = GetData("/category/keycap");
@@ -306,19 +324,18 @@ export default {
         query: { category: param, brand: brand, page: c, sort: value },
       });
     },
-    AddToCart(product){
-      alert("add sucess")
-         this.$store.dispatch("product/AddToCart", product);
-    }
+    AddToCart(product) {
+      alert("add sucess");
+      this.$store.dispatch("product/AddToCart", product);
+    },
   },
   computed: {
-    ...mapState("product", ["search","cart"]),
+    ...mapState("product", ["search", "cart"]),
   },
 
   async mounted() {
     let respond = GetData("/api/brand");
     this.brands = await respond;
-    
   },
   async created() {
     let datarespond;
@@ -326,19 +343,19 @@ export default {
     var url = new URL(url_string);
     var param = url.searchParams.get("category");
     let c = url.searchParams.get("page");
-    let brand= url.searchParams.get("brand")
+    let brand = url.searchParams.get("brand");
     if (c == null || c == "") {
       c = 1;
     }
-    if(brand!=null && brand !=""){
-       let respond = GetData("/brand/" + brand);
+    if (brand != null && brand != "") {
+      let respond = GetData("/brand/" + brand);
       this.data = await respond;
       this.products = await this.data.Product;
       this.page = await this.data.Page;
       this.lastpage = await this.data.Lastpage;
       this.total = await this.data.Total;
-      this.checkBrands= brand
-      return
+      this.checkBrands = brand;
+      return;
     }
     if (param == null || param == "") {
       let data = GetData("/product?page=" + c);
@@ -368,11 +385,18 @@ export default {
 </script>
 
 <style scoped>
+.search-bar {
+  border: 2px solid;
+  background-color: white;
+  width: 150px;
+  font-family: "Poppins", sans-serif;
+  padding: 5px;
+}
 .filter-list > li {
   cursor: pointer;
 }
 .product-card:hover .product-card-img img:nth-child(1) {
-    display: block;
+  display: block;
 }
 .box > select {
   border: 2px solid;
