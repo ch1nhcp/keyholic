@@ -3,23 +3,30 @@
     <div class="sidebar">
       <!-- <div class="logo">KEYHOLIC</div> -->
       <div class="menu-wrapper">
-        <div class="menulink">Products</div>
-        <div class="menulink">Users</div>
-        <div class="menulink">Categories</div>
-        <div class="menulink">Brands</div>
+        <router-link to="/admin/products" class="menulink"
+          >Products Management</router-link
+        >
+        <router-link to="/admin/users" class="menulink"
+          >Users Management</router-link
+        >
+        <!-- <div class="menulink">Products</div> -->
+        <!-- <div class="menulink">Users</div> -->
+        <!-- <div class="menulink">Categories</div>
+        <div class="menulink">Brands</div> -->
       </div>
     </div>
     <div class="dashboard">
-      <ProductCrud />
+      <!-- <h1>Hello admin</h1> -->
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import ProductCrud from "./ProductCrud";
+// import ProductCrud from "./ProductCrud";
 export default {
   components: {
-    ProductCrud,
+    // ProductCrud,
   },
 };
 </script>
@@ -34,8 +41,9 @@ export default {
   cursor: pointer;
   /* font-size: 30px; */
 }
-.menulink :hover {
-  color: blue
+.menulink:hover {
+  background-color: #35BDFF;
+  /* text-decoration: line-through; */
 }
 .sidebar {
   width: 10%;
