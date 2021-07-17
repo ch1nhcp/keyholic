@@ -25,7 +25,8 @@ const routes = [
   { path: "/signup", component: SignUp },
   { path: "/contact", component: Contact },
   { path: "/blog", component: Blog },
-  { path: "/404", component: NotFound },
+  { path: '/:pathMatch(.*)*', component: NotFound },
+  // { path: "/404", component: NotFound },
 
   { path: "/products", component: AllProduct },
   { path: "/cart", component: Cart },
