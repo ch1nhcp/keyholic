@@ -4,10 +4,13 @@ import SignIn from "../pages/keyholic/SignIn.vue";
 import SignUp from "../pages/keyholic/SignUp.vue";
 
 import AllProduct from "../pages/keyholic/product/AllProduct.vue";
-import SignInAdmin from "../pages/admin/SignInAdmin.vue";
 import Cart from "../pages/keyholic/cart/Cart.vue";
 import ProductDetail from "../pages/keyholic/product_detail/ProductDetail.vue";
 import Checkout from "../pages/keyholic/checkout/Checkout.vue";
+
+
+import SignInAdmin from "../pages/admin/SignInAdmin.vue";
+import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 
 
 const routes = [
@@ -16,10 +19,12 @@ const routes = [
   { path: "/signup", component: SignUp },
 
   { path: "/products", component: AllProduct },
-  { path: "/signinadmin", component: SignInAdmin },
   { path: "/cart", component: Cart },
   { path: "/productdetail", component: ProductDetail },
   { path: "/checkout", component: Checkout },
+
+  { path: "/admin/signin", component: SignInAdmin },
+  { path: "/admin", component: Dashboard },
 ];
 
 const router = createRouter({

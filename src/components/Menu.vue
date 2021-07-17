@@ -33,7 +33,12 @@
         <div class="mid-header container">
           <router-link class="logo" to="/">KEYHOLIC</router-link>
           <div class="search">
-            <input @keyup.enter="search" type="text" v-model="searchkey"  placeholder="Search" />
+            <input
+              @keyup.enter="search"
+              type="text"
+              v-model="searchkey"
+              placeholder="Search"
+            />
             <i @click="search" class="bx bx-search-alt"></i>
           </div>
           <ul class="user-menu">
@@ -155,17 +160,16 @@ import "../css/grid.css";
 export default {
   data() {
     return {
-   searchkey:""
+      searchkey: "",
     };
   },
   methods: {
-   
     logout() {
       this.$cookie.removeCookie("token", {
         path: "/",
         domain: "",
       });
-      this.$router.push({path: '/'});
+      this.$router.push({ path: "/" });
       this.$store.dispatch("user/logout", "");
     },
   },
@@ -193,7 +197,7 @@ export default {
   computed: {
     ...mapState("user", ["users", "is"]),
   },
-   created() {
+  created() {
     var data = {};
     let token = this.$cookie.getCookie("token");
     data.Value = token;

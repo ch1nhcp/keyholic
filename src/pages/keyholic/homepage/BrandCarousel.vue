@@ -5,7 +5,7 @@
     <slide v-for="brand in brands" :key="brand.id">
       <!-- <router-link to="/products"> -->
       <!-- <h1>{{ brand.id }}</h1> -->
-      <img :src="brand.Image"/>
+      <img :src="'http://localhost:8000' + brand.Image" />
       <!-- </router-link> -->
     </slide>
   </carousel>
