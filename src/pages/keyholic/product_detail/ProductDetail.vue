@@ -13,17 +13,16 @@
       <div class="row product-row">
         <div class="col-5 col-md-12">
           <div class="product-img" id="product-img">
-            <img :src="product.Image" alt="" />
+            <img :src="ServeUrl + product.Image" alt="" />
           </div>
           <div class="box">
-            <div v-if="image" class="product-img-list">
+            <div v-if="ServeUrl + image" class="product-img-list">
               <div class="product-img-item  ">
-                <img :src="image[0]" alt="" />
+                <img :src="ServeUrl + image[0]" alt="" />
               </div>
-               <div v-if="image[1]" class="product-img-item  ">
-                <img :src="image[1]" alt="" />
+              <div v-if="ServeUrl + image[1]" class="product-img-item  ">
+                <img :src="ServeUrl + image[1]" alt="" />
               </div>
-             
             </div>
           </div>
         </div>
@@ -47,22 +46,24 @@
             <p class="product-description">
               {{ product.ShortDescription }}
             </p>
-            <div class="product-info-price">${{product.SalePrice}}.00</div>
+            <div class="product-info-price">${{ product.SalePrice }}.00</div>
             <div class="product-quantity-wrapper">
               <span @click="minus()" class="product-quantity-btn">
                 <i class="bx bx-minus"></i>
               </span>
-              <span class="product-quantity">{{quantity}}</span>
+              <span class="product-quantity">{{ quantity }}</span>
               <span @click="plus()" class="product-quantity-btn">
-                <i   class="bx bx-plus"></i>
+                <i class="bx bx-plus"></i>
               </span>
-                <span style="font-size:16px;" class="product-quantity">Sản phẩm còn lại: {{this.totalproduct }}</span>
+              <span style="font-size:16px;" class="product-quantity"
+                >Sản phẩm còn lại: {{ this.totalproduct }}</span
+              >
             </div>
             <div>
-              <button  @click="AddToCart(product)" class="btn-flat btn-hover">
+              <button @click="AddToCart(product)" class="btn-flat btn-hover">
                 add to cart
               </button>
-              <span style="color:red;">{{err}}</span>
+              <span style="color:red;">{{ err }}</span>
             </div>
           </div>
         </div>
@@ -124,37 +125,39 @@
 import "../../../css/app.css";
 import "../../../css/grid.css";
 import { GetData } from "../../../service/service";
+import { ServeUrl } from "../../../service/service";
+
 export default {
   data() {
     return {
       product: [],
       image: [],
-      quantity:1,
-      totalproduct:0,
-      err:""
+      ServeUrl: ServeUrl,
+      quantity: 1,
+      totalproduct: 0,
+      err: "",
     };
   },
   methods: {
     AddToCart(product) {
-     if(this.quantity>this.totalproduct){
-       this.err="sản phẩm đã hết"
-       return
-     }
+      if (this.quantity > this.totalproduct) {
+        this.err = "sản phẩm đã hết";
+        return;
+      }
       alert("success add to cart");
-      let data=[];
-      data.product = product
-        data.quantity = this.quantity
+      let data = [];
+      data.product = product;
+      data.quantity = this.quantity;
       this.$store.commit("product/AddToCartBy", data);
     },
-    plus(){
-      if( this.quantity < this.totalproduct){
-      this.quantity++
+    plus() {
+      if (this.quantity < this.totalproduct) {
+        this.quantity++;
       }
     },
-    minus(){
-      if (this.quantity>1)
-      this.quantity--
-    }
+    minus() {
+      if (this.quantity > 1) this.quantity--;
+    },
   },
   async created() {
     var url_string = window.location.href;
@@ -163,12 +166,10 @@ export default {
     let res = await GetData("/product/" + param);
     this.product = await res.Products;
     this.image = await res.Image;
-    this.totalproduct = await res.Quantity
+    this.totalproduct = await res.Quantity;
   },
   computed: {},
   mounted() {
-  
-
     // Hàm show/hide phần product detail
     document
       .querySelector("#view-all-description")
