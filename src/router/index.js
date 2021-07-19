@@ -11,13 +11,13 @@ import Cart from "../pages/keyholic/cart/Cart.vue";
 import ProductDetail from "../pages/keyholic/product_detail/ProductDetail.vue";
 import Checkout from "../pages/keyholic/checkout/Checkout.vue";
 
+// Admin pages
 import SignInAdmin from "../pages/admin/SignInAdmin.vue";
+import DashboardHome from "../pages/admin/dashboard/DashboardHome.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
-import DashboardWelcome from "../pages/admin/dashboard/DashboardWelcome.vue";
-import UsersCrud from "../pages/admin/dashboard/UsersCrud.vue";
-import ProductsCrud from "../pages/admin/dashboard/ProductsCrud.vue";
-
-import Dashboard2 from "../pages/admin/dashboard/Dashboard2.vue";
+import ProductsManager from "../pages/admin/dashboard/Products/ProductsManager.vue";
+import UsersManager from "../pages/admin/dashboard/Users/UsersManager.vue";
+import BrandsManager from "../pages/admin/dashboard/Brands/BrandsManager.vue";
 
 const routes = [
   { path: "/", component: Body, name: "main" },
@@ -25,9 +25,7 @@ const routes = [
   { path: "/signup", component: SignUp },
   { path: "/contact", component: Contact },
   { path: "/blog", component: Blog },
-  
-  { path: '/:pathMatch(.*)*', component: NotFound },
-  // { path: "/404", component: NotFound },
+  { path: "/:pathMatch(.*)*", component: NotFound },
 
   { path: "/products", component: AllProduct },
   { path: "/cart", component: Cart },
@@ -35,17 +33,16 @@ const routes = [
   { path: "/checkout", component: Checkout },
 
   //admin
-
-  { path: "/admin/dashboard", component: Dashboard2 },
-
+  { path: "/admin/dashboard", component: Dashboard },
   { path: "/admin/signin", component: SignInAdmin },
   {
     path: "/admin",
     component: Dashboard,
     children: [
-      { path: "", component: DashboardWelcome },
-      { path: "products", component: ProductsCrud },
-      { path: "users", component: UsersCrud },
+      { path: "", component: DashboardHome },
+      { path: "products", component: ProductsManager },
+      { path: "users", component: UsersManager},
+      { path: "brands", component: BrandsManager },
     ],
   },
 ];

@@ -12,20 +12,41 @@
         <span class="tooltip">Search</span>
       </li>
       <li>
-        <a href="#">
+        <router-link to="/admin">
           <i class="bx bx-grid-alt"></i>
           <span class="links_name">Dashboard</span>
-        </a>
+        </router-link>
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="#">
-          <i class="bx bx-user"></i>
-          <span class="links_name">User</span>
-        </a>
-        <span class="tooltip">User</span>
+        <router-link to="/admin/products">
+          <i class="bx bx-folder"></i>
+          <span class="links_name">Product Manager</span>
+        </router-link>
+        <span class="tooltip">Product Manager</span>
       </li>
       <li>
+        <router-link to="/admin/users">
+          <i class="bx bx-user"></i>
+          <span class="links_name">User Manager</span>
+        </router-link>
+        <span class="tooltip">User Manager</span>
+      </li>
+      <li>
+        <router-link to="/admin/brands">
+          <i class="bx bx-purchase-tag"></i>
+          <span class="links_name">Brand Manager</span>
+        </router-link>
+        <span class="tooltip">Brand Manager</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-cart-alt"></i>
+          <span class="links_name">Order</span>
+        </a>
+        <span class="tooltip">Order</span>
+      </li>
+      <!-- <li>
         <a href="#">
           <i class="bx bx-chat"></i>
           <span class="links_name">Messages</span>
@@ -39,20 +60,7 @@
         </a>
         <span class="tooltip">Analytics</span>
       </li>
-      <li>
-        <a href="#">
-          <i class="bx bx-folder"></i>
-          <span class="links_name">File Manager</span>
-        </a>
-        <span class="tooltip">Files</span>
-      </li>
-      <li>
-        <a href="#">
-          <i class="bx bx-cart-alt"></i>
-          <span class="links_name">Order</span>
-        </a>
-        <span class="tooltip">Order</span>
-      </li>
+
       <li>
         <a href="#">
           <i class="bx bx-heart"></i>
@@ -66,10 +74,13 @@
           <span class="links_name">Setting</span>
         </a>
         <span class="tooltip">Setting</span>
-      </li>
+      </li> -->
       <li class="profile">
         <div class="profile-details">
-          <img src="profile.jpg" alt="profileImg" />
+          <img
+            src="https://images.unsplash.com/photo-1602992708529-c9fdb12905c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+            alt="profileImg"
+          />
           <div class="name_job">
             <div class="name">Keyholic admin</div>
             <div class="job">Admintrator</div>
@@ -79,73 +90,16 @@
       </li>
     </ul>
   </div>
-  <section class="home-section">
-    <div class="text">Dashboard main</div>
-    <table width="100%">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Image</th>
-          <th>Short_description</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Sale_price</th>
-          <th>Brand_id</th>
-          <th>Category_id</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-title="ID">data</td>
-          <td data-title="Name">data</td>
-          <td data-title="Image">data</td>
-          <td data-title="Short_description">data</td>
-          <td data-title="Description">data</td>
-          <td data-title="Price">data</td>
-          <td data-title="Sale_price">data</td>
-          <td data-title="Brand_id">data</td>
-          <td data-title="Category_id">data</td>
-          <td data-title="Action">data</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Shyam</td>
-          <td data-title="ID">101</td>
-          <td data-title="designation">Quality Analyst</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Mark</td>
-          <td data-title="ID">102</td>
-          <td data-title="designation">Software Engineer</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Bill</td>
-          <td data-title="ID">104</td>
-          <td data-title="designation">Quality Analyst</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Arjun</td>
-          <td data-title="ID">105</td>
-          <td data-title="designation">Human Resources</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Pratyush</td>
-          <td data-title="ID">106</td>
-          <td data-title="designation">Software Engineer</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Anant</td>
-          <td data-title="ID">101</td>
-          <td data-title="designation">Administrative Dept</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+
+  <!-- <Products /> -->
 </template>
 
 <script>
+// import Products from "./Products.vue";
 export default {
+  components: {
+    // Products,
+  },
   mounted() {
     let sidebar = document.querySelector(".sidebar");
     let closeBtn = document.querySelector("#btn");
@@ -175,51 +129,6 @@ export default {
 </script>
 
 <style scoped>
-/* Table */
-table tr td,
-table tr td {
-  text-align: center;
-}
-@media only screen and (max-width: 500px) {
-  table,
-  head,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
-  }
-  thead tr {
-    display: none;
-  }
-  tr {
-    border: 1px solid #ccc;
-  }
-  td {
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
-    white-space: normal;
-    text-align: left;
-    min-height: 30px;
-    overflow: hidden;
-    word-break: break-all;
-  }
-  td:before {
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    text-align: left;
-    font-weight: bold;
-  }
-  td:before {
-    content: attr(data-title);
-  }
-}
-
 /* Google Font Link */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
@@ -438,10 +347,12 @@ table tr td {
   line-height: 60px;
   border-radius: 0px;
   transition: all 0.5s ease;
+  cursor: pointer;
 }
 .sidebar.open .profile #log_out {
   width: 50px;
   background: none;
+  cursor: pointer;
 }
 .home-section {
   position: relative;
