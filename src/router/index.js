@@ -15,9 +15,9 @@ import Checkout from "../pages/keyholic/checkout/Checkout.vue";
 import SignInAdmin from "../pages/admin/SignInAdmin.vue";
 import DashboardHome from "../pages/admin/dashboard/DashboardHome.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
-import ProductsManager from "../pages/admin/dashboard/ProductsManager.vue";
-import UsersManager from "../pages/admin/dashboard/UsersManager.vue";
-import BrandsManager from "../pages/admin/dashboard/BrandsManager.vue";
+import ProductsManager from "../pages/admin/dashboard/Products/ProductsManager.vue";
+import UsersManager from "../pages/admin/dashboard/Users/UsersManager.vue";
+import BrandsManager from "../pages/admin/dashboard/Brands/BrandsManager.vue";
 
 const routes = [
   { path: "/", component: Body, name: "main" },

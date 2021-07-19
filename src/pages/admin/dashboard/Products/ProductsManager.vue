@@ -6,6 +6,14 @@
     >
       Product Manager
     </div>
+    <div class="col-sm-6" style="float: right">
+      <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"
+        ><i class="bx bx-add-to-queue"></i> <span>Add New</span></a
+      >
+      <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"
+        ><i class="bx bx-trash"></i> <span>Delete</span></a
+      >
+    </div>
     <table width="100%">
       <thead>
         <tr>
@@ -42,34 +50,23 @@
           </td>
         </tr>
         <tr>
-          <td data-title="Name">Shyam</td>
-          <td data-title="ID">101</td>
-          <td data-title="designation">Quality Analyst</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Mark</td>
-          <td data-title="ID">102</td>
-          <td data-title="designation">Software Engineer</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Bill</td>
-          <td data-title="ID">104</td>
-          <td data-title="designation">Quality Analyst</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Arjun</td>
-          <td data-title="ID">105</td>
-          <td data-title="designation">Human Resources</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Pratyush</td>
-          <td data-title="ID">106</td>
-          <td data-title="designation">Software Engineer</td>
-        </tr>
-        <tr>
-          <td data-title="Name">Anant</td>
-          <td data-title="ID">101</td>
-          <td data-title="designation">Administrative Dept</td>
+          <td data-title="ID">1</td>
+          <td data-title="Name">data</td>
+          <td data-title="Image">data</td>
+          <td data-title="Short_description">data</td>
+          <td data-title="Description">data</td>
+          <td data-title="Price">data</td>
+          <td data-title="Sale_price">data</td>
+          <td data-title="Brand_id">data</td>
+          <td data-title="Category_id">data</td>
+          <td>
+            <a href="#editEmployeeModal" class="edit" data-toggle="modal"
+              ><i class="bx bx-edit"></i
+            ></a>
+            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"
+              ><i class="bx bx-trash"></i
+            ></a>
+          </td>
         </tr>
       </tbody>
     </table>
