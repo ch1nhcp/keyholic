@@ -1,7 +1,40 @@
 <template>
-  <h1  v-if="is==true">Hello {{users.Name}}</h1>
-  <span>{{users.Email}}</span>
-  <div class="form-wrapper" v-if="is==false" >
+  <div class="user" v-if="is == true">
+    <div class="user_item left">
+      <div>
+        <span>ID:{{ users.Id }}</span>
+      </div>
+      <div>
+        <span>Hello {{ users.Name }}</span>
+      </div>
+      <span>Email:{{ users.Email }}</span>
+    </div>
+    <div class="user_item right">
+      <h3 style="text-align:center">historys</h3>
+      <table class="table">
+        <tr>
+           <th>Id</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Total Product</th>
+          <th>Total Price</th>
+        </tr>
+        <tr v-for="(item,index) in data" :key="index">
+          <td>{{index+1}}</td>
+          <td>{{item.Name}}</td>
+          <td>{{item.Phone}}</td>
+          <td>{{item.Address}}</td>
+          <td>{{item.TotalProducts}}</td>
+          <td>${{item.TotalPrice}}.00</td>
+        </tr>
+      </table>
+      <div @click="reload" class="loadmore"><button>reload</button></div>
+
+    </div>
+  </div>
+
+  <div class="form-wrapper" v-if="is == false">
     <!-- {{users}} -->
     <h1>Sign In</h1>
     <form @submit.prevent="onSubmit">
@@ -38,6 +71,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { GetData } from "../../service/service";
 export default {
   name: "signin",
   data() {
@@ -45,6 +79,7 @@ export default {
       email: "",
       password: "",
       success: "",
+      data:[]
     };
   },
   methods: {
@@ -54,25 +89,24 @@ export default {
       data.Email = this.email;
       data.Password = this.password;
       await this.$store.dispatch("user/login", data);
-      if(this.is==true){
-      this.$router.push({path: '/'});
-      }else{
-        alert("wrong user or password")
+      if (this.is == true) {
+        this.$router.push({ path: "/" });
+      } else {
+        alert("wrong user or password");
       }
-      
+    },
+    async reload(){
+   var respond = await GetData("/order/"+this.users.Id)
+    this.data = await respond
     },
   },
   computed: {
-    ...mapState("user",["users","is"]),
-   
+    ...mapState("user", ["users", "is"]),
   },
-  //  async created() {
-  //   var data = {};
-  //   data.Email = "aaa@gmail.com";
-  //   data.Password = "aaa";
-  //   var respond = await PostData("/api/login",data)
-  //   console.log(respond.Name)
-  // },
+   async created() {
+    var respond = await GetData("/order/"+this.users.Id)
+    console.log(respond)
+  },
 };
 </script>
 
@@ -99,7 +133,23 @@ body {
   color: #5e5e5e;
   font: 400 87.5%/1.5em "Open Sans", sans-serif;
 }
-
+.user {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+}
+.table{
+  width: 100%;
+}
+.loadmore{
+  text-align: center;
+}
+.user_item.left {
+  width: 30%;
+}
+.user_item.right {
+  width: 70%;
+}
 /* Form Layout */
 .form-wrapper {
   background: #fafafa;

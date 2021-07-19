@@ -4,20 +4,12 @@
     <div class="container">
       <div class="search" style="margin: 0 auto; margin-top: 3rem">
         <input
-<<<<<<< HEAD
           @keyup.enter="FindSearch"
-=======
-          @keyup.enter="search"
->>>>>>> e71836d833db37c22713515580c49ea3884eef90
           type="text"
           v-model="searchkey"
           placeholder="Search"
         />
-<<<<<<< HEAD
         <i @click="FindSearch" class="bx bx-search-alt"></i>
-=======
-        <i @click="search" class="bx bx-search-alt"></i>
->>>>>>> e71836d833db37c22713515580c49ea3884eef90
       </div>
       <div class="box">
         <div class="breadcumb">
@@ -105,7 +97,7 @@
                   <div class="product-card">
                     <div class="product-card-img">
                       <img
-                        :src="'http://localhost:8000' + product.Image"
+                        :src="ServeUrl + product.Image"
                         alt=""
                       />
                     </div>
@@ -171,6 +163,7 @@ import "../../../css/app.css";
 import "../../../css/grid.css";
 import { GetData } from "../../../service/service";
 import { mapState } from "vuex";
+import { ServeUrl } from "../../../service/service";
 export default {
   data() {
     return {
@@ -182,6 +175,7 @@ export default {
       brands: [],
       checkBrands: [],
       searchkey: "",
+      ServeUrl:ServeUrl
     };
   },
   methods: {

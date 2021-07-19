@@ -5,7 +5,7 @@
     <slide v-for="brand in brands" :key="brand.id">
       <!-- <router-link to="/products"> -->
       <!-- <h1>{{ brand.id }}</h1> -->
-      <img :src="'http://localhost:8000' + brand.Image" />
+      <img :src="ServeUrl + brand.Image" />
       <!-- </router-link> -->
     </slide>
   </carousel>
@@ -13,6 +13,7 @@
 
 <script>
 import "vue3-carousel/dist/carousel.css";
+import { ServeUrl } from "../../../service/service";
 import { Carousel, Slide } from "vue3-carousel";
 import { GetData } from "../../../service/service";
 
@@ -20,6 +21,7 @@ export default {
   data() {
     return {
       brands: "",
+      ServeUrl:ServeUrl
     };
   },
   components: {
