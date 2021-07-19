@@ -15,8 +15,12 @@
         >
           <div class="product-card">
             <div class="product-card-img">
-              <img :src="product.Products.Image" alt="" />
-              <img :src="product.Image[0]" alt="" />
+              <img :src="ServeUrl + product.Products.Image" alt="" />
+              <img
+                v-if="product.Image"
+                :src="ServeUrl + product.Image"
+                alt=""
+              />
             </div>
             <div class="product-card-info">
               <div class="product-btn">
@@ -27,7 +31,10 @@
                   shop now
                 </router-link>
                 <button class="btn-flat btn-hover btn-cart-add">
-                  <i  @click="AddToCart(product.Products)" class="bx bxs-cart-add"></i>
+                  <i
+                    @click="AddToCart(product.Products)"
+                    class="bx bxs-cart-add"
+                  ></i>
                 </button>
               </div>
               <div class="product-card-name">{{ product.Products.Name }}</div>
@@ -54,10 +61,13 @@
 
 <script>
 import { GetData } from "../../../service/service";
+import { ServeUrl } from "../../../service/service";
+
 export default {
   data() {
     return {
       products: [],
+      ServeUrl: ServeUrl,
     };
   },
   methods: {
@@ -69,7 +79,6 @@ export default {
   async created() {
     var respond = GetData("/producthot");
     this.products = await respond;
-  
   },
 };
 </script>

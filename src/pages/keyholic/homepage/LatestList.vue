@@ -15,11 +15,11 @@
         >
           <div class="product-card">
             <div class="product-card-img">
-              <img :src="product.Products.Image" alt="" />
+              <img :src="ServeUrl + product.Products.Image" alt="" />
 
               <img
-                v-if="product.Image != null"
-                :src="product.Image[0]"
+                v-if="product.Image"
+                :src="ServeUrl + product.Image[0]"
                 alt=""
               />
             </div>
@@ -62,10 +62,13 @@
 
 <script>
 import { GetData } from "../../../service/service";
+import { ServeUrl } from "../../../service/service";
+
 export default {
   data() {
     return {
       products: [],
+      ServeUrl: ServeUrl,
     };
   },
   methods: {
