@@ -14,29 +14,7 @@
                   billing address
                 </h2>
 
-                <!-- <p
-                  class="
-                    form-row form-row-first
-                    validate-required
-                    ecommerce-invalid ecommerce-invalid-required-field
-                  "
-                  id="billing_first_name_field"
-                >
-                  <label for="billing_first_name"
-                    >First Name
-                    <abbr class="required" title="required">*</abbr>
-                  </label>
-                  <input
-                    type="text"
-                    class="input-text"
-                    placeholder="first name"
-                     v-model="firstname"
-                    value
-                    name="billing_first_name"
-                    id="billing_first_name"
-                  />
-                </p> -->
-
+              
                 <p
                   class="
                     form-row form-row-last
@@ -53,8 +31,8 @@
                     type="text"
                     class="input-text"
                     placeholder=" Name"
-                       v-model="name"
-                    value
+                    :value="users.Name"
+                    readonly
                     name="billing_last_name"
                     id="billing_last_name"
                   />
@@ -285,19 +263,21 @@
 </template>
 
 <script>
+import { PostData } from "../../../service/service";
 import { mapState } from "vuex";
 export default {
     data() {
     return {
       phone:"",
-      name:"",
       address:"",
       note:"",
-      payment:""
+      payment:"",
+      data:"",
+      orderitem:"",
     };
   },
    methods: {
-     submit(){
+    async submit(){
        if( this.phone=="" || this.address==""|| this.name==""){
          alert("điền đủ thông tin")
          return
@@ -305,11 +285,45 @@ export default {
              alert("chọn phương thức thanh toán ")
         return
        }
+       let data={}
+       data.UserId= Number(this.users.Id)
+       data.Name= this.users.Name
+       data.Phone= Number(this.phone)
+       data.Address = this.address
+       data.TotalProducts= Number(this.TotalProducts)
+       data.Price= Number(this.SubTotal)
+       data.TotalPrice= Number(this.SubTotal)
+      let respond = PostData("/api/order",data);
+       this.data=(await respond)
+      if(this.data.Id>0){
+        for(let i=0;i<this.cart.length;i++){
+          let data={}
+          data.OrderId=this.data.Id
+          data.ProductId=this.cart[i].Id
+          data.Quantity=this.cart[i].quantity
+          let respond = PostData("/api/orderitem",data);
+          this.orderitem =(await respond)
+        }
+         if(this.orderitem.Id>0){
+          this.$store.commit("product/DelAllCart")
+          }
+        alert("success")
+       }else{
+         alert("something wrong")
+       }
+       
      }
    },
   computed: {
     ...mapState("user", ["is", "users"]),
     ...mapState("product", ["cart"]),
+    TotalProducts:function(){
+       let total = 0
+       for(let i=0;i<this.cart.length;i++){
+          total +=this.cart[i].quantity
+       }
+       return total
+     },
     SubTotal:function(){
        let total = 0
        for(let i=0;i<this.cart.length;i++){

@@ -12,6 +12,7 @@ const state =()=> ({
 
 //actions ~ methods
 const actions ={
+   
      search( {commit},data) {
         commit("searchState", data);
     },
@@ -25,6 +26,7 @@ const actions ={
 
 //mutations ~ 
 const mutations ={
+ 
     searchState(state, data) {
         state.search = data
     },
@@ -64,6 +66,9 @@ const mutations ={
     DelFormCart(state, index){
         state.cart.splice(index,1)
         updateLocalStorage(state.cart)
+    },
+    DelAllCart(state){
+        state.cart=[]
     },
     CheckLocal(state,index){
         state.cart = index

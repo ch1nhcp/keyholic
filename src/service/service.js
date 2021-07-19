@@ -33,4 +33,4 @@ async function PostData(url = '', data = {}) {
     });
     return  response.json(); // parses JSON response into native JavaScript objects
   }
-  export{PostData,GetData}
+  export{PostData,GetData,ServeUrl}

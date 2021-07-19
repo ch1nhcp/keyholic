@@ -3,14 +3,14 @@
   <div class="bg-main">
     <div class="container">
       <div class="search" style="margin: 0 auto; margin-top: 3rem">
-            <input
-              @keyup.enter="search"
-              type="text"
-              v-model="searchkey"
-              placeholder="Search"
-            />
-            <i @click="search" class="bx bx-search-alt"></i>
-          </div>
+        <input
+          @keyup.enter="FindSearch"
+          type="text"
+          v-model="searchkey"
+          placeholder="Search"
+        />
+        <i @click="FindSearch" class="bx bx-search-alt"></i>
+      </div>
       <div class="box">
         <div class="breadcumb">
           <a href="./index.html">home</a>
@@ -170,23 +170,24 @@ export default {
       total: 0,
       brands: [],
       checkBrands: [],
+      searchkey: "",
     };
   },
   methods: {
-    //     async FindSearch(name) {
-    //       let respond = GetData("/search?name=" + name);
-    //       this.data = await respond;
-    //       this.products = await this.data.Product;
-    //       this.total = await this.data.Total;
-    //       this.lastpage = 1;
-    //       if(name.length>0){
-    //  this.$router.push({
-    //         path: "/products",
-    //         query: { search: name },
-    //       });
-    //       }
-
-    //     },
+    async FindSearch() {
+      let respond = GetData("/search?name=" + this.searchkey);
+      this.data = await respond;
+      this.products = await this.data.Product;
+      this.total = await this.data.Total;
+      console.log(this.data);
+      this.lastpage = 1;
+      if (this.searchkey.length > 0) {
+        this.$router.push({
+          path: "/products",
+          query: { search: this.searchkey },
+        });
+      }
+    },
     async GetBrand() {
       if (this.checkBrands == "") {
         let respond = GetData("/product");
@@ -338,25 +339,34 @@ export default {
     this.brands = await respond;
   },
   async created() {
+   
     let datarespond;
     var url_string = window.location.href;
     var url = new URL(url_string);
     var param = url.searchParams.get("category");
     let c = url.searchParams.get("page");
     let brand = url.searchParams.get("brand");
+    let search = url.searchParams.get("search");
     if (c == null || c == "") {
       c = 1;
     }
-    if(brand!=null && brand !=""){
-       let respond = GetData("/brand/" + brand+"?page="+c);
+    if (search != null && search != "") {
+      let respond = GetData("/search?name=" + search);
+      this.data = await respond;
+      this.products = await this.data.Product;
+      this.total = await this.data.Total;
+      return;
+    }
+    if (brand != null && brand != "") {
+      let respond = GetData("/brand/" + brand + "?page=" + c);
       this.data = await respond;
       this.products = await this.data.Product;
       this.page = await this.data.Page;
       this.lastpage = await this.data.Lastpage;
       this.total = await this.data.Total;
-      this.checkBrands= brand
-      
-      return
+      this.checkBrands = brand;
+
+      return;
     }
     if (param == null || param == "") {
       let data = GetData("/product?page=" + c);
