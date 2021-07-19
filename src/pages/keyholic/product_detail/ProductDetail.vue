@@ -171,6 +171,12 @@ export default {
   computed: {},
   mounted() {
     // Hàm show/hide phần product detail
+    document.querySelectorAll(".product-img-item").forEach((e) => {
+      e.addEventListener("click", () => {
+        let img = e.querySelector("img").getAttribute("src");
+        document.querySelector("#product-img > img").setAttribute("src", img);
+      });
+    });
     document
       .querySelector("#view-all-description")
       .addEventListener("click", () => {

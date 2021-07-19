@@ -1,7 +1,7 @@
 <template>
-  <Menu />
+  <Menu v-if="hideComp != 'http://localhost:8080/admin'" />
   <router-view />
-  <Footer />
+  <Footer v-if="hideComp != 'http://localhost:8080/admin'" />
 </template>
 
 <script>
@@ -12,6 +12,12 @@ export default {
   components: {
     Menu,
     Footer,
+  },
+  computed: {
+    hideComp: function() {
+      let url = location.href;
+      return url;
+    },
   },
 };
 </script>
