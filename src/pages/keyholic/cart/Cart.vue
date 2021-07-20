@@ -48,7 +48,7 @@
                     <td class="product-thumbnail">
                       <a href="#">
                         <img
-                          :src="item.Image"
+                          :src="ServeUrl+item.Image"
                           alt=""
                         />
                       </a>
@@ -180,7 +180,13 @@
 <script>
 // import {PostData} from "../../service/service"
 import { mapState } from "vuex";
+import { ServeUrl } from "../../../service/service";
 export default {
+  data() {
+    return {
+      ServeUrl:ServeUrl
+    };
+  },
   methods:{
     checkout(){
       if(this.cart.length>0){

@@ -131,10 +131,10 @@ export default {
     return {
       product: [],
       image: [],
-      ServeUrl: ServeUrl,
-      quantity: 1,
-      totalproduct: 0,
-      err: "",
+      quantity:1,
+      totalproduct:0,
+      err:"",
+           ServeUrl:ServeUrl
     };
   },
   methods: {
