@@ -7,11 +7,11 @@
       Product Manager
     </div>
     <div class="col-sm-6" style="float: right">
-      <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"
-        ><i class="bx bx-add-to-queue"></i> <span>Add New</span></a
-      >
-      <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"
-        ><i class="bx bx-trash"></i> <span>Delete</span></a
+      <router-link
+        to="/admin/products/add"
+        class="btn btn-success"
+        data-toggle="modal"
+        ><i class="bx bx-add-to-queue"></i> <span>Add New</span></router-link
       >
     </div>
     <table width="100%">
@@ -41,9 +41,9 @@
           <td data-title="Brand_id">data</td>
           <td data-title="Category_id">data</td>
           <td>
-            <a href="#editEmployeeModal" class="edit" data-toggle="modal"
+            <router-link to="/admin/products/edit" class="edit" data-toggle="modal"
               ><i class="bx bx-edit"></i
-            ></a>
+            ></router-link>
             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"
               ><i class="bx bx-trash"></i
             ></a>

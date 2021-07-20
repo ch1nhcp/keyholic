@@ -1,47 +1,39 @@
 <template>
   <div class="container">
     <form id="contact" action="" method="post">
-      <h3>Add Product Form</h3>
-      <h4>Contact us today, and get reply with in 24 hours!</h4>
+      <h3 style="margin-bottom:2rem">Add Product Form</h3>
+      <!-- <h4>Contact us today, and get reply with in 24 hours!</h4> -->
+      <fieldset>
+        <input placeholder="ID" type="text" tabindex="1" autofocus />
+      </fieldset>
+      <fieldset>
+        <input placeholder="Name *" type="text" tabindex="2" required />
+      </fieldset>
+      <fieldset>
+        <input placeholder="Image *" type="text" tabindex="3" required />
+      </fieldset>
       <fieldset>
         <input
-          placeholder="ID"
+          placeholder="Short_description *"
           type="text"
-          tabindex="1"
-          required
-          autofocus
-        />
-      </fieldset>
-      <fieldset>
-        <input
-          placeholder="Name"
-          type="email"
-          tabindex="2"
-          required
-        />
-      </fieldset>
-      <fieldset>
-        <input
-          placeholder="Image"
-          type="tel"
-          tabindex="3"
-          required
-        />
-      </fieldset>
-      <fieldset>
-        <input
-          placeholder="Short_description"
-          type="url"
           tabindex="4"
           required
         />
       </fieldset>
       <fieldset>
-        <textarea
-          placeholder="Description"
-          tabindex="5"
-          required
-        ></textarea>
+        <textarea placeholder="Description *" tabindex="5" required></textarea>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Price *" type="number" tabindex="2" required />
+      </fieldset>
+      <fieldset>
+        <input placeholder="Sale price *" type="number" tabindex="2" required />
+      </fieldset>
+      <fieldset>
+        <input placeholder="Brand Id" type="text" tabindex="2"  />
+      </fieldset>
+      <fieldset>
+        <input placeholder="Category Id" type="text" tabindex="2"  />
       </fieldset>
       <fieldset>
         <button
@@ -62,12 +54,6 @@ export default {};
 </script>
 
 <style scoped>
-@import url(
-  https://fonts.googleapis.com/css?family=Open+Sans:400italic,
-  400,
-  300,
-  600
-);
 
 * {
   margin: 0;
@@ -78,17 +64,8 @@ export default {};
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  /* font-smoothing: antialiased; */
   text-rendering: optimizeLegibility;
-}
-
-body {
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 30px;
-  color: #777;
-  background: #0cf;
 }
 
 .container {
@@ -99,7 +76,7 @@ body {
 }
 
 #contact input[type="text"],
-#contact input[type="email"],
+#contact input[type="number"],
 #contact input[type="tel"],
 #contact input[type="url"],
 #contact textarea,
@@ -114,7 +91,7 @@ body {
 }
 
 #contact h3 {
-  color: #f96;
+  color: #35bdff;
   display: block;
   font-size: 30px;
   font-weight: 400;
@@ -135,7 +112,7 @@ fieldset {
 }
 
 #contact input[type="text"],
-#contact input[type="email"],
+#contact input[type="number"],
 #contact input[type="tel"],
 #contact input[type="url"],
 #contact textarea {
@@ -167,7 +144,7 @@ fieldset {
   cursor: pointer;
   width: 100%;
   border: none;
-  background: #0cf;
+  background: #35bdff;
   color: #fff;
   margin: 0 0 5px;
   padding: 10px;
@@ -175,7 +152,7 @@ fieldset {
 }
 
 #contact button[type="submit"]:hover {
-  background: #09c;
+  background: #2da1db;
   -webkit-transition: background 0.3s ease-in-out;
   -moz-transition: background 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
