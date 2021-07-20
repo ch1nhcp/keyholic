@@ -6,6 +6,14 @@
     >
       User Manager
     </div>
+    <div class="col-sm-6" style="float: right">
+      <router-link
+        to="/admin/users/add"
+        class="btn btn-success"
+        data-toggle="modal"
+        ><i class="bx bx-add-to-queue"></i> <span>Add New</span></router-link
+      >
+    </div>
     <table width="100%">
       <thead>
         <tr>
@@ -25,9 +33,9 @@
           <td data-title="Password">data</td>
           <td data-title="Permission">data</td>
           <td>
-            <a href="#editEmployeeModal" class="edit" data-toggle="modal"
+            <router-link to="/admin/users/edit" class="edit" data-toggle="modal"
               ><i class="bx bx-edit"></i
-            ></a>
+            ></router-link>
             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"
               ><i class="bx bx-trash"></i
             ></a>

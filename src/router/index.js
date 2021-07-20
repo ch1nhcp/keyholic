@@ -19,6 +19,11 @@ import ProductsManager from "../pages/admin/dashboard/Products/ProductsManager.v
 import UsersManager from "../pages/admin/dashboard/Users/UsersManager.vue";
 import BrandsManager from "../pages/admin/dashboard/Brands/BrandsManager.vue";
 
+import ProductsAdd from "../pages/admin/dashboard/Products/ProductsAdd.vue";
+import ProductsEdit from "../pages/admin/dashboard/Products/ProductsEdit.vue";
+import UsersAdd from "../pages/admin/dashboard/Users/UserAdd.vue";
+import UsersEdit from "../pages/admin/dashboard/Users/UserEdit.vue";
+
 const routes = [
   { path: "/", component: Body, name: "main" },
   { path: "/signin", component: SignIn },
@@ -41,8 +46,14 @@ const routes = [
     children: [
       { path: "", component: DashboardHome },
       { path: "products", component: ProductsManager },
-      { path: "users", component: UsersManager},
+      { path: "users", component: UsersManager },
       { path: "brands", component: BrandsManager },
+
+      { path: "products/add", component: ProductsAdd },
+      { path: "products/edit", component: ProductsEdit },
+
+      { path: "users/edit", component: UsersEdit },
+      { path: "users/add", component: UsersAdd },
     ],
   },
 ];
