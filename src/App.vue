@@ -1,7 +1,7 @@
 <template>
-  <Menu v-if="hideComp != 'http://localhost:8080/admin'" />
+  <Menu v-if="!$route.meta.hideNavigation" />
   <router-view />
-  <Footer v-if="hideComp != 'http://localhost:8080/admin'" />
+  <Footer v-if="!$route.meta.hideNavigation" />
 </template>
 
 <script>
@@ -12,12 +12,6 @@ export default {
   components: {
     Menu,
     Footer,
-  },
-  computed: {
-    hideComp: function() {
-      let url = location.href;
-      return url;
-    },
   },
 };
 </script>
