@@ -38,6 +38,12 @@ const routes = [
   { path: "/checkout", component: Checkout },
 
   //admin
+  // {
+  //   path: "/admin",
+  //   components: {
+  //     component: Dashboard,
+  //   },
+  // },
   { path: "/admin/dashboard", component: Dashboard },
   { path: "/admin/signin", component: SignInAdmin },
   {

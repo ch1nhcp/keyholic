@@ -52,7 +52,9 @@
       </div>
 
       <div class="section-footer">
-        <a href="#" class="btn-flat btn-hover">view all</a>
+        <router-link to="/products" class="btn-flat btn-hover"
+          >view all</router-link
+        >
       </div>
     </div>
   </div>

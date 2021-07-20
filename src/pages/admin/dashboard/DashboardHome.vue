@@ -1,13 +1,9 @@
 <template>
-  <h1>helo Admin Keyholic!</h1>
+  <h1 style="text-align: center">Hello Admin! This is your workspace!</h1>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>

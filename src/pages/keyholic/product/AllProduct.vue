@@ -13,9 +13,9 @@
       </div>
       <div class="box">
         <div class="breadcumb">
-          <a href="./index.html">home</a>
+          <router-link to="/">home</router-link>
           <span><i class="bx bxs-chevrons-right"></i></span>
-          <a href="./products.html">all products</a>
+          <router-link to="/products">all products</router-link>
         </div>
       </div>
       <h1 style="display:none">{{ search }}</h1>
@@ -96,10 +96,7 @@
                 >
                   <div class="product-card">
                     <div class="product-card-img">
-                      <img
-                        :src="ServeUrl + product.Image"
-                        alt=""
-                      />
+                      <img :src="ServeUrl + product.Image" alt="" />
                     </div>
                     <div class="product-card-info">
                       <div class="product-btn">
@@ -175,7 +172,7 @@ export default {
       brands: [],
       checkBrands: [],
       searchkey: "",
-      ServeUrl:ServeUrl
+      ServeUrl: ServeUrl,
     };
   },
   methods: {
@@ -344,7 +341,6 @@ export default {
     this.brands = await respond;
   },
   async created() {
-   
     let datarespond;
     var url_string = window.location.href;
     var url = new URL(url_string);
