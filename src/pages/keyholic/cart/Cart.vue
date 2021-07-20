@@ -122,8 +122,8 @@
               <div class="col-md-7">
                 <div class="actions">
                   <div class="wc-proceed-to-checkout">
-                    <router-link to="/checkout" class="btn btn-lg btn-dark"
-                      ><span>proceed to checkout</span></router-link
+                    <a @click="checkout" class="btn btn-lg btn-dark"
+                      ><span>proceed to checkout</span></a
                     >
                   </div>
                 </div>
@@ -182,6 +182,14 @@
 import { mapState } from "vuex";
 export default {
   methods:{
+    checkout(){
+      if(this.cart.length>0){
+ this.$router.push({ path: "/checkout" });
+
+      }else{
+         this.$router.push({ path: "/products" });
+      }
+    },
     addQuantity(index){
       this.$store.commit("product/AddQuantity",index)
     },

@@ -13,6 +13,17 @@
       <div class="row product-row">
         <div class="col-5 col-md-12">
           <div class="product-img" id="product-img">
+<<<<<<< HEAD
+            <img :src="ServeUrl+product.Image" alt="" />
+          </div>
+          <div class="box">
+            <div v-if="image != null" class="product-img-list">
+              <div  v-if="ServeUrl+image[0]" class="product-img-item  ">
+                <img :src="ServeUrl+image[0]" alt="" />
+              </div>
+               <div  v-if="ServeUrl+image[2] !=undefined" class="product-img-item  ">
+                <img :src="ServeUrl+image[1]" alt="" />
+=======
             <img :src="ServeUrl + product.Image" alt="" />
           </div>
           <div class="box">
@@ -22,6 +33,7 @@
               </div>
               <div v-if="ServeUrl + image[1]" class="product-img-item  ">
                 <img :src="ServeUrl + image[1]" alt="" />
+>>>>>>> df246724d3d7c352ed97239b90f3c857638816e2
               </div>
             </div>
           </div>
@@ -126,16 +138,26 @@ import "../../../css/app.css";
 import "../../../css/grid.css";
 import { GetData } from "../../../service/service";
 import { ServeUrl } from "../../../service/service";
+<<<<<<< HEAD
+=======
 
+>>>>>>> df246724d3d7c352ed97239b90f3c857638816e2
 export default {
   data() {
     return {
       product: [],
       image: [],
+<<<<<<< HEAD
+      quantity:1,
+      totalproduct:0,
+      err:"",
+           ServeUrl:ServeUrl
+=======
       ServeUrl: ServeUrl,
       quantity: 1,
       totalproduct: 0,
       err: "",
+>>>>>>> df246724d3d7c352ed97239b90f3c857638816e2
     };
   },
   methods: {
@@ -166,7 +188,12 @@ export default {
     let res = await GetData("/product/" + param);
     this.product = await res.Products;
     this.image = await res.Image;
+<<<<<<< HEAD
+    this.totalproduct = await res.Quantity
+    console.log(this.image[2])
+=======
     this.totalproduct = await res.Quantity;
+>>>>>>> df246724d3d7c352ed97239b90f3c857638816e2
   },
   computed: {},
   mounted() {

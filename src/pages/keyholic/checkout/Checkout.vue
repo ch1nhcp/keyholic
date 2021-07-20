@@ -308,6 +308,7 @@ export default {
           this.$store.commit("product/DelAllCart")
           }
         alert("success")
+                this.$router.push({ path: "/signin" });
        }else{
          alert("something wrong")
        }

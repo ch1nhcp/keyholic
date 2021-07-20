@@ -69,6 +69,7 @@ const mutations ={
     },
     DelAllCart(state){
         state.cart=[]
+        localStorage.clear();
     },
     CheckLocal(state,index){
         state.cart = index

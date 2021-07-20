@@ -19,7 +19,7 @@
 
               <img
                 v-if="product.Image"
-                :src="ServeUrl + product.Image[0]"
+                :src="ServeUrl + product.Image"
                 alt=""
               />
             </div>
