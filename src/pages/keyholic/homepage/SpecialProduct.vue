@@ -20,7 +20,9 @@
               enim non voluptate! Qui provident modi est non eius ratione,
               debitis iure.
             </p>
-            <button class="btn-flat btn-hover">shop now</button>
+            <button class="btn-flat btn-hover">
+              <router-link to="/productdetail?name=E-DRA%20EK384W%20Bluetooth">shop now</router-link>
+            </button>
           </div>
         </div>
       </div>
@@ -33,5 +35,4 @@
 export default {};
 </script>
 
-<style>
-</style>
+<style></style>

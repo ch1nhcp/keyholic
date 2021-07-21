@@ -7,7 +7,7 @@
         <div class="slide active">
           <div class="info">
             <div class="info-content">
-              <h3 class="top-down">LEOPOLD CP28</h3>
+              <h3 class="top-down">LEOPOLD FC750R PD</h3>
               <h2 class="top-down trans-delay-0-2">Next-gen design</h2>
               <p class="top-down trans-delay-0-4">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -19,7 +19,10 @@
               <div class="top-down trans-delay-0-6">
                 <button class="btn-flat btn-hover">
                   <!-- <span>shop now</span> -->
-                  <router-link to="/productdetail">shop now</router-link>
+                  <router-link
+                    to="/productdetail?name=Leopold%20FC750R%20PD%20White%20DarkGray"
+                    >shop now</router-link
+                  >
                 </button>
               </div>
             </div>
@@ -33,7 +36,7 @@
         <div class="slide">
           <div class="info">
             <div class="info-content">
-              <h3 class="top-down">LEOPOLD CP28</h3>
+              <h3 class="top-down">LEOPOLD FC980M</h3>
               <h2 class="top-down trans-delay-0-2">Ipsum dolor</h2>
               <p class="top-down trans-delay-0-4">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. A
@@ -44,7 +47,10 @@
               <div class="top-down trans-delay-0-6">
                 <button class="btn-flat btn-hover">
                   <!-- <span>shop now</span> -->
-                  <router-link to="/productdetail">shop now</router-link>
+                  <router-link
+                    to="/productdetail?name=Leopold%20FC980M%20PD%20White%20Grey"
+                    >shop now</router-link
+                  >
                 </button>
               </div>
             </div>
@@ -61,7 +67,7 @@
         <div class="slide">
           <div class="info">
             <div class="info-content">
-              <h3 class="top-down">KEYDOU</h3>
+              <h3 class="top-down">Keychron K8</h3>
               <h2 class="top-down trans-delay-0-2">Consectetur Elit</h2>
               <p class="top-down trans-delay-0-4">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -72,7 +78,9 @@
               <div class="top-down trans-delay-0-6">
                 <button class="btn-flat btn-hover">
                   <!-- <span>shop now</span> -->
-                  <router-link to="/productdetail">shop now</router-link>
+                  <router-link to="/productdetail?name=Keychron%20K8%20(2)"
+                    >shop now</router-link
+                  >
                 </button>
               </div>
             </div>
@@ -134,5 +142,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
