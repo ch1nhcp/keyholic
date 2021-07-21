@@ -194,6 +194,7 @@ export default {
       }
     },
     async GetBrand() {
+      alert(this.checkBrands)
       if (this.checkBrands == "") {
         let respond = GetData("/product");
         this.data = await respond;
@@ -203,7 +204,7 @@ export default {
         this.total = await this.data.Total;
         this.$router.push({
           path: "/products",
-          query: { page: 1 },
+          query: { page: 1,brand:"" },
         });
         return;
       }
@@ -370,7 +371,6 @@ export default {
       this.lastpage = await this.data.Lastpage;
       this.total = await this.data.Total;
       this.checkBrands = brand;
-
       return;
     }
     if (param == null || param == "") {

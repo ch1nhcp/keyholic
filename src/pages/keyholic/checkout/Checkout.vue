@@ -14,7 +14,6 @@
                   billing address
                 </h2>
 
-              
                 <p
                   class="
                     form-row form-row-last
@@ -23,8 +22,8 @@
                   "
                   id="billing_last_name_field"
                 >
-                  <label for="billing_last_name"
-                    > Name
+                  <label for="billing_last_name">
+                    Name
                     <abbr class="required" title="required">*</abbr>
                   </label>
                   <input
@@ -95,7 +94,6 @@
                   name="createaccount"
                   value="1"
                 />
-             
               </p>
 
               <div class="clear"></div>
@@ -109,7 +107,6 @@
                     name="ship_to_different_address"
                     value="1"
                   />
-                
                 </div>
                 <p
                   class="form-row notes ecommerce-validated"
@@ -144,19 +141,24 @@
                 <table
                   class="table shop_table ecommerce-checkout-review-order-table"
                 >
-                <!-- {{cart}} -->
-                  <tbody >
-                    <tr v-for="(item,index) in cart" :key="index">
-                      <th>{{item.Name}}<span class="count">  x{{item.quantity}}</span></th>
+                  <!-- {{cart}} -->
+                  <tbody>
+                    <tr v-for="(item, index) in cart" :key="index">
+                      <th>
+                        {{ item.Name
+                        }}<span class="count"> x{{ item.quantity }}</span>
+                      </th>
                       <td>
-                        <span class="amount">${{item.SalePrice*item.quantity}}.00</span>
+                        <span class="amount"
+                          >${{ item.SalePrice * item.quantity }}.00</span
+                        >
                       </td>
                     </tr>
-                    
+
                     <tr class="cart-subtotal">
                       <th>Cart Subtotal</th>
                       <td>
-                        <span class="amount">${{SubTotal}}.00</span>
+                        <span class="amount">${{ SubTotal }}.00</span>
                       </td>
                     </tr>
                     <tr class="shipping">
@@ -168,7 +170,11 @@
                     <tr class="order-total">
                       <th><strong>Order Total</strong></th>
                       <td>
-                        <strong><span class="amount">${{SubTotal}}.00</span></strong>
+                        <strong
+                          ><span class="amount"
+                            >${{ SubTotal }}.00</span
+                          ></strong
+                        >
                       </td>
                     </tr>
                   </tbody>
@@ -181,7 +187,7 @@
                   <ul class="payment_methods methods">
                     <li class="payment_method_bacs">
                       <input
-                       v-model="payment"
+                        v-model="payment"
                         id="payment_method_bacs"
                         type="radio"
                         class="input-radio"
@@ -203,7 +209,7 @@
 
                     <li class="payment_method_cheque">
                       <input
-                          v-model="payment"
+                        v-model="payment"
                         id="payment_method_cheque"
                         type="radio"
                         class="input-radio"
@@ -221,26 +227,33 @@
 
                     <li class="payment_method_paypal">
                       <input
-                          v-model="payment"
+                        v-model="payment"
                         id="payment_method_paypal"
                         type="radio"
                         class="input-radio"
                         name="payment_method"
-                        value="paypal"
+                        value="tripe"
                       />
-                      <label for="payment_method_paypal">Paypal</label>
+                      <label for="payment_method_paypal">Tripe</label>
                       <img src="#" alt="" />
                       <div class="payment_box payment_method_paypal">
                         <p>
                           Pay via PayPal; you can pay with your credit card if
                           you don’t have a PayPal account.
                         </p>
+                     <!-- paypal -->
+ <div>
+    <div id="paypal-button-container"></div>
+
+  </div>
+                     <!-- end paypal -->
+                    
                       </div>
                     </li>
                   </ul>
                   <div class="form-row place-order">
                     <input
-                    @click="submit"
+                      @click="submit"
                       name="ecommerce_checkout_place_order"
                       class="btn btn-lg btn-dark"
                       id="place_order"
@@ -259,84 +272,297 @@
     </div>
     <!-- end container -->
   </section>
+
   <!-- end checkout -->
 </template>
 
 <script>
+
 import { PostData } from "../../../service/service";
 import { mapState } from "vuex";
 export default {
-    data() {
+  
+    name: "HelloWorld",
+  data() {
     return {
-      phone:"",
-      address:"",
-      note:"",
-      payment:"",
-      data:"",
-      orderitem:"",
+      phone: "",
+      address: "",
+      note: "",
+      payment: "",
+      data: "",
+      orderitem: "",
+      // stripe:"pk_test_51JFCbdJA4XI9xLpD0jNlwsr2B0lIoSlai6mUU1Os4NjxCRzuxpocYnXg9V2HlRSVtaRpSdeYWDQmIV4NxxQcaLCU00xwGfilvq",
+     
     };
   },
-   methods: {
-    async submit(){
-       if( this.phone=="" || this.address==""|| this.name==""){
-         alert("điền đủ thông tin")
-         return
-       }if(this.payment =="" ){
-             alert("chọn phương thức thanh toán ")
-        return
-       }
-       let data={}
-       data.UserId= Number(this.users.Id)
-       data.Name= this.users.Name
-       data.Phone= Number(this.phone)
-       data.Address = this.address
-       data.TotalProducts= Number(this.TotalProducts)
-       data.Price= Number(this.SubTotal)
-       data.TotalPrice= Number(this.SubTotal)
-      let respond = PostData("/api/order",data);
-       this.data=(await respond)
-      if(this.data.Id>0){
-        for(let i=0;i<this.cart.length;i++){
-          let data={}
-          data.OrderId=this.data.Id
-          data.ProductId=this.cart[i].Id
-          data.Quantity=this.cart[i].quantity
-          let respond = PostData("/api/orderitem",data);
-          this.orderitem =(await respond)
+  methods: {
+    setLoaded: function() {
+      this.loaded = true;
+      window.paypal
+        .Buttons({
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  description: this.cart.length,
+                  amount: {
+                    currency_code: "USD",
+                    value: this.SubTotal
+                  }
+                }
+              ]
+            });
+          },
+          onApprove: async (data, actions) => {
+            const order = await actions.order.capture();
+            this.paidFor = true;
+            console.log(order);
+            let savedata = {};
+      savedata.UserId = Number(this.users.Id);
+      savedata.Name = this.users.Name;
+      savedata.Phone = Number(this.phone);
+      savedata.Address = this.address;
+      savedata.TotalProducts = Number(this.TotalProducts);
+      savedata.Price = Number(this.SubTotal);
+      savedata.TotalPrice = Number(this.SubTotal);
+      let respond = PostData("/api/order", savedata);
+      this.data = await respond;
+      if (this.data.Id > 0) {
+        for (let i = 0; i < this.cart.length; i++) {
+          let data = {};
+          data.OrderId = this.data.Id;
+          data.ProductId = this.cart[i].Id;
+          data.Quantity = this.cart[i].quantity;
+          let respond = PostData("/api/orderitem", data);
+          this.orderitem = await respond;
         }
-         if(this.orderitem.Id>0){
-          this.$store.commit("product/DelAllCart")
+        if (this.orderitem.Id > 0) {
+          this.$store.commit("product/DelAllCart");
+        }
+        alert("success");
+        this.$router.push({ path: "/signin" });
+      } else {
+        alert("something wrong");
+      }
+          },
+          onError: err => {
+            console.log(err);
           }
-        alert("success")
-                this.$router.push({ path: "/signin" });
-       }else{
-         alert("something wrong")
-       }
-       
-     }
-   },
+        })
+        .render('#paypal-button-container');
+    },
+    async submit() {
+      if (this.phone == "" || this.address == "" || this.name == "") {
+        alert("điền đủ thông tin");
+        return;
+      }
+      if (this.payment == "") {
+        alert("chọn phương thức thanh toán ");
+        return;
+      }
+      if (this.payment == "tripe") {
+        let payment = {};
+        payment.amount = Number(this.SubTotal);
+        payment.receiptMail = this.users.Email;
+        payment.productName = "mẫu";
+        let respond = PostData("/stripe", payment);
+        console.log(respond);
+      }
+      let data = {};
+      data.UserId = Number(this.users.Id);
+      data.Name = this.users.Name;
+      data.Phone = Number(this.phone);
+      data.Address = this.address;
+      data.TotalProducts = Number(this.TotalProducts);
+      data.Price = Number(this.SubTotal);
+      data.TotalPrice = Number(this.SubTotal);
+      let respond = PostData("/api/order", data);
+      this.data = await respond;
+      if (this.data.Id > 0) {
+        for (let i = 0; i < this.cart.length; i++) {
+          let data = {};
+          data.OrderId = this.data.Id;
+          data.ProductId = this.cart[i].Id;
+          data.Quantity = this.cart[i].quantity;
+          let respond = PostData("/api/orderitem", data);
+          this.orderitem = await respond;
+        }
+        if (this.orderitem.Id > 0) {
+          this.$store.commit("product/DelAllCart");
+        }
+        alert("success");
+        this.$router.push({ path: "/signin" });
+      } else {
+        alert("something wrong");
+      }
+    },
+  },
   computed: {
     ...mapState("user", ["is", "users"]),
     ...mapState("product", ["cart"]),
-    TotalProducts:function(){
-       let total = 0
-       for(let i=0;i<this.cart.length;i++){
-          total +=this.cart[i].quantity
-       }
-       return total
-     },
-    SubTotal:function(){
-       let total = 0
-       for(let i=0;i<this.cart.length;i++){
-          total += this.cart[i].SalePrice*this.cart[i].quantity
-       }
-       return total
-     }
+    TotalProducts: function() {
+      let total = 0;
+      for (let i = 0; i < this.cart.length; i++) {
+        total += this.cart[i].quantity;
+      }
+      return total;
+    },
+    SubTotal: function() {
+      let total = 0;
+      for (let i = 0; i < this.cart.length; i++) {
+        total += this.cart[i].SalePrice * this.cart[i].quantity;
+      }
+      return total;
+    },
+  },
+ mounted: function() {
+    const script = document.createElement("script");
+    script.src =
+      "https://www.paypal.com/sdk/js?client-id=AQ9F7YFI2uDgG2coszPXLv9XwEORERFAni7Zt1NgT09YHljQv5q688w000033jrn09YiSgASHO9ar08o";
+    script.addEventListener("load", this.setLoaded);
+    document.body.appendChild(script);
   },
 };
 </script>
 
 <style scoped>
+input {
+  border-radius: 6px;
+  margin-bottom: 6px;
+  padding: 12px;
+  border: 1px solid rgba(50, 50, 93, 0.1);
+  height: 44px;
+  font-size: 16px;
+  width: 100%;
+  background: white;
+}
+.result-message {
+  line-height: 22px;
+  font-size: 16px;
+}
+.result-message a {
+  color: rgb(89, 111, 214);
+  font-weight: 600;
+  text-decoration: none;
+}
+.hidden {
+  display: none;
+}
+#card-error {
+  color: rgb(105, 115, 134);
+  text-align: left;
+  font-size: 13px;
+  line-height: 17px;
+  margin-top: 12px;
+}
+#card-element {
+  border-radius: 4px 4px 0 0;
+  padding: 12px;
+  border: 1px solid rgba(50, 50, 93, 0.1);
+  height: 44px;
+  width: 100%;
+  background: white;
+}
+#payment-request-button {
+  margin-bottom: 32px;
+}
+/* Buttons and links */
+button {
+  background: #5469d4;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  border-radius: 0 0 4px 4px;
+  border: 0;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  width: 100%;
+}
+button:hover {
+  filter: contrast(115%);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+/* spinner/processing state, errors */
+.spinner,
+.spinner:before,
+.spinner:after {
+  border-radius: 50%;
+}
+.spinner {
+  color: #ffffff;
+  font-size: 22px;
+  text-indent: -99999px;
+  margin: 0px auto;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  box-shadow: inset 0 0 0 2px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.spinner:before,
+.spinner:after {
+  position: absolute;
+  content: "";
+}
+.spinner:before {
+  width: 10.4px;
+  height: 20.4px;
+  background: #5469d4;
+  border-radius: 20.4px 0 0 20.4px;
+  top: -0.2px;
+  left: -0.2px;
+  -webkit-transform-origin: 10.4px 10.2px;
+  transform-origin: 10.4px 10.2px;
+  -webkit-animation: loading 2s infinite ease 1.5s;
+  animation: loading 2s infinite ease 1.5s;
+}
+.spinner:after {
+  width: 10.4px;
+  height: 10.2px;
+  background: #5469d4;
+  border-radius: 0 10.2px 10.2px 0;
+  top: -0.1px;
+  left: 10.2px;
+  -webkit-transform-origin: 0px 10.2px;
+  transform-origin: 0px 10.2px;
+  -webkit-animation: loading 2s infinite ease;
+  animation: loading 2s infinite ease;
+}
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@media only screen and (max-width: 600px) {
+  form {
+    width: 80vw;
+  }
+}
+/* payment */
 .checkout .col-md-8 {
   width: 60 !important;
 }
