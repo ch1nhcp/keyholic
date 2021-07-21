@@ -13,14 +13,14 @@
       </div>
       <div class="box">
         <div class="breadcumb">
-          <router-link to="/">home</router-link>
+          <a href="/">home</a>
           <span><i class="bx bxs-chevrons-right"></i></span>
-          <router-link to="/products">all products</router-link>
+          <a href="/products">all products</a>
         </div>
       </div>
       <h1 style="display:none">{{ search }}</h1>
       <div class="count">
-        <span>{{ page * 2 > total ? total : page * 2 }}/{{ total }} items</span>
+        <span>{{ page * 2 > total ? total : page * 9 }}/{{ total }} Products</span>
       </div>
 
       <div class="box">
@@ -31,12 +31,6 @@
                 close
               </button>
             </div>
-
-            <!-- Search bar
-            <div class="box">
-              <span class="filter-header"> Search: </span>
-              <input type="text" placeholder="Bạn muốn tìm gì?" class="search-bar" />
-            </div> -->
 
             <!-- Category -->
             <div class="box">
