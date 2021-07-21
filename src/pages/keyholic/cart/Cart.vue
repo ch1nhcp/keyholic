@@ -179,6 +179,7 @@
 </template>
 <script>
 // import {PostData} from "../../service/service"
+
 import { mapState } from "vuex";
 import { ServeUrl } from "../../../service/service";
 export default {
@@ -215,6 +216,10 @@ export default {
        }
        return total
      }
+  },
+  mounted() {
+   
+  
   },
   created() {
     if(JSON.parse(localStorage.getItem('cart'))!=null){
