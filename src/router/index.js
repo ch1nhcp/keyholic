@@ -37,12 +37,12 @@ const routes = [
   { path: "/productdetail", component: ProductDetail },
   { path: "/checkout", component: Checkout },
 
-  //admin
   { path: "/admin/dashboard", component: Dashboard },
   { path: "/admin/signin", component: SignInAdmin },
   {
     path: "/admin",
     component: Dashboard,
+    meta: { hideNavigation: true }, //fixed hide header and footer
     children: [
       { path: "", component: DashboardHome },
       { path: "products", component: ProductsManager },

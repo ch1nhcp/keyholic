@@ -31,7 +31,7 @@
       <!-- mid header -->
       <div class="bg-main">
         <div class="mid-header container">
-          <router-link class="logo" to="/">KEYHOLIC</router-link>
+          <a class="logo" href="/">KEYHOLIC</a>
           <!-- <div class="search">
             <input
               @keyup.enter="search"
@@ -73,7 +73,7 @@
       <div class="bg-second">
         <div class="bottom-header container">
           <ul class="main-menu">
-            <li><router-link to="/">Home</router-link></li>
+            <li><a href="/">Home</a></li>
             <!-- mega menu -->
             <li class="mega-dropdown">
               <router-link to="/products"
@@ -115,8 +115,16 @@
                     <div class="box">
                       <h3>Phụ kiện</h3>
                       <ul>
-                        <li><a href="#">Keycap</a></li>
-                        <li><a href="#">Kê tay</a></li>
+                        <li>
+                          <a href="/products?category=keycap"
+                            >Keycap</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/products?category=palmrest"
+                            >Kê tay</a
+                          >
+                        </li>
                       </ul>
                     </div>
                   </div>

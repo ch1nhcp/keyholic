@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="margin: 0 auto;">
     <form id="contact" action="" method="post">
       <h3 style="margin-bottom:2rem">Add Product Form</h3>
       <!-- <h4>Contact us today, and get reply with in 24 hours!</h4> -->
@@ -30,10 +30,22 @@
         <input placeholder="Sale price *" type="number" tabindex="2" required />
       </fieldset>
       <fieldset>
-        <input placeholder="Brand Id" type="text" tabindex="2"  />
+        <label for="cars">Choose a brand:</label>
+        <select name="brands" id="brands" style="width:150px;float: right;">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+        </select>
       </fieldset>
       <fieldset>
-        <input placeholder="Category Id" type="text" tabindex="2"  />
+        <label for="cars">Choose a Category:</label>
+        <select
+          name="Categories"
+          id="Categories"
+          style="width:150px;float: right;"
+        >
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+        </select>
       </fieldset>
       <fieldset>
         <button
@@ -41,6 +53,7 @@
           type="submit"
           id="contact-submit"
           data-submit="...Sending"
+          style="margin-top: 1rem"
         >
           Submit
         </button>
@@ -54,7 +67,6 @@ export default {};
 </script>
 
 <style scoped>
-
 * {
   margin: 0;
   padding: 0;

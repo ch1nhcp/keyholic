@@ -13,14 +13,14 @@
       </div>
       <div class="box">
         <div class="breadcumb">
-          <a href="./index.html">home</a>
+          <a href="/">home</a>
           <span><i class="bx bxs-chevrons-right"></i></span>
-          <a href="./products.html">all products</a>
+          <a href="/products">all products</a>
         </div>
       </div>
       <h1 style="display:none">{{ search }}</h1>
       <div class="count">
-        <span>{{ page * 2 > total ? total : page * 2 }}/{{ total }} items</span>
+        <span>{{ page * 2 > total ? total : page * 9 }}/{{ total }} Products</span>
       </div>
 
       <div class="box">
@@ -31,12 +31,6 @@
                 close
               </button>
             </div>
-
-            <!-- Search bar
-            <div class="box">
-              <span class="filter-header"> Search: </span>
-              <input type="text" placeholder="Bạn muốn tìm gì?" class="search-bar" />
-            </div> -->
 
             <!-- Category -->
             <div class="box">
@@ -96,10 +90,7 @@
                 >
                   <div class="product-card">
                     <div class="product-card-img">
-                      <img
-                        :src="ServeUrl + product.Image"
-                        alt=""
-                      />
+                      <img :src="ServeUrl + product.Image" alt="" />
                     </div>
                     <div class="product-card-info">
                       <div class="product-btn">
@@ -175,7 +166,7 @@ export default {
       brands: [],
       checkBrands: [],
       searchkey: "",
-      ServeUrl:ServeUrl
+      ServeUrl: ServeUrl,
     };
   },
   methods: {
@@ -345,7 +336,6 @@ export default {
     this.brands = await respond;
   },
   async created() {
-   
     let datarespond;
     var url_string = window.location.href;
     var url = new URL(url_string);

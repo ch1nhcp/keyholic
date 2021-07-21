@@ -20,7 +20,9 @@
             veritatis sint illo magnam, voluptatum labore, quam ducimus! Nisi
             doloremque praesentium laudantium repellat.
           </div>
-          <button class="btn-flat btn-hover">read more</button>
+          <router-link to="/blog" class="btn-flat btn-hover"
+            >read more</router-link
+          >
         </div>
       </div>
       <div class="blog row-revere">
@@ -38,11 +40,15 @@
             veritatis sint illo magnam, voluptatum labore, quam ducimus! Nisi
             doloremque praesentium laudantium repellat.
           </div>
-          <button class="btn-flat btn-hover">read more</button>
+          <router-link to="/blog" class="btn-flat btn-hover"
+            >read more</router-link
+          >
         </div>
       </div>
       <div class="section-footer">
-        <a href="#" class="btn-flat btn-hover">view all</a>
+        <router-link to="/blog" class="btn-flat btn-hover"
+          >View all</router-link
+        >
       </div>
     </div>
   </div>

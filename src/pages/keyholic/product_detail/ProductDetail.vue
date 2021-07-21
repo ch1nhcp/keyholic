@@ -5,9 +5,11 @@
         <div class="breadcumb">
           <a href="#">home</a>
           <span><i class="bx bxs-chevrons-right"></i></span>
-          <a href="#">all products</a>
+          <router-link to="/products">all products</router-link>
           <span><i class="bx bxs-chevrons-right"></i></span>
-          <a href="#">Mechanical Keyboard</a>
+          <router-link to="/products?category=keyboard"
+            >Mechanical Keyboard</router-link
+          >
         </div>
       </div>
       <div class="row product-row">
@@ -131,10 +133,10 @@ export default {
     return {
       product: [],
       image: [],
-      quantity:1,
-      totalproduct:0,
-      err:"",
-           ServeUrl:ServeUrl
+      quantity: 1,
+      totalproduct: 0,
+      err: "",
+      ServeUrl: ServeUrl,
     };
   },
   methods: {
