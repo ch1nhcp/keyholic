@@ -85,9 +85,21 @@
                     <div class="box">
                       <h3>Bàn phím cao cấp</h3>
                       <ul>
-                        <li><a href="#">Bàn phím Leopold</a></li>
-                        <li><a href="#">Bàn phím Filco</a></li>
-                        <li><a href="#">Bàn phím Razer</a></li>
+                        <li>
+                          <a href="/products?page=1&brand=Leopold"
+                            >Bàn phím Leopold</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/products?page=1&brand=Filco"
+                            >Bàn phím Filco</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/products?page=1&brand=Razer"
+                            >Bàn phím Razer</a
+                          >
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -95,9 +107,21 @@
                     <div class="box">
                       <h3>Bàn phím phổ thông</h3>
                       <ul>
-                        <li><a href="#">Bàn phím Corsair</a></li>
-                        <li><a href="#">Bàn phím Logitech</a></li>
-                        <li><a href="#">Bàn phím Keychrone</a></li>
+                        <li>
+                          <a href="/products?page=1&brand=Corsair"
+                            >Bàn phím Corsair</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/products?page=1&brand=Logitech"
+                            >Bàn phím Logitech</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/products?page=1&brand=Keychrone"
+                            >Bàn phím Keychron</a
+                          >
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -105,9 +129,21 @@
                     <div class="box">
                       <h3>Bàn phím giá rẻ</h3>
                       <ul>
-                        <li><a href="#">Bàn phím Akko</a></li>
-                        <li><a href="#">Bàn phím E-Dra</a></li>
-                        <li><a href="#">Bàn phím Dareu</a></li>
+                        <li>
+                          <a href="/products?page=1&brand=Akko"
+                            >Bàn phím Akko</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/products?page=1&brand=E-Dra"
+                            >Bàn phím E-Dra</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/products?page=1&brand=Dareu"
+                            >Bàn phím Dareu</a
+                          >
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -116,14 +152,10 @@
                       <h3>Phụ kiện</h3>
                       <ul>
                         <li>
-                          <a href="/products?category=keycap"
-                            >Keycap</a
-                          >
+                          <a href="/products?category=keycap">Keycap</a>
                         </li>
                         <li>
-                          <a href="/products?category=palmrest"
-                            >Kê tay</a
-                          >
+                          <a href="/products?category=palmrest">Kê tay</a>
                         </li>
                       </ul>
                     </div>
