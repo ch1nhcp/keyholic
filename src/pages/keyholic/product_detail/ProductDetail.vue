@@ -23,6 +23,9 @@
               <div v-if="image != ''" class="product-img-item  ">
                 <img :src="ServeUrl + image[0]" alt="" />
               </div>
+              <div v-show="image[1] != undefined" class="product-img-item  ">
+                <img :src="ServeUrl + image[1]" alt="" />
+              </div>
               <div class="product-img-item  ">
                 <img :src="ServeUrl + product.Image" alt="" />
               </div>
