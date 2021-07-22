@@ -1,7 +1,7 @@
 <template>
   <div class="form-wrapper">
-    <span style="color:red">{{alert}}</span>
-       <span style="color:green">{{success}}</span>
+    <span style="color:red">{{ alert }}</span>
+    <span style="color:green">{{ success }}</span>
     <h1>Sign Up</h1>
     <form @submit.prevent="onregister">
       <div class="form-item">
@@ -58,27 +58,26 @@
 </template>
 
 <script>
-  import { mapState } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "signup",
   data() {
     return {
-      username:"",
-      email:"",
-      password:"",
-      passwordconfirm:"",
-      alert:"",
-      success:"",
+      username: "",
+      email: "",
+      password: "",
+      passwordconfirm: "",
+      alert: "",
+      success: "",
     };
   },
-   computed: {
-    ...mapState("user",["regiser","is"]),
-   
+  computed: {
+    ...mapState("user", ["regiser", "is"]),
   },
   methods: {
     async onregister() {
-        var data = {};
+      var data = {};
       var username = this.username;
       var email = this.email;
       var password = this.password;
@@ -86,25 +85,25 @@ export default {
       if (
         username == "" ||
         email == "" ||
-        password == "" ||
+        password == "" || 
         passwordconfirm == "" ||
         password != passwordconfirm
       ) {
-        alert("value not emty");
+        alert("Value is not valid!");
         return;
       }
       data.Name = this.username;
       data.Email = this.email;
       data.Password = this.password;
       await this.$store.dispatch("user/signup", data);
-      console.log(this.regiser)
-      if(this.regiser==true){
-        this.success = "Register success"
-        this.alert = ""
-        return 
+      console.log(this.regiser);
+      if (this.regiser == true) {
+        this.success = "Register success";
+        this.alert = "";
+        return;
       }
-     this.success = ""
-        this.alert = "user exist"
+      this.success = "";
+      this.alert = "user exist";
     },
   },
 };

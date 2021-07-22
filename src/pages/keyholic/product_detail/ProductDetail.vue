@@ -122,7 +122,7 @@ export default {
       for (let i = 0; i < this.cart.length; i++) {
         if (this.cart[i].Id == this.product.Id) {
           if (this.cart[i].quantity + this.quantity > this.totalproduct) {
-            alert("het hang");
+            alert("Sản ");
             return;
           }
         }

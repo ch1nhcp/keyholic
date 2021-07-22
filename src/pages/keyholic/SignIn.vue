@@ -5,12 +5,12 @@
         <span>ID:{{ users.Id }}</span>
       </div>
       <div>
-        <span>Hello {{ users.Name }}</span>
+        <span>Hello {{ users.Name }} !</span>
       </div>
-      <span>Email:{{ users.Email }}</span>
+      <span>Email: {{ users.Email }}</span>
     </div>
     <div class="user_item right">
-      <h3 style="text-align:center">historys</h3>
+      <h3 style="text-align:center">history</h3>
       <table class="table">
         <tr>
            <th>Id</th>
@@ -29,7 +29,7 @@
           <td>${{item.TotalPrice}}.00</td>
         </tr>
       </table>
-      <div @click="reload" class="loadmore"><button>reload</button></div>
+      <div @click="reload" class="loadmore"><button>Show all</button></div>
 
     </div>
   </div>

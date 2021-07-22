@@ -26,7 +26,7 @@
     </div>
   </div>
   <div style="text-align:center; padding: 3rem" v-if="cart.length <= 0">
-    <router-link to="/"
+    <router-link to="/products"
       ><h1>Nothing in your cart. Shopping now!</h1></router-link
     >
   </div>
