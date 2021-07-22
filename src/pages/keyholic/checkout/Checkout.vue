@@ -843,6 +843,7 @@ video {
 }
 
 .btn {
+  cursor: pointer;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   text-decoration: none;
@@ -872,9 +873,11 @@ video {
   left: 0;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 .btn:after {
+  cursor: pointer;
   width: 100%;
   height: 0;
   top: 0;
@@ -896,6 +899,7 @@ video {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   color: #fff;
+  cursor: pointer;
 }
 
 .btn:hover:after {
