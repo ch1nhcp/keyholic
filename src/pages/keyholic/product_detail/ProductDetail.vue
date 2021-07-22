@@ -19,12 +19,22 @@
           </div>
 
           <div class="box">
+<<<<<<< HEAD
             <div v-if="ServeUrl + image!= ''" class="product-img-list">
               <div v-if="image != ''"  class="product-img-item  ">
                 <img :src="ServeUrl + image[0]" alt="" />
               </div>
+=======
+            <div v-if="ServeUrl + image != ''" class="product-img-list">
+              <div v-if="image != ''" class="product-img-item  ">
+                <img :src="ServeUrl + image[0]" alt="" />
+              </div>
+              <div v-if="image != ''" class="product-img-item  ">
+                <img :src="ServeUrl + image[1]" alt="" />
+              </div>
+>>>>>>> 250259ebeb210e1c39a7700416e6893746802d8d
               <div class="product-img-item  ">
-                <img :src="ServeUrl +product.Image" alt="" />
+                <img :src="ServeUrl + product.Image" alt="" />
               </div>
             </div>
           </div>
@@ -34,10 +44,10 @@
             <h1>{{ product.Name }}</h1>
             <div class="product-info-detail">
               <span class="product-info-detail-title">Category:</span>
-            
-              <a v-if="product.CategoryId==1" href="#">Keyboard</a>
-                <a v-if="product.CategoryId==2" href="#">KeyCap</a>
-                        <a v-if="product.CategoryId==3" href="#">Palmrest</a>
+
+              <a v-if="product.CategoryId == 1" href="#">Keyboard</a>
+              <a v-if="product.CategoryId == 2" href="#">KeyCap</a>
+              <a v-if="product.CategoryId == 3" href="#">Palmrest</a>
             </div>
             <div class="product-info-detail">
               <span class="product-info-detail-title">Rated:</span>
@@ -90,8 +100,6 @@
           </div>
         </div>
       </div>
-
-      
     </div>
   </div>
   <!-- end product-detail content -->
@@ -153,10 +161,15 @@ export default {
     this.image = await res.Image;
     this.totalproduct = await res.Quantity;
   },
+<<<<<<< HEAD
   computed: {
     ...mapState("product", ["search", "cart"]),
   },
    updated() {
+=======
+  computed: {},
+  updated() {
+>>>>>>> 250259ebeb210e1c39a7700416e6893746802d8d
     // Hàm show/hide phần product detail
     document.querySelectorAll(".product-img-item").forEach((e) => {
       e.addEventListener("click", () => {
