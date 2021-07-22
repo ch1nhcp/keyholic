@@ -23,6 +23,9 @@
               <div v-if="image != ''" class="product-img-item  ">
                 <img :src="ServeUrl + image[0]" alt="" />
               </div>
+              <div v-if="image[1] != undefined" class="product-img-item  ">
+                <img :src="ServeUrl + image[1]" alt="" />
+              </div>
               <div class="product-img-item  ">
                 <img :src="ServeUrl + product.Image" alt="" />
               </div>
@@ -119,7 +122,7 @@ export default {
       for (let i = 0; i < this.cart.length; i++) {
         if (this.cart[i].Id == this.product.Id) {
           if (this.cart[i].quantity + this.quantity > this.totalproduct) {
-            alert("het hang");
+            alert("Sản ");
             return;
           }
         }
