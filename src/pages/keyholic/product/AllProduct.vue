@@ -20,7 +20,9 @@
       </div>
       <h1 style="display:none">{{ search }}</h1>
       <div class="count">
-        <span>{{ page * 9 > total ? total : page * 9 }}/{{ total }} Products</span>
+        <span
+          >{{ page * 9 > total ? total : page * 9 }}/{{ total }} Products</span
+        >
       </div>
 
       <div class="box">
@@ -111,9 +113,11 @@
                       <div class="product-card-name">{{ product.Name }}</div>
                       <div class="product-card-price">
                         <span
-                          ><del>${{ product.Price }}</del></span
+                          ><del>${{ formatPrice(product.Price) }}</del></span
                         >
-                        <span class="curr-price">${{ product.SalePrice }}</span>
+                        <span class="curr-price"
+                          >${{ formatPrice(product.SalePrice) }}</span
+                        >
                       </div>
                     </div>
                   </div>
@@ -194,7 +198,7 @@ export default {
         this.total = await this.data.Total;
         this.$router.push({
           path: "/products",
-          query: { page: 1,brand:"" },
+          query: { page: 1, brand: "" },
         });
         return;
       }
@@ -324,6 +328,10 @@ export default {
     AddToCart(product) {
       alert("add sucess");
       this.$store.dispatch("product/AddToCart", product);
+    },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
   },
   computed: {

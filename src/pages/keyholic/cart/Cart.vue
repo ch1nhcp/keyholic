@@ -20,15 +20,17 @@
   </section> -->
   <div class="box">
     <div class="breadcumb" style="padding: 3rem; margin-left: 30px">
-      <a href="./index.html">home</a>
+      <a href="./">home</a>
       <span><i class="bx bxs-chevrons-right"></i></span>
-      <a href="./products.html">Shopping Cart</a>
+      <a href="./products">Shopping Cart</a>
     </div>
   </div>
-  <div style="text-align:center;" v-if="cart.length <=0">
-    <router-link to="/products" ><h1>Come Back To Shop</h1></router-link>
+  <div style="text-align:center; padding: 3rem" v-if="cart.length <= 0">
+    <router-link to="/"
+      ><h1>Nothing in your cart. Shopping now!</h1></router-link
+    >
   </div>
-  <div v-if="cart.length >0" class="content-wrapper">
+  <div v-if="cart.length > 0" class="content-wrapper">
     <!-- Cart -->
     <section class="section-wrap shopping-cart">
       <div class="container relative">
@@ -65,7 +67,9 @@
                       </ul>
                     </td>
                     <td class="product-price">
-                      <span class="amount">${{ item.SalePrice }}.00</span>
+                      <span class="amount"
+                        >${{ formatPrice(item.SalePrice) }}</span
+                      >
                     </td>
                     <td class="product-quantity">
                       <div class="quantity buttons_added">
@@ -89,7 +93,9 @@
                     </td>
                     <td class="product-subtotal">
                       <span class="amount"
-                        >${{ item.quantity * item.SalePrice }}.00</span
+                        >${{
+                          formatPrice(item.quantity * item.SalePrice)
+                        }}</span
                       >
                     </td>
                     <td class="product-remove">
@@ -207,17 +213,22 @@ export default {
         this.$router.push({ path: "/products" });
       }
     },
-    //Thêm số lượng 
+    //Thêm số lượng
     AddQuantity(index) {
       this.$store.commit("product/AddQuantity", index);
     },
-    //Giảm số lượng 
+    //Giảm số lượng
     SubQuantity(index) {
       this.$store.commit("product/SubQuantity", index);
     },
     //Xóa
     DelFormCart(index) {
       this.$store.commit("product/DelFormCart", index);
+    },
+    // format price
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
   },
   computed: {
@@ -229,7 +240,6 @@ export default {
       }
       return total;
     },
-  
   },
   // async mounted() {
   //   // product=[]
@@ -492,6 +502,7 @@ body img {
 }
 
 .btn {
+  cursor: pointer;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   text-decoration: none;
