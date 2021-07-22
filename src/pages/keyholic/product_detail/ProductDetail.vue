@@ -103,6 +103,7 @@
 <script>
 import "../../../css/app.css";
 import "../../../css/grid.css";
+import { mapState } from "vuex";
 import { GetData } from "../../../service/service";
 import { ServeUrl } from "../../../service/service";
 export default {
@@ -118,6 +119,15 @@ export default {
   },
   methods: {
     AddToCart(product) {
+      for(let i=0;i< (this.cart).length;i++){
+        if(this.cart[i].Id== this.product.Id){
+          if(this.cart[i].quantity+this.quantity > this.totalproduct){
+            alert("het hang")
+            return
+          }
+          }
+
+      }
       if (this.quantity > this.totalproduct) {
         this.err = "sản phẩm đã hết";
         return;
@@ -150,9 +160,20 @@ export default {
     this.image = await res.Image;
     this.totalproduct = await res.Quantity;
   },
+<<<<<<< HEAD
+  computed: {
+    ...mapState("product", ["search", "cart"]),
+  },
+   updated() {
+=======
   computed: {},
   updated() {
+<<<<<<< HEAD
     // Hàm đổi ảnh
+=======
+>>>>>>> 250259ebeb210e1c39a7700416e6893746802d8d
+    // Hàm show/hide phần product detail
+>>>>>>> 8c98610bde1ec96ad213ad72151e262bc2608a26
     document.querySelectorAll(".product-img-item").forEach((e) => {
       e.addEventListener("click", () => {
         let img = e.querySelector("img").getAttribute("src");

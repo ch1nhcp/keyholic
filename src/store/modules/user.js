@@ -40,6 +40,7 @@ const actions ={
             console.log(e);
         }
     },
+ 
     async logout( {commit}) {
         try {
         // console.log(respond)

@@ -17,6 +17,7 @@ export default {
     ...mapState("user",["users","is","admin"]),
    
   },
+ 
 };
 </script>
 <style scoped>

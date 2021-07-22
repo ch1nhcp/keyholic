@@ -20,7 +20,7 @@
       </div>
       <h1 style="display:none">{{ search }}</h1>
       <div class="count">
-        <span>{{ page * 2 > total ? total : page * 9 }}/{{ total }} Products</span>
+        <span>{{ page * 9 > total ? total : page * 9 }}/{{ total }} Products</span>
       </div>
 
       <div class="box">
@@ -185,7 +185,6 @@ export default {
       }
     },
     async GetBrand() {
-      alert(this.checkBrands)
       if (this.checkBrands == "") {
         let respond = GetData("/product");
         this.data = await respond;
