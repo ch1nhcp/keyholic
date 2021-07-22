@@ -220,8 +220,9 @@
                           you don’t have a PayPal account.
                         </p>
                         <!-- paypal -->{{ payment }}
-                        <div v-show="payment == 'tripe'">
-                          <div id="paypal-button-container"></div>
+                        <div  v-show="payment == 'tripe'">
+                              <div style="color:red;" v-if="address==''" id="err">dien thong tin</div>
+                          <div v-show="address!=''&& phone!=''"  id="paypal-button-container"></div>
                         </div>
                         <!-- end paypal -->
                       </div>
@@ -373,6 +374,9 @@ export default {
         total += this.cart[i].quantity;
       }
       return total;
+    },
+    validated:function(){
+      return this.address
     },
     //tổng tiền
     SubTotal: function() {
