@@ -23,7 +23,7 @@
               <div v-if="image != ''" class="product-img-item  ">
                 <img :src="ServeUrl + image[0]" alt="" />
               </div>
-              <div v-if="image != ''" class="product-img-item  ">
+              <div v-if="image != 'undefined'" class="product-img-item  ">
                 <img :src="ServeUrl + image[1]" alt="" />
               </div>
               <div class="product-img-item  ">
@@ -55,7 +55,9 @@
             <p class="product-description">
               {{ product.ShortDescription }}
             </p>
-            <div class="product-info-price">${{ product.SalePrice }}.00</div>
+            <div class="product-info-price">
+              ${{ formatPrice(product.SalePrice) }}
+            </div>
             <div class="product-quantity-wrapper">
               <span @click="minus()" class="product-quantity-btn">
                 <i class="bx bx-minus"></i>
@@ -134,6 +136,10 @@ export default {
     minus() {
       if (this.quantity > 1) this.quantity--;
     },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
   },
   async created() {
     var url_string = window.location.href;
@@ -146,13 +152,15 @@ export default {
   },
   computed: {},
   updated() {
-    // Hàm show/hide phần product detail
+    // Hàm đổi ảnh
     document.querySelectorAll(".product-img-item").forEach((e) => {
       e.addEventListener("click", () => {
         let img = e.querySelector("img").getAttribute("src");
         document.querySelector("#product-img > img").setAttribute("src", img);
       });
     });
+
+    // Hàm show/hide phần product detail
     document
       .querySelector("#view-all-description")
       .addEventListener("click", () => {

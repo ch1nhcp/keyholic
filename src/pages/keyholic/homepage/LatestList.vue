@@ -41,10 +41,10 @@
               <div class="product-card-name">{{ product.Products.Name }}</div>
               <div class="product-card-price">
                 <span
-                  ><del>${{ product.Products.Price }}</del></span
+                  ><del>${{ formatPrice(product.Products.Price) }}</del></span
                 >
                 <span class="curr-price"
-                  >${{ product.Products.SalePrice }}</span
+                  >${{ formatPrice(product.Products.SalePrice) }}</span
                 >
               </div>
             </div>
@@ -53,7 +53,9 @@
       </div>
 
       <div class="section-footer">
-        <router-link to="/products" class="btn-flat btn-hover">view all</router-link>
+        <router-link to="/products" class="btn-flat btn-hover"
+          >view all</router-link
+        >
       </div>
     </div>
   </div>
@@ -75,6 +77,10 @@ export default {
     AddToCart(product) {
       alert("add sucess");
       this.$store.dispatch("product/AddToCart", product);
+    },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
   },
   async created() {
