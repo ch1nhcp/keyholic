@@ -67,7 +67,7 @@
                 <i class="bx bx-plus"></i>
               </span>
               <span style="font-size:16px;" class="product-quantity"
-                >Sản phẩm còn lại: {{ this.totalproduct }}</span
+                > Sản phẩm còn lại: {{ this.totalproduct }}</span
               >
             </div>
             <div>
@@ -122,13 +122,13 @@ export default {
       for (let i = 0; i < this.cart.length; i++) {
         if (this.cart[i].Id == this.product.Id) {
           if (this.cart[i].quantity + this.quantity > this.totalproduct) {
-            alert("Sản ");
+            alert("Sản phẩm đã vượt quá số lượng cho phép! ");
             return;
           }
         }
       }
       if (this.quantity > this.totalproduct) {
-        this.err = "sản phẩm đã hết";
+        this.err = "Sản phẩm đã hết";
         return;
       }
       alert("success add to cart");
