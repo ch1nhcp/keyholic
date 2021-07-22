@@ -20,11 +20,8 @@
 
           <div class="box">
             <div v-if="ServeUrl + image!= ''" class="product-img-list">
-              <div v-if="image !=''"  class="product-img-item  ">
+              <div v-if="image != ''"  class="product-img-item  ">
                 <img :src="ServeUrl + image[0]" alt="" />
-              </div>
-              <div v-if="image !=''" class="product-img-item  ">
-                <img :src="ServeUrl + image[1]" alt="" />
               </div>
               <div class="product-img-item  ">
                 <img :src="ServeUrl +product.Image" alt="" />
@@ -103,6 +100,7 @@
 <script>
 import "../../../css/app.css";
 import "../../../css/grid.css";
+import { mapState } from "vuex";
 import { GetData } from "../../../service/service";
 import { ServeUrl } from "../../../service/service";
 export default {
@@ -118,6 +116,15 @@ export default {
   },
   methods: {
     AddToCart(product) {
+      for(let i=0;i< (this.cart).length;i++){
+        if(this.cart[i].Id== this.product.Id){
+          if(this.cart[i].quantity+this.quantity > this.totalproduct){
+            alert("het hang")
+            return 
+          }
+          }
+          
+      }
       if (this.quantity > this.totalproduct) {
         this.err = "sản phẩm đã hết";
         return;
@@ -146,8 +153,10 @@ export default {
     this.image = await res.Image;
     this.totalproduct = await res.Quantity;
   },
-  computed: {},
-   mounted() {
+  computed: {
+    ...mapState("product", ["search", "cart"]),
+  },
+   updated() {
     // Hàm show/hide phần product detail
     document.querySelectorAll(".product-img-item").forEach((e) => {
       e.addEventListener("click", () => {
