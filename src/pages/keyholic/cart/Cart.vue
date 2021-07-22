@@ -25,8 +25,10 @@
       <a href="./products.html">Shopping Cart</a>
     </div>
   </div>
-
-  <div class="content-wrapper">
+  <div style="text-align:center;" v-if="cart.length <=0">
+    <router-link to="/products" ><h1>Come Back To Shop</h1></router-link>
+  </div>
+  <div v-if="cart.length >0" class="content-wrapper">
     <!-- Cart -->
     <section class="section-wrap shopping-cart">
       <div class="container relative">
@@ -44,28 +46,29 @@
                 </thead>
                 <tbody>
                   <!-- item -->
-                  <tr v-for="(item,index) in cart" :key="index" class="cart_item">
+                  <tr
+                    v-for="(item, index) in cart"
+                    :key="index"
+                    class="cart_item"
+                  >
                     <td class="product-thumbnail">
                       <a href="#">
-                        <img
-                          :src="ServeUrl+item.Image"
-                          alt=""
-                        />
+                        <img :src="ServeUrl + item.Image" alt="" />
                       </a>
                     </td>
                     <td class="product-name">
-                      <a href="#">{{item.Name}}</a>
+                      <a href="#">{{ item.Name }}</a>
                       <ul>
-                        <li v-if="item.BrandId==1">Bàn Phím</li>
-                        <li v-if="item.BrandId==2">Artisan</li>
-                         <li v-if="item.BrandId==3">Kê tay</li>
+                        <li v-if="item.BrandId == 1">Bàn Phím</li>
+                        <li v-if="item.BrandId == 2">Artisan</li>
+                        <li v-if="item.BrandId == 3">Kê tay</li>
                       </ul>
                     </td>
                     <td class="product-price">
-                      <span class="amount">${{item.SalePrice}}.00</span>
+                      <span class="amount">${{ item.SalePrice }}.00</span>
                     </td>
                     <td class="product-quantity">
-                      <div   class="quantity buttons_added">
+                      <div class="quantity buttons_added">
                         <input
                           type="number"
                           step="1"
@@ -75,26 +78,32 @@
                           class="input-text qty text"
                         />
                         <div class="quantity-adjust">
-                          <a href="#" @click="addQuantity(index)" class="plus">
+                          <a href="#" @click="AddQuantity(index)" class="plus">
                             <i class="bx bxs-chevron-up"></i>
                           </a>
-                          <a href="#" @click="subQuantity(index)" class="minus">
+                          <a href="#" @click="SubQuantity(index)" class="minus">
                             <i class="bx bxs-chevron-down"></i>
                           </a>
                         </div>
                       </div>
                     </td>
-                    <td   class="product-subtotal">
-                      <span class="amount">${{item.quantity*item.SalePrice}}.00</span>
+                    <td class="product-subtotal">
+                      <span class="amount"
+                        >${{ item.quantity * item.SalePrice }}.00</span
+                      >
                     </td>
                     <td class="product-remove">
-                      <a href="#" @click="DelFormCart(index)" class="remove" title="Remove this item">
+                      <a
+                        href="#"
+                        @click="DelFormCart(index)"
+                        class="remove"
+                        title="Remove this item"
+                      >
                         <!-- <i class="bx bxs-x-circle"></i> -->
                         x
                       </a>
                     </td>
                   </tr>
-                
                 </tbody>
               </table>
             </div>
@@ -122,7 +131,7 @@
               <div class="col-md-7">
                 <div class="actions">
                   <div class="wc-proceed-to-checkout">
-                    <a @click="checkout" class="btn btn-lg btn-dark"
+                    <a @click="CheckOut" class="btn btn-lg btn-dark"
                       ><span>proceed to checkout</span></a
                     >
                   </div>
@@ -148,7 +157,7 @@
                   <tr class="cart-subtotal">
                     <th>Cart Subtotal</th>
                     <td>
-                      <span class="amount">${{SubTotal}}.00</span>
+                      <span class="amount">${{ SubTotal }}.00</span>
                     </td>
                   </tr>
                   <tr class="shipping">
@@ -160,7 +169,9 @@
                   <tr class="order-total">
                     <th>Order Total</th>
                     <td>
-                      <strong><span class="amount">${{SubTotal}}.00</span></strong>
+                      <strong
+                        ><span class="amount">${{ SubTotal }}.00</span></strong
+                      >
                     </td>
                   </tr>
                 </tbody>
@@ -179,53 +190,62 @@
 </template>
 <script>
 // import {PostData} from "../../service/service"
-
+// import { GetData } from "../../../service/service";
 import { mapState } from "vuex";
 import { ServeUrl } from "../../../service/service";
 export default {
   data() {
     return {
-      ServeUrl:ServeUrl
+      ServeUrl: ServeUrl,
     };
   },
-  methods:{
-    checkout(){
-      if(this.cart.length>0){
- this.$router.push({ path: "/checkout" });
-
-      }else{
-         this.$router.push({ path: "/products" });
+  methods: {
+    CheckOut() {
+      if (this.cart.length > 0) {
+        this.$router.push({ path: "/checkout" });
+      } else {
+        this.$router.push({ path: "/products" });
       }
     },
-    addQuantity(index){
-      this.$store.commit("product/AddQuantity",index)
+    //Thêm số lượng 
+    AddQuantity(index) {
+      this.$store.commit("product/AddQuantity", index);
     },
-    subQuantity(index){
-      this.$store.commit("product/SubQuantity",index)
+    //Giảm số lượng 
+    SubQuantity(index) {
+      this.$store.commit("product/SubQuantity", index);
     },
-    DelFormCart(index){
-        this.$store.commit("product/DelFormCart",index)
-    }
+    //Xóa
+    DelFormCart(index) {
+      this.$store.commit("product/DelFormCart", index);
+    },
   },
   computed: {
-      ...mapState("product", ["cart"]),
-     SubTotal:function(){
-       let total = 0
-       for(let i=0;i<this.cart.length;i++){
-          total += this.cart[i].SalePrice*this.cart[i].quantity
-       }
-       return total
-     }
-  },
-  mounted() {
-   
+    ...mapState("product", ["cart"]),
+    SubTotal: function() {
+      let total = 0;
+      for (let i = 0; i < this.cart.length; i++) {
+        total += this.cart[i].SalePrice * this.cart[i].quantity;
+      }
+      return total;
+    },
   
   },
+  // async mounted() {
+  //   // product=[]
+  //    for (let i = 0; i < this.cart.length; i++) {
+  //         let res = await GetData("/product/" + this.cart[i].Name);
+  //        console.log(await res)
+  //     }
+  // },
   created() {
-    if(JSON.parse(localStorage.getItem('cart'))!=null){
-      this.$store.commit("product/CheckLocal",JSON.parse(localStorage.getItem('cart')))
+    if (JSON.parse(localStorage.getItem("cart")) != null) {
+      this.$store.commit(
+        "product/CheckLocal",
+        JSON.parse(localStorage.getItem("cart"))
+      );
     }
-  }
+  },
 };
 </script>
 
@@ -1362,6 +1382,4 @@ select.country_to_state {
     border-top: 0;
   }
 }
-
-
 </style>
