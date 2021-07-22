@@ -17,13 +17,17 @@
           <div class="product-img" id="product-img">
             <img :src="ServeUrl + product.Image" alt="" />
           </div>
+
           <div class="box">
-            <div v-if="ServeUrl + image" class="product-img-list">
-              <div class="product-img-item  ">
+            <div v-if="ServeUrl + image!= ''" class="product-img-list">
+              <div v-if="image !=''"  class="product-img-item  ">
                 <img :src="ServeUrl + image[0]" alt="" />
               </div>
-              <div v-if="ServeUrl + image[1]" class="product-img-item  ">
+              <div v-if="image !=''" class="product-img-item  ">
                 <img :src="ServeUrl + image[1]" alt="" />
+              </div>
+              <div class="product-img-item  ">
+                <img :src="ServeUrl +product.Image" alt="" />
               </div>
             </div>
           </div>
@@ -32,8 +36,11 @@
           <div class="product-info">
             <h1>{{ product.Name }}</h1>
             <div class="product-info-detail">
-              <span class="product-info-detail-title">Brand:</span>
-              <a href="#">Leopold</a>
+              <span class="product-info-detail-title">Category:</span>
+            
+              <a v-if="product.CategoryId==1" href="#">Keyboard</a>
+                <a v-if="product.CategoryId==2" href="#">KeyCap</a>
+                        <a v-if="product.CategoryId==3" href="#">Palmrest</a>
             </div>
             <div class="product-info-detail">
               <span class="product-info-detail-title">Rated:</span>
@@ -87,37 +94,7 @@
         </div>
       </div>
 
-      <div class="box">
-        <div class="box-header">related products</div>
-        <div class="row" id="related-products">
-          <!-- Related products -->
-          <div class="col-4 col-md-6 col-sm-12">
-            <div class="product-card">
-              <div class="product-card-img">
-                <img src="../../../assets/3.jpg" alt="" />
-                <img src="../../../assets/4.jpg" alt="" />
-              </div>
-              <div class="product-card-info">
-                <div class="product-btn">
-                  <a
-                    href="./product-detail.html"
-                    class="btn-flat btn-hover btn-shop-now"
-                    >shop now</a
-                  >
-                  <button class="btn-flat btn-hover btn-cart-add">
-                    <i class="bx bxs-cart-add"></i>
-                  </button>
-                </div>
-                <div class="product-card-name">Mechanical Keyboard</div>
-                <div class="product-card-price">
-                  <span><del>$300</del></span>
-                  <span class="curr-price">$200</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
   <!-- end product-detail content -->
@@ -170,7 +147,7 @@ export default {
     this.totalproduct = await res.Quantity;
   },
   computed: {},
-  mounted() {
+   mounted() {
     // Hàm show/hide phần product detail
     document.querySelectorAll(".product-img-item").forEach((e) => {
       e.addEventListener("click", () => {

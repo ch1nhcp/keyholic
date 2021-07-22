@@ -185,27 +185,7 @@
                     Payment Method
                   </h2>
                   <ul class="payment_methods methods">
-                    <li class="payment_method_bacs">
-                      <input
-                        v-model="payment"
-                        id="payment_method_bacs"
-                        type="radio"
-                        class="input-radio"
-                        name="payment_method"
-                        value="bacs"
-                      />
-                      <label for="payment_method_bacs"
-                        >Direct Bank Transfer</label
-                      >
-                      <div class="payment_box payment_method_bacs">
-                        <p>
-                          Make your payment directly into our bank account.
-                          Please use your Order ID as the payment reference.
-                          Your order wont be shipped until the funds have
-                          cleared in our account.
-                        </p>
-                      </div>
-                    </li>
+                  
 
                     <li class="payment_method_cheque">
                       <input
@@ -227,6 +207,7 @@
 
                     <li class="payment_method_paypal">
                       <input
+                      @click="abc"
                         v-model="payment"
                         id="payment_method_paypal"
                         type="radio"
@@ -234,24 +215,22 @@
                         name="payment_method"
                         value="tripe"
                       />
-                      <label for="payment_method_paypal">Tripe</label>
+                      <label for="payment_method_paypal">Paypal</label>
                       <img src="#" alt="" />
                       <div class="payment_box payment_method_paypal">
                         <p>
                           Pay via PayPal; you can pay with your credit card if
                           you don’t have a PayPal account.
                         </p>
-                     <!-- paypal -->
- <div>
-    <div id="paypal-button-container"></div>
-
-  </div>
-                     <!-- end paypal -->
-                    
+                        <!-- paypal -->{{payment}}
+                        <div v-show="payment =='tripe' ">
+                          <div id="paypal-button-container"></div>
+                        </div>
+                        <!-- end paypal -->
                       </div>
                     </li>
                   </ul>
-                  <div class="form-row place-order">
+                  <div v-show="payment !='tripe'" class="form-row place-order">
                     <input
                       @click="submit"
                       name="ecommerce_checkout_place_order"
@@ -277,25 +256,33 @@
 </template>
 
 <script>
-
 import { PostData } from "../../../service/service";
 import { mapState } from "vuex";
 export default {
-  
-    name: "HelloWorld",
+  name: "HelloWorld",
   data() {
     return {
       phone: "",
       address: "",
       note: "",
-      payment: "",
+      payment: "cheque",
       data: "",
       orderitem: "",
-      // stripe:"pk_test_51JFCbdJA4XI9xLpD0jNlwsr2B0lIoSlai6mUU1Os4NjxCRzuxpocYnXg9V2HlRSVtaRpSdeYWDQmIV4NxxQcaLCU00xwGfilvq",
-     
     };
   },
   methods: {
+    abc(){
+        if (this.phone == "" || this.address == "" || this.name == "") {
+        alert("điền đủ thông tin");
+        return;
+      }
+      if (this.payment == "") {
+        alert("chọn phương thức thanh toán ");
+        return;
+      }
+      this.payment="cheque"
+      return
+    },
     setLoaded: function() {
       this.loaded = true;
       window.paypal
@@ -307,10 +294,10 @@ export default {
                   description: this.cart.length,
                   amount: {
                     currency_code: "USD",
-                    value: this.SubTotal
-                  }
-                }
-              ]
+                    value: this.SubTotal,
+                  },
+                },
+              ],
             });
           },
           onApprove: async (data, actions) => {
@@ -318,38 +305,38 @@ export default {
             this.paidFor = true;
             console.log(order);
             let savedata = {};
-      savedata.UserId = Number(this.users.Id);
-      savedata.Name = this.users.Name;
-      savedata.Phone = Number(this.phone);
-      savedata.Address = this.address;
-      savedata.TotalProducts = Number(this.TotalProducts);
-      savedata.Price = Number(this.SubTotal);
-      savedata.TotalPrice = Number(this.SubTotal);
-      let respond = PostData("/api/order", savedata);
-      this.data = await respond;
-      if (this.data.Id > 0) {
-        for (let i = 0; i < this.cart.length; i++) {
-          let data = {};
-          data.OrderId = this.data.Id;
-          data.ProductId = this.cart[i].Id;
-          data.Quantity = this.cart[i].quantity;
-          let respond = PostData("/api/orderitem", data);
-          this.orderitem = await respond;
-        }
-        if (this.orderitem.Id > 0) {
-          this.$store.commit("product/DelAllCart");
-        }
-        alert("success");
-        this.$router.push({ path: "/signin" });
-      } else {
-        alert("something wrong");
-      }
+            savedata.UserId = Number(this.users.Id);
+            savedata.Name = this.users.Name;
+            savedata.Phone = Number(this.phone);
+            savedata.Address = this.address;
+            savedata.TotalProducts = Number(this.TotalProducts);
+            savedata.Price = Number(this.SubTotal);
+            savedata.TotalPrice = Number(this.SubTotal);
+            let respond = PostData("/api/order", savedata);
+            this.data = await respond;
+            if (this.data.Id > 0) {
+              for (let i = 0; i < this.cart.length; i++) {
+                let data = {};
+                data.OrderId = this.data.Id;
+                data.ProductId = this.cart[i].Id;
+                data.Quantity = this.cart[i].quantity;
+                let respond = PostData("/api/orderitem", data);
+                this.orderitem = await respond;
+              }
+              if (this.orderitem.Id > 0) {
+                this.$store.commit("product/DelAllCart");
+              }
+              alert("success");
+              this.$router.push({ path: "/signin" });
+            } else {
+              alert("something wrong");
+            }
           },
-          onError: err => {
+          onError: (err) => {
             console.log(err);
-          }
+          },
         })
-        .render('#paypal-button-container');
+        .render("#paypal-button-container");
     },
     async submit() {
       if (this.phone == "" || this.address == "" || this.name == "") {
@@ -359,14 +346,6 @@ export default {
       if (this.payment == "") {
         alert("chọn phương thức thanh toán ");
         return;
-      }
-      if (this.payment == "tripe") {
-        let payment = {};
-        payment.amount = Number(this.SubTotal);
-        payment.receiptMail = this.users.Email;
-        payment.productName = "mẫu";
-        let respond = PostData("/stripe", payment);
-        console.log(respond);
       }
       let data = {};
       data.UserId = Number(this.users.Id);
@@ -415,7 +394,7 @@ export default {
       return total;
     },
   },
- mounted: function() {
+  mounted: function() {
     const script = document.createElement("script");
     script.src =
       "https://www.paypal.com/sdk/js?client-id=AQ9F7YFI2uDgG2coszPXLv9XwEORERFAni7Zt1NgT09YHljQv5q688w000033jrn09YiSgASHO9ar08o";

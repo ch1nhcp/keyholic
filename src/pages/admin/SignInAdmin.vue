@@ -59,7 +59,7 @@ export default {
       data.Password = this.password;
       await this.$store.dispatch("user/loginadmin", data);
       if(this.admin==true){
-      this.$router.push({path: '/'});
+      this.$router.push({path: '/admin'});
       }else{
         alert("wrong user or password")
       }

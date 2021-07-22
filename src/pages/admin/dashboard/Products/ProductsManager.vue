@@ -21,7 +21,6 @@
           <th>Name</th>
           <th>Image</th>
           <th>Short_description</th>
-          <th>Description</th>
           <th>Price</th>
           <th>Sale_price</th>
           <th>Brand_id</th>
@@ -30,16 +29,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td data-title="ID">1</td>
-          <td data-title="Name">data</td>
-          <td data-title="Image">data</td>
-          <td data-title="Short_description">data</td>
-          <td data-title="Description">data</td>
-          <td data-title="Price">data</td>
-          <td data-title="Sale_price">data</td>
-          <td data-title="Brand_id">data</td>
-          <td data-title="Category_id">data</td>
+        <tr v-for="product in products" :key="product.Id">
+          <td data-title="ID">{{product.Id}}</td>
+          <td data-title="Name">{{product.Name}}</td>
+          <td data-title="Image"><img style="width=50px;" :src="ServeUrl+product.Image" alt=""></td>
+          <td data-title="Short_description">{{product.ShortDescription}}</td>
+          <td data-title="Price">{{product.Price}}</td>
+          <td data-title="Sale_price">{{product.SalePrice}}</td>
+          <td data-title="Brand_id">{{product.BrandId}}</td>
+          <td v-if="product.CategoryId==1" data-title="Category_id">Keybroad</td>
+              <td v-if="product.CategoryId==2" data-title="Category_id">Keycap</td>
+                  <td v-if="product.CategoryId==3" data-title="Category_id">Palmrest</td>
           <td>
             <router-link to="/admin/products/edit" class="edit" data-toggle="modal"
               ><i class="bx bx-edit"></i
@@ -49,35 +49,84 @@
             ></a>
           </td>
         </tr>
-        <tr>
-          <td data-title="ID">1</td>
-          <td data-title="Name">data</td>
-          <td data-title="Image">data</td>
-          <td data-title="Short_description">data</td>
-          <td data-title="Description">data</td>
-          <td data-title="Price">data</td>
-          <td data-title="Sale_price">data</td>
-          <td data-title="Brand_id">data</td>
-          <td data-title="Category_id">data</td>
-          <td>
-            <a href="#editEmployeeModal" class="edit" data-toggle="modal"
-              ><i class="bx bx-edit"></i
-            ></a>
-            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"
-              ><i class="bx bx-trash"></i
-            ></a>
-          </td>
-        </tr>
+  
       </tbody>
     </table>
+     <div class="box">
+              <ul class="pagination">
+                <li>
+                  <a href="#"><i class="bx bxs-chevron-left"></i></a>
+                </li>
+                <li
+                  @click="paginate(item)"
+                  v-for="(item, index) in lastpage"
+                  :key="index"
+                >
+                  <a :class="[page == index + 1 ? 'active' : '']" href="#">{{
+                    item
+                  }}</a>
+                </li>
+
+                <li>
+                  <a href="#"><i class="bx bxs-chevron-right"></i></a>
+                </li>
+              </ul>
+            </div>
   </section>
 </template>
 
 <script>
-export default {};
+import { GetData } from "../../../../service/service";
+import { ServeUrl } from "../../../../service/service";
+export default {
+ data() {
+    return {
+      data: [],
+      products: [],
+      lastpage: 0,
+      page: 0,
+      total: 0,
+      brands: [],
+      checkBrands: [],
+      searchkey: "",
+      ServeUrl: ServeUrl,
+    };
+  },
+  methods:{
+ async paginate(index) {
+        let respond = GetData("/product?page=" + index);
+        this.data = await respond;
+        this.products = await this.data.Product;
+        this.page = await this.data.Page;
+        this.lastpage = await this.data.Lastpage;
+        this.total = await this.data.Total;
+        this.$router.push({
+          path: "/admin/products",
+          query: { page: index},
+        });
+    
+    },
+  },
+    computed: {
+      
+  },
+   async created() {
+      let respond = GetData("/product");
+    this.data = await respond;
+    this.products = await this.data.Product;
+    this.page = await this.data.Page;
+    this.lastpage = await this.data.Lastpage;
+    this.total = await this.data.Total;
+    console.log( this.products)
+    
+  },
+};
 </script>
 
 <style scoped>
+img {
+    max-width: 100px;
+}
 /* Table */
 table tr td,
 table tr td {

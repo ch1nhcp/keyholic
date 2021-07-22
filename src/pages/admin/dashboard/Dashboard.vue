@@ -1,13 +1,21 @@
-<template>
-  <DashboardMenu />
-  <router-view />
+<template >
+<div  v-if="admin==false" style="text-align:center; width:100%">
+  <router-link to="/admin/signin"><h1>u need login</h1></router-link>
+</div>
+  <DashboardMenu v-if="admin==true"/>
+  <router-view v-if="admin==true" />
 </template>
 
 <script>
+import { mapState } from "vuex";
 import DashboardMenu from "./DashboardMenu.vue";
 export default {
   components: {
     DashboardMenu,
+  },
+   computed: {
+    ...mapState("user",["users","is","admin"]),
+   
   },
 };
 </script>
