@@ -23,9 +23,6 @@
               <div v-if="image != ''" class="product-img-item  ">
                 <img :src="ServeUrl + image[0]" alt="" />
               </div>
-              <div v-if="image != 'undefined'" class="product-img-item  ">
-                <img :src="ServeUrl + image[1]" alt="" />
-              </div>
               <div class="product-img-item  ">
                 <img :src="ServeUrl + product.Image" alt="" />
               </div>
@@ -119,14 +116,13 @@ export default {
   },
   methods: {
     AddToCart(product) {
-      for(let i=0;i< (this.cart).length;i++){
-        if(this.cart[i].Id== this.product.Id){
-          if(this.cart[i].quantity+this.quantity > this.totalproduct){
-            alert("het hang")
-            return
+      for (let i = 0; i < this.cart.length; i++) {
+        if (this.cart[i].Id == this.product.Id) {
+          if (this.cart[i].quantity + this.quantity > this.totalproduct) {
+            alert("het hang");
+            return;
           }
-          }
-
+        }
       }
       if (this.quantity > this.totalproduct) {
         this.err = "sản phẩm đã hết";
@@ -136,6 +132,7 @@ export default {
       let data = [];
       data.product = product;
       data.quantity = this.quantity;
+      data.totalproduct = this.totalproduct;
       this.$store.commit("product/AddToCartBy", data);
     },
     plus() {
@@ -160,20 +157,13 @@ export default {
     this.image = await res.Image;
     this.totalproduct = await res.Quantity;
   },
-<<<<<<< HEAD
   computed: {
     ...mapState("product", ["search", "cart"]),
   },
-   updated() {
-=======
-  computed: {},
   updated() {
-<<<<<<< HEAD
     // Hàm đổi ảnh
-=======
->>>>>>> 250259ebeb210e1c39a7700416e6893746802d8d
+
     // Hàm show/hide phần product detail
->>>>>>> 8c98610bde1ec96ad213ad72151e262bc2608a26
     document.querySelectorAll(".product-img-item").forEach((e) => {
       e.addEventListener("click", () => {
         let img = e.querySelector("img").getAttribute("src");

@@ -185,8 +185,6 @@
                     Payment Method
                   </h2>
                   <ul class="payment_methods methods">
-                  
-
                     <li class="payment_method_cheque">
                       <input
                         v-model="payment"
@@ -207,7 +205,6 @@
 
                     <li class="payment_method_paypal">
                       <input
-                      @click="abc"
                         v-model="payment"
                         id="payment_method_paypal"
                         type="radio"
@@ -222,15 +219,15 @@
                           Pay via PayPal; you can pay with your credit card if
                           you don’t have a PayPal account.
                         </p>
-                        <!-- paypal -->{{payment}}
-                        <div v-show="payment =='tripe' ">
+                        <!-- paypal -->{{ payment }}
+                        <div v-show="payment == 'tripe'">
                           <div id="paypal-button-container"></div>
                         </div>
                         <!-- end paypal -->
                       </div>
                     </li>
                   </ul>
-                  <div v-show="payment !='tripe'" class="form-row place-order">
+                  <div v-show="payment != 'tripe'" class="form-row place-order">
                     <input
                       @click="submit"
                       name="ecommerce_checkout_place_order"
@@ -271,18 +268,7 @@ export default {
     };
   },
   methods: {
-    abc(){
-        if (this.phone == "" || this.address == "" || this.name == "") {
-        alert("điền đủ thông tin");
-        return;
-      }
-      if (this.payment == "") {
-        alert("chọn phương thức thanh toán ");
-        return;
-      }
-      this.payment="cheque"
-      return
-    },
+    //Thanh Toán PayPal
     setLoaded: function() {
       this.loaded = true;
       window.paypal
@@ -300,6 +286,7 @@ export default {
               ],
             });
           },
+          //Xử lý sau thanh toán
           onApprove: async (data, actions) => {
             const order = await actions.order.capture();
             this.paidFor = true;
@@ -379,6 +366,7 @@ export default {
   computed: {
     ...mapState("user", ["is", "users"]),
     ...mapState("product", ["cart"]),
+    //tổng sản phẩm
     TotalProducts: function() {
       let total = 0;
       for (let i = 0; i < this.cart.length; i++) {
@@ -386,6 +374,7 @@ export default {
       }
       return total;
     },
+    //tổng tiền
     SubTotal: function() {
       let total = 0;
       for (let i = 0; i < this.cart.length; i++) {
